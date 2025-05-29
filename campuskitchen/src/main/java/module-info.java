@@ -4,4 +4,6 @@ module com.campus {
 
     opens com.campus to javafx.fxml;
     exports com.campus;
+
+    opens com.controllers to javafx.fxml;
 }
