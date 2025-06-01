@@ -1,0 +1,22 @@
+[
+    {
+      "firstName": "Emily",
+      "lastName": "Miller",
+      "email": "emily.miller@gmail.com",
+      "universityID": "F193742",
+      "username": "emill23",
+      "password": "321",
+      "dietaryRestrictions": ["VEGETARIAN", "KOSHER"],
+      "mealPlans": ["MP001", "MP003"]
+    },
+    {
+      "firstName": "David",
+      "lastName": "Tren",
+      "email": "david.tren@gmail.com",
+      "universityID": "G192730",
+      "username": "dtren98",
+      "password": "123",
+      "dietaryRestrictions": ["PALEO"],
+      "mealPlans": ["MP002"]
+    }
+]
