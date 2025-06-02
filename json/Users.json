@@ -7,7 +7,7 @@
       "username": "emill23",
       "password": "321",
       "dietaryRestrictions": ["VEGETARIAN", "KOSHER"],
-      "mealPlans": ["MP001", "MP003"]
+      "mealPlanIDs": ["MP001"]
     },
     {
       "firstName": "David",
@@ -17,6 +17,6 @@
       "username": "dtren98",
       "password": "123",
       "dietaryRestrictions": ["PALEO"],
-      "mealPlans": ["MP002"]
+      "mealPlanIDs": ["MP002"]
     }
 ]
