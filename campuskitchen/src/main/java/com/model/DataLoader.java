@@ -30,7 +30,7 @@ public class DataLoader {
 
     }
 
-    public static rrayList<Admin> getAdmin(){
+    public static ArrayList<Admin> getAdmin(){
 
     }
 
