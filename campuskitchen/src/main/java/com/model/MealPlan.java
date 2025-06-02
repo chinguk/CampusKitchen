@@ -20,6 +20,7 @@ public class MealPlan {
     }
 
     public ArrayList<Ingredients> generateGroceryList(){
+        return null;
 
     }
 

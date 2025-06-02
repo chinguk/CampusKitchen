@@ -2,11 +2,13 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RecipeSystemFACADE {
     private User user;
 
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
+        return user;
 
     }
 
@@ -23,14 +25,17 @@ public class RecipeSystemFACADE {
     }
 
     public User login(String username, String password) {
+        return user;
 
     }
 
     public Recipe getRecipeByKeyWord(String word) {
+        return null;
 
     }
 
     public ArrayList<Recipe> getAllRecipe() {
+        return null;
 
     }
 
@@ -42,19 +47,20 @@ public class RecipeSystemFACADE {
 
     }
 
-    public void approveRecipe(Recipe) {
+    public void approveRecipe(Recipe recipe) {
 
     }
 
-    public void deleteRecipe(Recipe) {
+    public void deleteRecipe(Recipe recipe) {
 
     }
 
-    public void rateRecipe(Recipe, Rating rating) {
+    public void rateRecipe(Recipe recipe, Rating rating) {
 
     }
 
-    public double getAverageRating(Recipe) {
+    public double getAverageRating(Recipe recipe) {
+        return 0;
 
     }
 
@@ -63,10 +69,12 @@ public class RecipeSystemFACADE {
     }
 
     public List<MealPlan> getUserMealPlans(User user) {
+        return null;
 
     }
 
-    public List<Ingredient> generateGroceryList(MealPlan) {
+    public List<Ingredients> generateGroceryList(MealPlan mealPlan) {
+        return null;
         
     }
 }

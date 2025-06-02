@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.Date;
 
-public class Rating extends Recipe {
+public class Rating {
     
     private User user;
     private Recipe recipe;

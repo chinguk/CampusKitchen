@@ -1,6 +1,6 @@
 package com.model;
 
-public class Ingredients extends Recipe {
+public class Ingredients {
     
     private String name;
     private double amount;
