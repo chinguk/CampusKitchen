@@ -13,9 +13,10 @@ public class DataWriter {
      * Saves a list of users to a JSON file.
      * 
      * @param users The list of users to be saved.
+     * @return 
      */
     public static void saveUsers() {
-       // User users = User.getInstance();
+        // User users = User.getInstance();
 		//ArrayList<User> userList = users.getUsers();
 
         ArrayList<User> userList = new ArrayList();
@@ -23,10 +24,10 @@ public class DataWriter {
         JSONArray userArray = new JSONArray();
 
         for(int i=0; i< userList.size(); i++) {
-			userArray.add(userList.get(i));
+			userArray.add(getUserJSON(userList.get(i)));
 		}
 		
-        try (FileWriter file = new FileWriter("json/user_temp.json")) {
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/testWriter.json")) {
  
             file.write(userArray.toJSONString());
             file.flush();
@@ -34,19 +35,22 @@ public class DataWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
     
+        public static JSONObject getUserJSON(User user) {
+                JSONObject userDetails = new JSONObject();
+                userDetails.put("firstName", user.getFirstName());
+                userDetails.put("lastName", user.getLastName());
+                userDetails.put("email", user.getEmail());
+                userDetails.put("universityID", user.getUniversityID());
+                userDetails.put("username", user.getUsername());
+                userDetails.put("password", user.getPassword());
 
-        for (User user : users) {
-            JSONObject j = new JSONObject();
-            j.put("firstName", user.getFirstName());
-            j.put("lastName", user.getLastName());
-            j.put("email", user.getEmail());
-            j.put("universityID", user.getUniversityID());
-            j.put("username", user.getUsername());
-            j.put("password", user.getPassword());
-        }
+                return userDetails;
+        }    
 
-           /*  JSONArray dietJson = new JSONArray();
+        /*
+            JSONArray dietJson = new JSONArray();
             if (user.getDietaryRestrictions() != null) {
                 for (Dietary d : user.getDietaryRestrictions()) {
                     dietJson.add(d.toString());
@@ -71,10 +75,10 @@ public class DataWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }   */
+            */ 
         public static void main(String[] args){
             DataWriter.saveUsers();
         }
-    }
 }
+
 
