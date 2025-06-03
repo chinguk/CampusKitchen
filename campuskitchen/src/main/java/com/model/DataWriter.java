@@ -48,18 +48,9 @@ public class DataWriter {
 
                 return userDetails;
         }    
-        
-        /*for (User user : users) {
-            JSONObject userDetails = new JSONObject();
-            j.put("firstName", user.getFirstName());
-            j.put("lastName", user.getLastName());
-            j.put("email", user.getEmail());
-            j.put("universityID", user.getUniversityID());
-            j.put("username", user.getUsername());
-            j.put("password", user.getPassword());
-        }
 
-             JSONArray dietJson = new JSONArray();
+        /*
+            JSONArray dietJson = new JSONArray();
             if (user.getDietaryRestrictions() != null) {
                 for (Dietary d : user.getDietaryRestrictions()) {
                     dietJson.add(d.toString());
