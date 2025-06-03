@@ -11,6 +11,11 @@ import junit.framework.Test;
 
 public class DataWriter extends DataConstants {
     
+    /**
+     * Saves a list of users to a JSON file.
+     * 
+     * @param users The list of users to be saved.
+     */
     public static void saveUsers(ArrayList<User> users) {
         JSONArray userArray = new JSONArray();
 
@@ -42,7 +47,7 @@ public class DataWriter extends DataConstants {
             userArray.add(j);
         }
 
-        try (FileWriter file = new FileWriter(new File("json/Users.json"))) {
+        try (FileWriter file = new FileWriter(new File("json/Test.json"))) {
             file.write(userArray.toJSONString());
             file.flush();
         } catch (IOException e) {
