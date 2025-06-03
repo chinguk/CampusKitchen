@@ -12,7 +12,11 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
+<<<<<<< HEAD
+    User(String firstName, String lastName, String email, String universityID, String username, String password){
+=======
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
+>>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
