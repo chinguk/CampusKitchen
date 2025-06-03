@@ -12,7 +12,11 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
+<<<<<<< HEAD
     User(String firstName, String lastName, String email, String universityID, String username, String password){
+=======
+    protected User(String firstName, String lastName, String email, String universityID, String username, String password){
+>>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -26,17 +30,24 @@ public class User {
     }
 
     public boolean login(String username, String password){
-        
+        return this.username.equals(username) && this.password.equals(password);
+
     }
 
     public void updateProfile(User user){
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.email = user.email;
+        this.universityID = user.universityID;
+        this.username = user.username;
+        this.password = user.password;
 
+        // replace entire lists with copies of incoming user's lists
+        this.dietaryRestrictions = new ArrayList<>(user.dietaryRestrictions);
+        this.mealPlans = new ArrayList<>(user.mealPlans);
     }
 
     public void deleteAccount(){
-
-
-
         
     }
 }
