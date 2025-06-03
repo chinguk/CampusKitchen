@@ -13,6 +13,9 @@ public class User {
     private ArrayList<MealPlan> mealPlans;
 
 <<<<<<< HEAD
+    User(String firstName, String lastName, String email, String universityID, String username, String password){
+=======
+<<<<<<< HEAD
     public User(String firstName, String lastName, String email, String universityID, String username, String password){
 =======
 <<<<<<< HEAD
@@ -21,6 +24,7 @@ public class User {
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
 >>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
 >>>>>>> fd2f49c4e158293a31bb78bdd523101beca6a347
+>>>>>>> 7a0780d01d09e2b03323b964657e9892954e9e45
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -29,6 +33,54 @@ public class User {
         this.password = password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUniversityID() {
+        return universityID;
+    }
+
+    public void setUniversityID(String universityID) {
+        this.universityID = universityID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public void createAccount(){
 
     }
@@ -52,7 +104,14 @@ public class User {
     }
 
     public void deleteAccount(){
-        
+        UserList.getInstance().removeUser(this.username);
+
+        this.firstName = null;
+        this.lastName = null;
+        this.email = null;
+        this.universityID = null;
+        this.username = null;
+        this.password = null;
     }
 
     public String toString() {
