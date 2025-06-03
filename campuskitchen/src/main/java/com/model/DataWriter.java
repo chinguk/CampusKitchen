@@ -16,7 +16,7 @@ public class DataWriter {
      * @return 
      */
     public static void saveUsers() {
-       // User users = User.getInstance();
+        // User users = User.getInstance();
 		//ArrayList<User> userList = users.getUsers();
 
         ArrayList<User> userList = new ArrayList();
@@ -27,7 +27,7 @@ public class DataWriter {
 			userArray.add(getUserJSON(userList.get(i)));
 		}
 		
-        try (FileWriter file = new FileWriter("campuskitcen/src/main/json/testWriter.json")) {
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/testWriter.json")) {
  
             file.write(userArray.toJSONString());
             file.flush();
