@@ -1,0 +1,13 @@
+[
+    {
+      "name": "Spinach",
+      "amount": 150,
+      "unit": "GRAM"
+    },
+    {
+      "name": "Milk",
+      "amount": 250,
+      "unit": "ML"
+    }
+]
+  

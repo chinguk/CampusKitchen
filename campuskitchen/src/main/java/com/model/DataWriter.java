@@ -7,17 +7,34 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import junit.framework.Test;
-
-public class DataWriter extends DataConstants {
+public class DataWriter {
     
     /**
      * Saves a list of users to a JSON file.
      * 
      * @param users The list of users to be saved.
      */
-    public static void saveUsers(ArrayList<User> users) {
+    public static void saveUsers() {
+       // User users = User.getInstance();
+		//ArrayList<User> userList = users.getUsers();
+
+        ArrayList<User> userList = new ArrayList();
+		userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344"));
         JSONArray userArray = new JSONArray();
+
+        for(int i=0; i< userList.size(); i++) {
+			userArray.add(userList.get(i));
+		}
+		
+        try (FileWriter file = new FileWriter("json/user_temp.json")) {
+ 
+            file.write(userArray.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
 
         for (User user : users) {
             JSONObject j = new JSONObject();
@@ -27,8 +44,9 @@ public class DataWriter extends DataConstants {
             j.put("universityID", user.getUniversityID());
             j.put("username", user.getUsername());
             j.put("password", user.getPassword());
+        }
 
-            JSONArray dietJson = new JSONArray();
+           /*  JSONArray dietJson = new JSONArray();
             if (user.getDietaryRestrictions() != null) {
                 for (Dietary d : user.getDietaryRestrictions()) {
                     dietJson.add(d.toString());
@@ -53,5 +71,10 @@ public class DataWriter extends DataConstants {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }   
+    }   */
+        public static void main(String[] args){
+            DataWriter.saveUsers();
+        }
+    }
 }
+

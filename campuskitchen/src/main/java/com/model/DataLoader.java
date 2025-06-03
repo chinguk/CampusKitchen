@@ -16,26 +16,27 @@ public class DataLoader {
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
         try {
-            FileReader reader = new FileReader("json/Users.json");
+            FileReader reader = new FileReader("src/mainjson/Users.json");
             JSONParser parser = new JSONParser();
             JSONArray userArray = (JSONArray) parser.parse(reader);
-            for (Object obj : userArray) {
-                JSONObject j = new JSONObject();
-                String firstName = (String) j.get(firstName);
-                String lastName = (String) j.get(lastName);
-                String email = (String) j.get(email);
-                String universityID = (String) j.get(universityID);
-                String username = (String) j.get(username);
-                String password = (String) j.get(password);
+            for (int i=0; i < userArray.size(); i++) {
+                JSONObject j = (JSONObject)userArray.get(i);
+                String firstName = (String) j.get("firstName");
+                String lastName = (String) j.get("lastName");
+                String email = (String) j.get("email");
+                String universityID = (String) j.get("universityID");
+                String username = (String) j.get("username");
+                String password = (String) j.get("password");
                 ArrayList<Dietary> dietList = new ArrayList<>();
-                JSONArray dietJson = (JSONArray) j.get(dietaryRestrictions);
+                System.out.println(firstName);
+                /*JSONArray dietJson = (JSONArray) j.get(dietaryRestrictions);
                 if (dietJson != null) {
                     for (Object d : dietJson) {
                         dietList.add(Dietary.valueOf((String) d));
                     }
                 }
                 ArrayList<MealPlan> mealPlans = new ArrayList<>();
-                JSONArray mpJson = (JSONArray) j.get("mealPlanIDs");
+                JSONArray mpJson = (JSONArray) j.get(mealPlanIDs);
                 if (mpJson != null) {
                     for (Object id : mpJson) {
                         String mpId = id.toString();
@@ -44,7 +45,7 @@ public class DataLoader {
                             mealPlans.add(mp);
                         }
                     }
-                }
+                } */
             }
             return users;
         } catch (Exception e) {
@@ -54,7 +55,6 @@ public class DataLoader {
     }
 
     public static void main(String[] args) {
-        DataLoader d = new DataLoader();
         DataLoader.getUsers();
     }
 
