@@ -13,10 +13,14 @@ public class User {
     private ArrayList<MealPlan> mealPlans;
 
 <<<<<<< HEAD
+    public User(String firstName, String lastName, String email, String universityID, String username, String password){
+=======
+<<<<<<< HEAD
     User(String firstName, String lastName, String email, String universityID, String username, String password){
 =======
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
 >>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
+>>>>>>> fd2f49c4e158293a31bb78bdd523101beca6a347
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -49,6 +53,10 @@ public class User {
 
     public void deleteAccount(){
         
+    }
+
+    public String toString() {
+        return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password;
     }
 }
 
