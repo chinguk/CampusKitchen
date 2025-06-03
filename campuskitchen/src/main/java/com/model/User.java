@@ -12,19 +12,9 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
-<<<<<<< HEAD
-    User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
-<<<<<<< HEAD
-    public User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
-<<<<<<< HEAD
-    User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
+
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
->>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
->>>>>>> fd2f49c4e158293a31bb78bdd523101beca6a347
->>>>>>> 7a0780d01d09e2b03323b964657e9892954e9e45
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
