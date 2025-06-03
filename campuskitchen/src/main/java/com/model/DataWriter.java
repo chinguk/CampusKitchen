@@ -27,7 +27,7 @@ public class DataWriter {
 			userArray.add(getUserJSON(userList.get(i)));
 		}
 		
-        try (FileWriter file = new FileWriter("json/user_temp.json")) {
+        try (FileWriter file = new FileWriter("campuskitcen/src/main/json/testWriter.json")) {
  
             file.write(userArray.toJSONString());
             file.flush();
