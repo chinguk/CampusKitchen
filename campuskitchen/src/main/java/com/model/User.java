@@ -12,7 +12,7 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
-    private User(String firstName, String lastName, String email, String universityID, String username, String password){
+    User(String firstName, String lastName, String email, String universityID, String username, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
