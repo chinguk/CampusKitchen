@@ -13,26 +13,40 @@ public class DataWriter extends DataConstants {
     
     public static void saveUsers(ArrayList<User> users) {
         JSONArray userArray = new JSONArray();
+
         for (User user : users) {
-            JSONObject userObject = new JSONObject();
-            userObject.put("firstName", user.getFirstName());
-            userObject.put("lastName", user.getLastName());
-            userObject.put("email", user.getEmail());
-            userObject.put("universityID", user.getUniversityID());
-            userObject.put("username", user.getUsername());
-            userObject.put("password", user.getPassword());
-            userObject.put("dietaryRestrictions", user.getDietaryRestrictions());
-            userObject.put("mealPlans", user.getMealPlans());
-            userArray.add(userObject);
+            JSONObject j = new JSONObject();
+            j.put("firstName", user.getFirstName());
+            j.put("lastName", user.getLastName());
+            j.put("email", user.getEmail());
+            j.put("universityID", user.getUniversityID());
+            j.put("username", user.getUsername());
+            j.put("password", user.getPassword());
+
+            JSONArray dietJson = new JSONArray();
+            if (user.getDietaryRestrictions() != null) {
+                for (Dietary d : user.getDietaryRestrictions()) {
+                    dietJson.add(d.toString());
+                }
+            }
+            j.put("dietaryRestrictions", dietJson);
+
+            JSONArray mpJson = new JSONArray();
+            if (user.getMealPlans() != null) {
+                for (MealPlan mp : user.getMealPlans()) {
+                    mpJson.add(mp.getId());
+                }
+            }
+            j.put("mealPlanIDs", mpJson);
+
+            userArray.add(j);
         }
 
-        File TestFile = new java.io.File("json/Test.json");
-
-        try (FileWriter file = new FileWriter(TestFile)) {
+        try (FileWriter file = new FileWriter(new File("json/Users.json"))) {
             file.write(userArray.toJSONString());
             file.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }   
 }
