@@ -46,5 +46,9 @@ public class User {
     public void deleteAccount(){
         
     }
+
+    public String toString() {
+        return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password;
+    }
 }
 
