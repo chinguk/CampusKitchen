@@ -44,13 +44,13 @@ public class DataWriter {
         }
         userDetails.put("dietaryRestrictions", dietJson);
 
-        /*JSONArray mpJson = new JSONArray();
+        JSONArray mpJson = new JSONArray();
         if (user.getMealPlans() != null) {
             for (MealPlan mp : user.getMealPlans()) {
-                mpJson.add(mp.getPlanName());
+                mpJson.add(mp.getID());
             }
         }
-        userDetails.put("mealPlanIDs", mpJson);*/
+        userDetails.put("mealPlanIDs", mpJson);
 
         return userDetails;
     }
