@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public class MealPlan {
     private String name;
     private ArrayList<Recipe> recipes;
-    private ArrayList<MealPlan> mealPlanIDs;
+    private String id;
 
     public MealPlan(String name, ArrayList<Recipe> recipes){
         this.name = name;
         this.recipes = recipes;
+    }
+
+    public String getID() {
+        return this.id;
     }
 
     public void addRecipe(Recipe recipe){

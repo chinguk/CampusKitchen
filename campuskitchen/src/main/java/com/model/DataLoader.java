@@ -16,7 +16,7 @@ public class DataLoader {
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
         try {
-            FileReader reader = new FileReader("src/mainjson/Users.json");
+            FileReader reader = new FileReader("campuskitchen/src/main/json/Users.json");
             JSONParser parser = new JSONParser();
             JSONArray userArray = (JSONArray) parser.parse(reader);
             for (int i=0; i < userArray.size(); i++) {
@@ -27,25 +27,11 @@ public class DataLoader {
                 String universityID = (String) j.get("universityID");
                 String username = (String) j.get("username");
                 String password = (String) j.get("password");
-                ArrayList<Dietary> dietList = new ArrayList<>();
                 System.out.println(firstName);
-                /*JSONArray dietJson = (JSONArray) j.get(dietaryRestrictions);
-                if (dietJson != null) {
-                    for (Object d : dietJson) {
-                        dietList.add(Dietary.valueOf((String) d));
-                    }
-                }
-                ArrayList<MealPlan> mealPlans = new ArrayList<>();
-                JSONArray mpJson = (JSONArray) j.get(mealPlanIDs);
-                if (mpJson != null) {
-                    for (Object id : mpJson) {
-                        String mpId = id.toString();
-                        MealPlan mp = MealPlan.getMealPlanId(mpId); 
-                        if (mp != null) {
-                            mealPlans.add(mp);
-                        }
-                    }
-                } */
+                ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
+                ArrayList<String> mealPlans = parseMealPlanIDs(j);
+                System.out.println(dietList);
+                System.out.println(mealPlans);
             }
             return users;
         } catch (Exception e) {
@@ -54,14 +40,47 @@ public class DataLoader {
     return users;
     }
 
+    private static ArrayList<Dietary> parseDietaryRestrictions(JSONObject j) {
+        ArrayList<Dietary> dietList = new ArrayList<>();
+        JSONArray dietJson = (JSONArray) j.get("dietaryRestrictions");
+        if (dietJson != null) {
+            for (Object d : dietJson) {
+                    dietList.add(Dietary.valueOf(d.toString().toUpperCase()));
+            }
+        }
+        return dietList;
+    }
+
+    public static ArrayList<String> parseMealPlanIDs(JSONObject j) {
+        ArrayList<String> mealPlanIds = new ArrayList<>();
+        JSONArray idArray = (JSONArray) j.get("mealPlanIDs");
+        if (idArray != null) {
+            for (Object id : idArray) {
+                mealPlanIds.add(id.toString());
+            }
+        }
+        return mealPlanIds;
+    }
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static void main(String[] args) {
         DataLoader.getUsers();
     }
 
     public static ArrayList<Recipe> getRecipes(){
-
+       
     }
-
     public static ArrayList<MealPlan> getMealPlans(){
 
     }
@@ -77,4 +96,12 @@ public class DataLoader {
     public static ArrayList<Recipe> getRecipes(){
 
     }
+
+    
+
+    
+
+
+
+
 }
