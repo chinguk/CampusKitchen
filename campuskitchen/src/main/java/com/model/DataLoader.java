@@ -51,15 +51,15 @@ public class DataLoader {
         return dietList;
     }
 
-    public static ArrayList<String> parseMealPlanIDs(JSONObject j) {
-        ArrayList<String> mealPlanIds = new ArrayList<>();
-        JSONArray idArray = (JSONArray) j.get("mealPlanIDs");
+    public static ArrayList<MealPlan> parseMealPlan(JSONObject j) {
+        ArrayList<MealPlan> mealPlans = new ArrayList<>();
+        JSONArray idArray = (JSONArray) j.get("mealPlan");
         if (idArray != null) {
             for (Object id : idArray) {
                 mealPlanIds.add(id.toString());
             }
         }
-        return mealPlanIds;
+        return mealPlans;
     }
 
 
@@ -75,7 +75,7 @@ public class DataLoader {
     
     
     public static void main(String[] args) {
-        DataLoader.getUsers();
+       DataLoader.getUsers();
     }
 
     public static ArrayList<Recipe> getRecipes(){
@@ -85,23 +85,12 @@ public class DataLoader {
 
     }
 
-    public static ArrayList<Ingredients> getIngredients(){
+    public static ArrayList<Ingredient> getIngredients(){
 
     }
 
     public static ArrayList<Admin> getAdmin(){
 
     }
-
-    public static ArrayList<Recipe> getRecipes(){
-
-    }
-
-    
-
-    
-
-
-
 
 }
