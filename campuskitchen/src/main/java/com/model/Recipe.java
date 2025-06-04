@@ -132,8 +132,15 @@ public class Recipe {
 
     }
 
-    public void getAverageRating() {
-
+    public double getAverageRating() {
+        if(ratings.isEmpty()) {
+            return 0.0;
+        }
+        int sum = 0;
+        for (Rating r : ratings) {
+            sum += r.getScore();
+        }
+        return (double) sum / ratings.size();
     }
 
     public void getSimilarRecipes() {

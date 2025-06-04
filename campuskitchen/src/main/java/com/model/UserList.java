@@ -21,7 +21,7 @@ public class UserList {
         User newUser = new User(firstName, lastName, email, universityID, username, password);
         users.add(newUser);
     }
-
+    
     public User getUser(String username){
         for (User u : users) {
             if (u != null && u.getUsername().equals(username)) {
@@ -37,11 +37,12 @@ public class UserList {
 
     public void editUser(String firstName, String lastName, String email, String universityID, String username, String password){
         User existing = getUser(username);
+        // if username does not exit return nothing
         if (existing == null) {
-            throw new IllegalArgumentException(
-                "editUser: no user found with username='" + username + "'."
-            );
+            return;
         }        
+
+        // update list
         existing.setFirstName(firstName);
         existing.setLastName(lastName);
         existing.setEmail(email);

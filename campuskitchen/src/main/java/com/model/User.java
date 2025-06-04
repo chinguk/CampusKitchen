@@ -109,10 +109,10 @@ public class User {
         if (user == null) return;
         this.firstName = user.firstName;
         this.lastName  = user.lastName;
-        this.email     = user.email;
+        this.email = user.email;
         this.universityID = user.universityID;
-        this.username  = user.username;
-        this.password  = user.password;
+        this.username = user.username;
+        this.password = user.password;
 
         this.dietaryRestrictions = new ArrayList<>(user.dietaryRestrictions);
         this.mealPlans = new ArrayList<>(user.mealPlans);
@@ -127,7 +127,7 @@ public class User {
     public String toString() {
        return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password
          + " | Dietary: " + dietaryRestrictions
-         + " | MealPlans: "      + mealPlans;
+         + " | MealPlans: " + mealPlans;
     }
     
 }
