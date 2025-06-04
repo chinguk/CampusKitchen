@@ -56,7 +56,7 @@ public class RecipeList {
         return matches;
     }
 
-    public void editRecipe(String id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredients> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
+    public void editRecipe(String id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
         
     }
 

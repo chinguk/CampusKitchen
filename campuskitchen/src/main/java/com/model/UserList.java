@@ -8,7 +8,6 @@ public class UserList {
 
     public UserList(){
         this.users = new ArrayList<>();
-        DataLoader.getUsers();
     }
 
     public static UserList getInstance(){
@@ -51,6 +50,7 @@ public class UserList {
         existing.setPassword(password);
     }
 
+    // will call datawriter
     public void saveUsers(User user){
 
     }
