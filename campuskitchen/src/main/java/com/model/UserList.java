@@ -31,6 +31,10 @@ public class UserList {
         return null;
     }
 
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
+
     public void editUser(String firstName, String lastName, String email, String universityID, String username, String password){
         User existing = getUser(username);
         if (existing == null) {

@@ -65,7 +65,7 @@ public class Recipe {
     }
 
     public void setSteps(ArrayList<String> steps) {
-        this.steps = steps;
+        this.steps = (steps == null) ? new ArrayList<String>() : steps;
     }
 
     public void addStep(String step) {
@@ -85,7 +85,7 @@ public class Recipe {
     }
 
     public void setIngredients(ArrayList<Ingredients> ingredients) {
-        this.ingredients = ingredients;
+        this.ingredients = (ingredients == null) ? new ArrayList<Ingredients>() : ingredients;
     }
 
     public void addIngredient(Ingredients ingredient) {
@@ -101,7 +101,7 @@ public class Recipe {
     }
 
     public void setCategories(ArrayList<String> categories) {
-        this.categories = categories;
+        this.categories = (categories == null) ? new ArrayList<String>() : categories;
     }
 
     public User getAuthor() {
@@ -138,5 +138,17 @@ public class Recipe {
 
     public void getSimilarRecipes() {
 
+    }
+
+    public void removeRecipe(Recipe recipe) {
+        //RecipeList.getInstance().deleteRecipe(recipe.getId().toString());
+    }
+
+    public ArrayList<Ingredients> generateGroceryList() {
+        return new ArrayList<>(this.ingredients);
+    }
+
+    public void rename(String name) {
+        this.name = name;
     }
 }
