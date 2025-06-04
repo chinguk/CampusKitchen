@@ -40,7 +40,7 @@ public class DataLoader {
     return users;
     }
 
-    private static ArrayList<Dietary> parseDietaryRestrictions(JSONObject j) {
+    public static ArrayList<Dietary> parseDietaryRestrictions(JSONObject j) {
         ArrayList<Dietary> dietList = new ArrayList<>();
         JSONArray dietJson = (JSONArray) j.get("dietaryRestrictions");
         if (dietJson != null) {
