@@ -1,1 +1,1 @@
-[{"firstName":"pplante","lastName":"Portia","universityID":"1234","password":"2309553344","mealPlanIDs":[],"dietaryRestrictions":[],"email":"Plante","username":"pplante"}]
+[{"firstName":"pplante","lastName":"Portia","universityID":"1234","password":"2309553344","mealPlanIDs":[],"dietaryRestrictions":[],"mealPlans":null,"email":"Plante","username":"pplante"},{"firstName":"Kim","lastName":"Brown","universityID":"2345","password":"10062003","mealPlanIDs":[],"dietaryRestrictions":[],"mealPlans":[],"email":"KBrown","username":"kbro"}]

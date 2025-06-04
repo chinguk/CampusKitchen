@@ -13,6 +13,8 @@ public class DataWriter {
     public static void saveUsers() {
         ArrayList<User> userList = UserList.getInstance().getUsers();
         userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344"));
+        userList.add(new User("Kim", "Brown", "KBrown", "2345", "kbro", "10062003", new ArrayList<MealPlan>(), new ArrayList<Dietary>()));
+
         JSONArray userArray = new JSONArray();
 
         for (User u : userList) {
@@ -35,6 +37,8 @@ public class DataWriter {
         userDetails.put("universityID", user.getUniversityID());
         userDetails.put("username", user.getUsername());
         userDetails.put("password", user.getPassword());
+        userDetails.put("mealPlans", user.getMealPlans());
+        userDetails.put("dietaryRestrictions", user.getDietaryRestrictions());
 
         JSONArray dietJson = new JSONArray();
         if (user.getDietaryRestrictions() != null) {
