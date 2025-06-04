@@ -9,19 +9,19 @@ public class Recipe {
     private String description;
     private int duration;
     private ArrayList<String> steps;
-    private ArrayList<Ingredients> ingredients;
+    private ArrayList<Ingredient> ingredient;
     private ArrayList<String> categories;
     private User author;
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
 
-    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredients> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
+    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.steps = new ArrayList<String>();
-        this.ingredients = new ArrayList<Ingredients>();
+        this.ingredient = new ArrayList<Ingredient>();
         this.categories = new ArrayList<String>();
         this.author = author;
         this.status = status;
@@ -80,20 +80,20 @@ public class Recipe {
         this.steps.set(index, step);
     }
 
-    public ArrayList<Ingredients> getIngredients() {
-        return ingredients;
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredient;
     }
 
-    public void setIngredients(ArrayList<Ingredients> ingredients) {
-        this.ingredients = (ingredients == null) ? new ArrayList<Ingredients>() : ingredients;
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredient = (ingredients == null) ? new ArrayList<Ingredient>() : ingredients;
     }
 
-    public void addIngredient(Ingredients ingredient) {
-        this.ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredient.add(ingredient);
     }
 
-    public void removeIngredient(Ingredients ingredient) {
-        this.ingredients.remove(ingredient);
+    public void removeIngredient(Ingredient ingredient) {
+        this.ingredient.remove(ingredient);
     }
 
     public ArrayList<String> getCategories() {
@@ -147,8 +147,8 @@ public class Recipe {
 
     }
 
-    public ArrayList<Ingredients> generateGroceryList() {
-        return new ArrayList<>(this.ingredients);
+    public ArrayList<Ingredient> generateGroceryList() {
+        return new ArrayList<>(this.ingredient);
     }
 
     public void rename(String name) {

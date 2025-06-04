@@ -20,11 +20,18 @@ public class User {
         this.universityID = universityID;
         this.username = username;
         this.password = password;
+    }
+
+    protected User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<MealPlan> mealPlans, ArrayList<Dietary> dietaryRestrictions){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.universityID = universityID;
+        this.username = username;
+        this.password = password;
         this.dietaryRestrictions  = new ArrayList<>();
         this.mealPlans = mealPlans = new ArrayList<>();
     }
-
-    //overloaded constructor with dietary restictions and mealplans
 
     public String getFirstName() {
         return firstName;
