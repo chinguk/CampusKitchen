@@ -26,6 +26,11 @@ public class MealPlan {
         return this.id;
     }
 
+    public String getRecipe(){
+        return this.id;
+
+    }
+
     public void addRecipe(Recipe recipe){
 
     }
@@ -34,7 +39,7 @@ public class MealPlan {
 
     }
 
-    public ArrayList<Ingredients> generateGroceryList(){
+    public ArrayList<Ingredient> generateGroceryList(){
         return null;
 
     }
