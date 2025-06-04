@@ -24,6 +24,8 @@ public class User {
         this.mealPlans = mealPlans = new ArrayList<>();
     }
 
+    //overloaded constructor with dietary restictions and mealplans
+
     public String getFirstName() {
         return firstName;
     }
@@ -88,20 +90,7 @@ public class User {
         this.mealPlans = mealPlans;
     }
 
-    public void createAccount(){
-        UserList list = UserList.getInstance();
-
-        list.addUser(
-            this.firstName,
-            this.lastName,
-            this.email,
-            this.universityID,
-            this.username,
-            this.password
-        );
-    }
-
-    public boolean login(String username, String password){
+    public boolean isMatch (String username, String password){
         return this.username.equals(username) && this.password.equals(password);
     }
 
@@ -116,12 +105,6 @@ public class User {
 
         this.dietaryRestrictions = new ArrayList<>(user.dietaryRestrictions);
         this.mealPlans = new ArrayList<>(user.mealPlans);
-    }
-
-    public void deleteAccount(){
-        UserList list = UserList.getInstance();
-        list.removeUser(this.username);
-
     }
 
     public String toString() {

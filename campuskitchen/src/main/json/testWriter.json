@@ -1,11 +1,1 @@
-[
-    {
-        "firstName": "pplante",
-        "lastName": "Portia",
-        "universityID": "1234",
-        "password": "2309553344",
-        "dietaryRestrictions": [],
-        "email": "Plante",
-        "username": "pplante"
-    }
-]
+[{"firstName":"pplante","lastName":"Portia","universityID":"1234","password":"2309553344","mealPlanIDs":[],"dietaryRestrictions":[],"email":"Plante","username":"pplante"}]

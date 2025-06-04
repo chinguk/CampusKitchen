@@ -1,12 +1,12 @@
 package com.model;
 
-public class Ingredients {
+public class Ingredient {
     
     private String name;
     private double amount;
     private Unit unit;
     
-    public Ingredients (String name, double amount, Unit unit) {
+    public Ingredient (String name, double amount, Unit unit) {
         this.name = name;
         this.amount = amount;
         this.unit = unit;

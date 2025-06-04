@@ -147,10 +147,6 @@ public class Recipe {
 
     }
 
-    public void removeRecipe(Recipe recipe) {
-        //RecipeList.getInstance().deleteRecipe(recipe.getId().toString());
-    }
-
     public ArrayList<Ingredients> generateGroceryList() {
         return new ArrayList<>(this.ingredients);
     }
