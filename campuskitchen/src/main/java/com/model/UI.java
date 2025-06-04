@@ -30,4 +30,8 @@ public class UI {
             System.out.println("Login failed, try again");
         }
     }
+        public static void main(String[] args){
+            UI ui = new UI();
+            ui.runLogin();
+        }
 }
