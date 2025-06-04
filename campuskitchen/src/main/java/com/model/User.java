@@ -13,16 +13,8 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
+    // Constructor
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.universityID = universityID;
-        this.username = username;
-        this.password = password;
-    }
-
-    protected User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<MealPlan> mealPlans, ArrayList<Dietary> dietaryRestrictions){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -31,6 +23,19 @@ public class User {
         this.password = password;
         this.dietaryRestrictions  = new ArrayList<>();
         this.mealPlans = mealPlans = new ArrayList<>();
+    }
+
+    // Overloaded constructor with dietary restictions and mealplans
+    public User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<Dietary> dietaryRestrictions, ArrayList<MealPlan> mealPlans) {
+        this.firstName = firstName;
+        this.lastName  = lastName;
+        this.email     = email;
+        this.universityID = universityID;
+        this.username  = username;
+        this.password  = password;
+
+        this.dietaryRestrictions = (dietaryRestrictions != null) ? new ArrayList<>(dietaryRestrictions) : new ArrayList<>();
+        this.mealPlans = (mealPlans != null) ? new ArrayList<>(mealPlans) : new ArrayList<>();        
     }
 
     public String getFirstName() {
@@ -97,11 +102,11 @@ public class User {
         this.mealPlans = mealPlans;
     }
 
-    public boolean isMatch (String username, String password){
+    public boolean isMatch (String username, String password) {
         return this.username.equals(username) && this.password.equals(password);
     }
 
-    public void updateProfile(User user){
+    public void updateProfile(User user) {
         if (user == null) return;
         this.firstName = user.firstName;
         this.lastName  = user.lastName;

@@ -29,7 +29,7 @@ public class DataLoader {
                 String password = (String) j.get("password");
                 System.out.println(firstName);
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
-                ArrayList<String> mealPlans = parseMealPlanIDs(j);
+                ArrayList<String> mealPlans = parseMealPlans(j);
                 System.out.println(dietList);
                 System.out.println(mealPlans);
             }
@@ -51,15 +51,15 @@ public class DataLoader {
         return dietList;
     }
 
-    public static ArrayList<String> parseMealPlanIDs(JSONObject j) {
-        ArrayList<String> mealPlanIds = new ArrayList<>();
-        JSONArray idArray = (JSONArray) j.get("mealPlanIDs");
-        if (idArray != null) {
-            for (Object id : idArray) {
-                mealPlanIds.add(id.toString());
+    public static ArrayList<MealPlan> parseMealPlans(JSONObject j) {
+        ArrayList<MealPlan> mealPlans = new ArrayList<>();
+        JSONArray mealPlanArray = (JSONArray) j.get("mealPlan");
+        if (mealPlanArray != null) {
+            for (Object object : mealPlanArray) {
+                mealPlans.add(MeaPlan.);
             }
         }
-        return mealPlanIds;
+        return mealPlans;
     }
 
 
@@ -75,7 +75,7 @@ public class DataLoader {
     
     
     public static void main(String[] args) {
-        DataLoader.getUsers();
+       DataLoader.getUsers();
     }
 
     public static ArrayList<Recipe> getRecipes(){
@@ -85,23 +85,12 @@ public class DataLoader {
 
     }
 
-    public static ArrayList<Ingredients> getIngredients(){
+    public static ArrayList<Ingredient> getIngredients(){
 
     }
 
     public static ArrayList<Admin> getAdmin(){
 
     }
-
-    public static ArrayList<Recipe> getRecipes(){
-
-    }
-
-    
-
-    
-
-
-
 
 }
