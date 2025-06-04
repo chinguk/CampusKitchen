@@ -8,6 +8,7 @@ public class UserList {
 
     public UserList(){
         this.users = new ArrayList<>();
+        DataLoader.getUsers();
     }
 
     public static UserList getInstance(){

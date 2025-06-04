@@ -17,6 +17,6 @@
       "username": "dtren98",
       "password": "123",
       "dietaryRestrictions": ["PALEO"],
-      "mealPlanIDs": [{"name": "Weekend Meal Plan", "recipes": ["dd772f9e-0f18-4bd7-90a4-13ae71d9f531"] ,"mealPlanIDs" : "MP002"}]
+      "mealPlans": [{"name": "Weekend Meal Plan", "recipes": ["dd772f9e-0f18-4bd7-90a4-13ae71d9f531"] ,"mealPlanIDs" : "MP002"}]
     }
 ]

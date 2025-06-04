@@ -26,6 +26,11 @@ public class MealPlan {
         return this.id;
     }
 
+    public String getRecipe(){
+        return this.id;
+
+    }
+
     public void addRecipe(Recipe recipe){
 
     }

@@ -59,6 +59,29 @@ public class DataWriter {
         return userDetails;
     }
 
+    /*public static void saveMealPlans() {
+        ArrayList<MealPlan> mealPlans = MealPlan.getInstance().getMealPlans();
+        JSONArray mpJson = new JSONArray();
+        for (MealPlan mp : mealPlans) {
+            mpJson.add(getMealPlanJSON(mp));
+        }
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/MealPlans.json")) {
+            file.write(mpJson.toJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
+        JSONObject mealPlanDetails = new JSONObject();
+        mealPlanDetails.put("id", mealPlan.getID());
+        mealPlanDetails.put("name", mealPlan.getName());
+        mealPlanDetails.put("recipes", mealPlan.getRecipe());
+
+        return mealPlanDetails;
+    }*/
+
     public static void main(String[] args) {
         DataWriter.saveUsers();
     }

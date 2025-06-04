@@ -29,7 +29,7 @@ public class DataLoader {
                 String password = (String) j.get("password");
                 System.out.println(firstName);
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
-                ArrayList<String> mealPlans = parseMealPlanIDs(j);
+                ArrayList<String> mealPlans = parseMealPlans(j);
                 System.out.println(dietList);
                 System.out.println(mealPlans);
             }
@@ -51,12 +51,12 @@ public class DataLoader {
         return dietList;
     }
 
-    public static ArrayList<MealPlan> parseMealPlan(JSONObject j) {
+    public static ArrayList<MealPlan> parseMealPlans(JSONObject j) {
         ArrayList<MealPlan> mealPlans = new ArrayList<>();
-        JSONArray idArray = (JSONArray) j.get("mealPlan");
-        if (idArray != null) {
-            for (Object id : idArray) {
-                mealPlanIds.add(id.toString());
+        JSONArray mealPlanArray = (JSONArray) j.get("mealPlan");
+        if (mealPlanArray != null) {
+            for (Object object : mealPlanArray) {
+                mealPlans.add(MeaPlan.);
             }
         }
         return mealPlans;
