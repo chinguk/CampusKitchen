@@ -39,11 +39,11 @@ public class RecipeSystemFACADE {
 
     }
 
-    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredients> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
+    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
 
     }
 
-    public void editRecipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredients> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, RecipeStatus status) {
+    public void editRecipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, RecipeStatus status) {
 
     }
 
@@ -73,7 +73,7 @@ public class RecipeSystemFACADE {
 
     }
 
-    public List<Ingredients> generateGroceryList(MealPlan mealPlan) {
+    public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
         return null;
         
     }

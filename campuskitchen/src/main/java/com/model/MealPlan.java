@@ -34,7 +34,7 @@ public class MealPlan {
 
     }
 
-    public ArrayList<Ingredients> generateGroceryList(){
+    public ArrayList<Ingredient> generateGroceryList(){
         return null;
 
     }
