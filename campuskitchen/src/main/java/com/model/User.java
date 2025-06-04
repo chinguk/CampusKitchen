@@ -102,9 +102,6 @@ public class User {
         this.mealPlans = mealPlans;
     }
 
-    public boolean isMatch (String username, String password) {
-        return this.username.equals(username) && this.password.equals(password);
-    }
 
     public void updateProfile(User user) {
         if (user == null) return;

@@ -25,8 +25,18 @@ public class RecipeSystemFACADE {
     }
 
     public User login(String username, String password) {
-        return user;
+        if (username == null || password == null) {
+            return null;
+        }
 
+        UserList stored = UserList.getInstance();
+        User found = stored.getUser(username);
+
+        if (found != null && found.getPassword().equals(password)) {
+            this.user = found;
+            return found;
+        }
+        return null;
     }
 
     public Recipe getRecipeByKeyWord(String word) {
