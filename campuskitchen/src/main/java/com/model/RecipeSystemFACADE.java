@@ -9,19 +9,15 @@ public class RecipeSystemFACADE {
 
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
         return user;
-
     }
 
     public void updateProfile(User user) {
 
     }
 
-    public void deleteAccount(String UniversityID) {
-
-    }
 
     public void logout() {
-
+        
     }
 
     public User login(String username, String password) {
