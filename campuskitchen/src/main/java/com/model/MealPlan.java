@@ -9,7 +9,17 @@ public class MealPlan {
 
     public MealPlan(String name, ArrayList<Recipe> recipes){
         this.name = name;
-        this.recipes = recipes;
+        this.recipes = (recipes != null) ? recipes : new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void rename(String newName) {
+        if (newName != null && !newName.trim().isEmpty()) {
+            this.name = newName.trim();
+        }
     }
 
     public String getID() {
@@ -26,10 +36,6 @@ public class MealPlan {
 
     public ArrayList<Ingredients> generateGroceryList(){
         return null;
-
-    }
-
-    public void rename(String name){
 
     }
 }

@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String firstName;
@@ -12,25 +13,15 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
 
-<<<<<<< HEAD
-    User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
-<<<<<<< HEAD
-    public User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
-<<<<<<< HEAD
-    User(String firstName, String lastName, String email, String universityID, String username, String password){
-=======
     protected User(String firstName, String lastName, String email, String universityID, String username, String password){
->>>>>>> 7d382fdeca09dc703484fbdd2d3ae8af1869a277
->>>>>>> fd2f49c4e158293a31bb78bdd523101beca6a347
->>>>>>> 7a0780d01d09e2b03323b964657e9892954e9e45
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.universityID = universityID;
         this.username = username;
         this.password = password;
+        this.dietaryRestrictions  = new ArrayList<>();
+        this.mealPlans = mealPlans = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -80,42 +71,64 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public void createAccount(){
 
+    public List<Dietary> getDietaryRestrictions() {
+        return dietaryRestrictions;
+    }
+    
+    public void setDietaryRestrictions(ArrayList<Dietary> dietaryRestrictions) {
+        this.dietaryRestrictions = dietaryRestrictions;
+    }
+
+    public ArrayList<MealPlan> getMealPlans() {
+        return mealPlans;
+    }
+
+    public void setMealPlans(ArrayList<MealPlan> mealPlans) {
+        this.mealPlans = mealPlans;
+    }
+
+    public void createAccount(){
+        UserList list = UserList.getInstance();
+
+        list.addUser(
+            this.firstName,
+            this.lastName,
+            this.email,
+            this.universityID,
+            this.username,
+            this.password
+        );
     }
 
     public boolean login(String username, String password){
         return this.username.equals(username) && this.password.equals(password);
-
     }
 
     public void updateProfile(User user){
+        if (user == null) return;
         this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
+        this.lastName  = user.lastName;
+        this.email     = user.email;
         this.universityID = user.universityID;
-        this.username = user.username;
-        this.password = user.password;
+        this.username  = user.username;
+        this.password  = user.password;
 
-        // replace entire lists with copies of incoming user's lists
         this.dietaryRestrictions = new ArrayList<>(user.dietaryRestrictions);
         this.mealPlans = new ArrayList<>(user.mealPlans);
     }
 
     public void deleteAccount(){
-        UserList.getInstance().removeUser(this.username);
+        UserList list = UserList.getInstance();
+        list.removeUser(this.username);
 
-        this.firstName = null;
-        this.lastName = null;
-        this.email = null;
-        this.universityID = null;
-        this.username = null;
-        this.password = null;
     }
 
     public String toString() {
-        return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password;
+       return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password
+         + " | Dietary: " + dietaryRestrictions
+         + " | MealPlans: "      + mealPlans;
     }
+    
 }
 
