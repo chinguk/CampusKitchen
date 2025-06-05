@@ -8,6 +8,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/*
+ * Questions:
+ * -Do we need addRecipe()?
+ * -should recipes in json be a String value of IDs(because that is what it is)
+ */
+
 
 import java.util.ArrayList;
 
@@ -87,7 +93,10 @@ public class DataLoader {
                 ArrayList<String> stepsList = parseSteps(j);
                 ArrayList<Ingredient> ingredientsList = parseIngredients(j);
                 ArrayList<String> categoriesList = parseCategories(j);
-                Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList);
+                User author = (User) j.get("author");
+                RecipeStatus recipeStatus = (RecipeStatus) j.get("recipestatus");
+                Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
+                recipe.add(recipe);
             }
         }
         catch(Exception e){
