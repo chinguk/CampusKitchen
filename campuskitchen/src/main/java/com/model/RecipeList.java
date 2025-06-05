@@ -21,7 +21,7 @@ public class RecipeList {
         if (recipeList == null) {
             recipeList = new RecipeList(new ArrayList<>());
         }
-        return instance;
+        return recipeList;
     }
 
     /**
@@ -56,6 +56,10 @@ public class RecipeList {
         return matches;
     }
 
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+
     public void editRecipe(String id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
         
     }
@@ -64,9 +68,5 @@ public class RecipeList {
         if (id != null) {
             recipes.removeIf(recipe -> recipe.getId().toString().equals(id));
         }
-    }
-
-    public ArrayList<Recipe> getRecipes() {
-        return recipes;
     }
 }

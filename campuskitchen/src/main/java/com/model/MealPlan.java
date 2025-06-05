@@ -13,15 +13,11 @@ public class MealPlan {
         this.name = name;
         this.recipes = (recipes != null) ? recipes : new ArrayList<>();
         this.id = id;
+    }
 
     public MealPlan(String name, ArrayList<String> recipes){
         this.name = name;
         this.recipes = recipes;
-    }
-
-    public MealPlan(String name2, String string) {
-        //TODO Auto-generated constructor stub
-
     }
 
     public String getName() {

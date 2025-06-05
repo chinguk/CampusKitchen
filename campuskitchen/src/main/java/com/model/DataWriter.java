@@ -10,15 +10,16 @@ import org.json.simple.JSONObject;
 public class DataWriter {
 
     /**
-     * Saves the current list of users to the files
-     * Also adds two test users to the list
+     * Saves the current list of users to a JSON file.
+     * Adds two test users, "pplante" and "Kim", to the list before saving.
+     * Each user is converted to a JSON object and added to a JSON array.
      */
-    
+
     @SuppressWarnings("unchecked")
     public static void saveUsers() {
         ArrayList<User> userList = UserList.getInstance().getUsers();
-        
-        userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344"));
+
+        userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344", null, null));
 
         ArrayList<Dietary> kimDietary = new ArrayList<>();
         kimDietary.add(Dietary.VEGETARIAN);
@@ -41,6 +42,12 @@ public class DataWriter {
         }
     }
 
+    /**
+     * The JSON object contains the user's first name, last name, email, university
+     * ID, username, password, dietary restrictions, and meal plan IDs.
+     * The dietary restrictions and meal plan IDs are stored in JSON arrays within
+     * the user JSON object.
+     */
     @SuppressWarnings("unchecked")
     private static JSONObject getUserJSON(User user) {
         JSONObject userDetails = new JSONObject();
@@ -70,6 +77,11 @@ public class DataWriter {
         return userDetails;
     }
 
+    /**
+     * Saves all meal plans to a JSON file. Each meal plan is converted to a JSON
+     * object and added to a JSON array.
+     * The JSON object contains the meal plan's name, ID, and list of recipes.
+     */
     @SuppressWarnings("unchecked")
     public static void saveMealPlans() {
         ArrayList<MealPlan> mealPlans = MealPlan.getInstance().getMealPlans();
@@ -85,6 +97,12 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Converts a MealPlan object to a JSON object with the following fields: id,
+     * name, recipes.
+     * The id field is the MealPlan's ID, the name field is the MealPlan's name, and
+     * the recipes field is the MealPlan's list of recipes.
+     */
     private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
         JSONObject mealPlanDetails = new JSONObject();
         mealPlanDetails.put("id", mealPlan.getID());
@@ -94,6 +112,12 @@ public class DataWriter {
         return mealPlanDetails;
     }
 
+    /**
+     * Saves all recipes to a JSON file. Each recipe is converted to a JSON object
+     * and added to a JSON array.
+     * The JSON object contains the recipe's name, description, duration, steps,
+     * ingredients, categories, author, and status.
+     */
     @SuppressWarnings("unchecked")
     public static void saveRecipes() {
         ArrayList<Recipe> recipes = RecipeList.getInstance().getRecipes();
@@ -109,6 +133,12 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Converts a Recipe object to a JSON object with the following fields: id,
+     * name, steps.
+     * The id field is the Recipe's ID, the name field is the Recipe's name, and the
+     * steps field is the Recipe's list of steps.
+     */
     private static JSONObject getRecipeJSON(Recipe recipe) {
         JSONObject recipeDetails = new JSONObject();
         recipeDetails.put("id", recipe.getId());
@@ -117,6 +147,11 @@ public class DataWriter {
         return recipeDetails;
     }
 
+    /**
+     * The main method of the DataWriter class is used to write the users, recipes,
+     * and meal plans to their respective JSON files.
+     * This method is called when the DataWriter class is run as a Java application.
+     */
     public static void main(String[] args) {
         DataWriter.saveUsers();
         DataWriter.saveRecipes();

@@ -8,7 +8,16 @@ import java.util.UUID;
 public class RecipeSystemFACADE {
     private static final User newUser = null;
     private User user;
+    private static RecipeSystemFACADE recipeSystemFACADE;
 
+    private RecipeSystemFACADE() {}
+
+    public static RecipeSystemFACADE getInstance() {
+        if(recipeSystemFACADE == null) {
+            recipeSystemFACADE = new RecipeSystemFACADE();
+        }
+        return recipeSystemFACADE;
+    }
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
         ArrayList<MealPlan> mealPlans = new ArrayList<>();
         ArrayList<Dietary> dietaryRestrictions = new ArrayList<>();
@@ -43,18 +52,7 @@ public class RecipeSystemFACADE {
     }
 
     public User login(String username, String password) {
-        if (username == null || password == null) {
-            return null;
-        }
-
-        UserList stored = UserList.getInstance();
-        User found = stored.getUser(username);
-
-        if (found != null && found.getPassword().equals(password)) {
-            this.user = found;
-            return found;
-        }
-        return null;
+        return UserList.getInstance().getUser(username);
     }
 
     public Recipe getRecipeByKeyWord(String word) {

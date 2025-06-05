@@ -7,7 +7,6 @@ public class UserList {
     private static UserList userList;
 
     public UserList(){
-        //this.users = new ArrayList<>();
         //DataLoader.getUsers();
         this.users = DataLoader.getUsers();
     }
