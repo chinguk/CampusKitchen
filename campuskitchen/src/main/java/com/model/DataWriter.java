@@ -19,16 +19,6 @@ public class DataWriter {
     public static boolean saveUsers() {
         ArrayList<User> userList = UserList.getInstance().getUsers();
 
-        /*userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344", null, null));
-
-        ArrayList<Dietary> kimDietary = new ArrayList<>();
-        kimDietary.add(Dietary.VEGETARIAN);
-        kimDietary.add(Dietary.GLUTEN_FREE);
-        ArrayList<MealPlan> kimMealPlans = new ArrayList<>();
-        MealPlan kimPlan = new MealPlan("MP1001", "Kim’s Weekly Plan");
-        kimMealPlans.add(kimPlan);
-        userList.add(new User("Kim", "Brown", "KBrown", "2345", "kbro", "10062003", kimDietary, kimMealPlans));
-*/
         JSONArray userArray = new JSONArray();
 
         for (User u : userList) {
@@ -91,7 +81,7 @@ public class DataWriter {
         for (MealPlan mp : mealPlans) {
             mpJson.add(getMealPlanJSON(mp));
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/testWriter.json")) {
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
             file.write(mpJson.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -127,7 +117,7 @@ public class DataWriter {
         for (Recipe r : recipes) {
             recipeJson.add(getRecipeJSON(r));
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/testWriter.json")) {
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Recipes.json")) {
             file.write(recipeJson.toJSONString());
             file.flush();
         } catch (IOException e) {
