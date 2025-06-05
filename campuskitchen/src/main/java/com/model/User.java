@@ -113,7 +113,7 @@ public class User {
         this.dietaryRestrictions = new ArrayList<>(user.dietaryRestrictions);
         this.mealPlans = new ArrayList<>(user.mealPlans);
     }
-
+    @Override
     public String toString() {
        return firstName + " " + lastName + " " + email + " " + universityID + " " + username + " " + password
          + " | Dietary: " + dietaryRestrictions

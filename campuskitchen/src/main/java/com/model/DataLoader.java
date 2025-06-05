@@ -29,6 +29,8 @@ public class DataLoader {
                 String password = (String) j.get("password");
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
                 ArrayList<MealPlan> mealPlans = parseMealPlans(j);
+                User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans);
+                users.add(user);
             }
             return users;
         } catch (Exception e) {
@@ -71,52 +73,67 @@ public class DataLoader {
         return mealPlans;
     }
 
-
-    public static ArrayList<Recipe> getRecipes(JSONObject j) {
+    public static ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
-        JSONArray recipeArray = (JSONArray) j.get("recipes");
-        if (recipeArray == null) return recipes;
-        for (Object obj : recipeArray) {
-            JSONObject recipeObj = (JSONObject) obj;
-            String name = (String) recipeObj.get("name");
-            String description = (String) recipeObj.get("description");
-            int duration = ((Long) recipeObj.get("duration")).intValue();
-    
-            ArrayList<String> steps = new ArrayList<>();
-            JSONArray stepsArray = (JSONArray) recipeObj.get("steps");
-            if (stepsArray != null) {
-                for (Object step : stepsArray) {
-                    steps.add((String) step);
-                }
+        try {
+            FileReader reader = new FileReader("campuskitchen/src/main/json/Recipes.json");
+            JSONParser parser = new JSONParser();
+            JSONArray recipeArray = (JSONArray) parser.parse(reader);
+            for (int i=0; i < recipeArray.size(); i++) {
+                JSONObject j = (JSONObject)recipeArray.get(i);
+                String name = (String) j.get("name");
+                String description = (String) j.get("description");
+                int duration = ((Long) j.get("duration")).intValue();
+                ArrayList<String> stepsList = parseSteps(j);
+                ArrayList<Ingredient> ingredientsList = parseIngredients(j);
+                ArrayList<String> categoriesList = parseCategories(j);
+                Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList);
             }
-    
-            ArrayList<Ingredient> ingredients = new ArrayList<>();
-            JSONArray ingArray = (JSONArray) recipeObj.get("ingredients");
-            if (ingArray != null) {
-                for (Object ingObj : ingArray) {
-                    JSONObject ing = (JSONObject) ingObj;
-                    String ingName = (String) ing.get("name");
-                    double amount = ((Number) ing.get("amount")).doubleValue();
-                    Unit unit = (Unit) ing.get("unit");
-                    ingredients.add(new Ingredient(ingName, amount, unit));
-                }
-            }
-    
-            ArrayList<String> categories = new ArrayList<>();
-            JSONArray catArray = (JSONArray) recipeObj.get("categories");
-            if (catArray != null) {
-                for (Object cat : catArray) {
-                    categories.add((String) cat);
-                }
-            }
-
-            
-
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
         return recipes;
     }
+
+    public static ArrayList<String> parseSteps(JSONObject j){
+        ArrayList<String> steps = new ArrayList<>();
+        JSONArray stepsArray = (JSONArray) j.get("steps");
+        if (stepsArray != null) {
+            for (Object step : stepsArray) {
+            steps.add((String) step);
+            }
+        }
+        return steps;
+    }
     
     
+    public static ArrayList<Ingredient> parseIngredients(JSONObject j){
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        JSONArray ingArray = (JSONArray) j.get("ingredients");
+        if (ingArray != null) {
+         for (Object ingObj : ingArray) {
+                JSONObject ing = (JSONObject) ingObj;
+                String ingName = (String) ing.get("name");
+                double amount = ((Number) ing.get("amount")).doubleValue();
+                Unit unit = (Unit) ing.get("unit");
+                ingredients.add(new Ingredient(ingName, amount, unit));
+            }
+        }
+        return ingredients;
+    }
+
+    public static ArrayList<String> parseCategories(JSONObject j){
+        ArrayList<String> categories = new ArrayList<>();
+        JSONArray catArray = (JSONArray) j.get("categories");
+        if (catArray != null) {
+            for (Object cat : catArray) {
+                categories.add((String) cat);
+            }
+        }
+        return categories;
+    }
+
     
     
     
@@ -139,6 +156,10 @@ public class DataLoader {
        for(User user : users){
         System.out.println(user);
        }
+       /*ArrayList<Recipe> recipes = DataLoader.getRecipes();
+       for(Recipe recipe : recipes){
+        System.out.println(recipe);
+       }*/
     }
 
 }
