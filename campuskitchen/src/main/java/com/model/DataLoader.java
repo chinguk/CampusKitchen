@@ -109,11 +109,6 @@ public class DataLoader {
                     categories.add((String) cat);
                 }
             }
-    
-            Recipe r = new Recipe(name, description, duration, steps, ingredients, categories, null, null);
-            r.setId(UUID.fromString((String) recipeObj.get("id")));
-    
-            recipes.add(r);
 
             
 
