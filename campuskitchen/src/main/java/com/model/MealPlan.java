@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MealPlan {
     private static final User userList = null;
     private String name;
-    private ArrayList<String> recipes;
+    private ArrayList<Recipe> recipes;
     private String id;
 
 
@@ -13,8 +13,9 @@ public class MealPlan {
         this.name = name;
         this.recipes = (recipes != null) ? recipes : new ArrayList<>();
         this.id = id;
+    }
 
-    public MealPlan(String name, ArrayList<String> recipes){
+    public MealPlan(String name, ArrayList<Recipe> recipes){
         this.name = name;
         this.recipes = recipes;
     }
@@ -56,10 +57,10 @@ public class MealPlan {
 
     }
 
-    public static User getInstance() {
+    /*public static User getInstance() {
         if (userList == null) {
             userList = new User();
         }
         return userList;
-    }
+    }*/
 }

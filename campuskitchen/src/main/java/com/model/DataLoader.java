@@ -72,7 +72,7 @@ public class DataLoader {
     }
 
 
-    public static ArrayList<Recipe> getRecipes(JSONObject j) {
+    public static ArrayList<Recipe> getRecipes() {
         ArrayList<Recipe> recipes = new ArrayList<>();
         JSONArray recipeArray = (JSONArray) j.get("recipes");
         if (recipeArray == null) return recipes;
@@ -115,7 +115,7 @@ public class DataLoader {
         }
         return recipes;
     }
-    
+
     
     
     
@@ -138,6 +138,10 @@ public class DataLoader {
        ArrayList<User> users = DataLoader.getUsers();
        for(User user : users){
         System.out.println(user);
+       }
+       ArrayList<Recipe> recipes = DataLoader.getRecipes();
+       for(Recipe recipe : recipes){
+        System.out.println(recipe);
        }
     }
 
