@@ -8,7 +8,17 @@ public class RecipeSystemFACADE {
     private User user;
 
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
-        return user;
+        UserList stored = UserList.getInstance();
+        // check if username already exists
+        if (stored.getUser(username) != null) {
+            return null;
+        }
+
+        // if not taken, construct a new User and add it:
+        stored.addUser(firstName, lastName, email, universityID, username, password);
+        User created = stored.getUser(username);
+        this.user = created;
+        return created;
     }
 
     public void updateProfile(User user) {
@@ -17,7 +27,7 @@ public class RecipeSystemFACADE {
 
 
     public void logout() {
-        
+        this.user = null;
     }
 
     public User login(String username, String password) {
