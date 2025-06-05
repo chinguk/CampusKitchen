@@ -16,10 +16,10 @@ public class DataWriter {
      */
 
     @SuppressWarnings("unchecked")
-    public static void saveUsers() {
+    public static boolean saveUsers() {
         ArrayList<User> userList = UserList.getInstance().getUsers();
 
-        userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344", null, null));
+        /*userList.add(new User("pplante", "Portia", "Plante", "1234", "pplante", "2309553344", null, null));
 
         ArrayList<Dietary> kimDietary = new ArrayList<>();
         kimDietary.add(Dietary.VEGETARIAN);
@@ -28,18 +28,20 @@ public class DataWriter {
         MealPlan kimPlan = new MealPlan("MP1001", "Kim’s Weekly Plan");
         kimMealPlans.add(kimPlan);
         userList.add(new User("Kim", "Brown", "KBrown", "2345", "kbro", "10062003", kimDietary, kimMealPlans));
-
+*/
         JSONArray userArray = new JSONArray();
 
         for (User u : userList) {
             userArray.add(getUserJSON(u));
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/testWriter.json")) {
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
             file.write(userArray.toJSONString());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return true;
     }
 
     /**

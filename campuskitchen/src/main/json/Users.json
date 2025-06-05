@@ -1,22 +1,37 @@
 [
     {
-      "firstName": "Emily",
-      "lastName": "Miller",
-      "email": "emily.miller@gmail.com",
-      "universityID": "F193742",
-      "username": "emill23",
-      "password": "321",
-      "dietaryRestrictions": ["VEGETARIAN", "KOSHER"],
-      "mealPlans": [{"name": "Vegetarian Meal Plan", "recipes": ["4b1e2d53-5f4e-4b1a-9df4-a6aef40f6c7d"] , "mealPlanIDs" : "MP001"}]
+        "firstName": "Emily",
+        "lastName": "Miller",
+        "universityID": "F193742",
+        "password": "321",
+        "mealPlanIDs": [],
+        "dietaryRestrictions": [
+            "VEGETARIAN",
+            "KOSHER"
+        ],
+        "email": "emily.miller@gmail.com",
+        "username": "emill23"
     },
     {
-      "firstName": "David",
-      "lastName": "Tren",
-      "email": "david.tren@gmail.com",
-      "universityID": "G192730",
-      "username": "dtren98",
-      "password": "123",
-      "dietaryRestrictions": ["PALEO"],
-      "mealPlans": [{"name": "Weekend Meal Plan", "recipes": ["dd772f9e-0f18-4bd7-90a4-13ae71d9f531"] ,"mealPlanIDs" : "MP002"}]
+        "firstName": "David",
+        "lastName": "Tren",
+        "universityID": "G192730",
+        "password": "123",
+        "mealPlanIDs": [],
+        "dietaryRestrictions": [
+            "PALEO"
+        ],
+        "email": "david.tren@gmail.com",
+        "username": "dtren98"
+    },
+    {
+        "firstName": "Amy",
+        "lastName": "Smith",
+        "universityID": "1234",
+        "password": "2309553344",
+        "mealPlanIDs": [],
+        "dietaryRestrictions": [],
+        "email": "asmith@asmith.com",
+        "username": "asmith"
     }
 ]

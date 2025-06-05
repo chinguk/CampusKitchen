@@ -18,37 +18,12 @@ public class RecipeSystemFACADE {
         }
         return recipeSystemFACADE;
     }
-    public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
-        ArrayList<MealPlan> mealPlans = new ArrayList<>();
-        ArrayList<Dietary> dietaryRestrictions = new ArrayList<>();
-
-        User newUser(firstName, lastName, email, universityID, username, password, dietaryRestrictions, mealPlans);
-        UserList.getInstance().getUser().add(newUser);
-        this.user = newUser;
-        
-        return newUser;
-        /* 
-        UserList stored = UserList.getInstance();
-        // check if username already exists
-        if (stored.getUser(username) != null) {
-            return null;
-        }
-
-        // if not taken, construct a new User and add it:
-        stored.addUser(firstName, lastName, email, universityID, username, password);
-        User created = stored.getUser(username);
-        this.user = created;
-        return created;
-        */
+    public boolean createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
+        return UserList.getInstance().addUser(firstName, lastName, email, universityID, username, password);
     }
 
     public void updateProfile(User user) {
 
-    }
-
-
-    public void logout() {
-        this.user = null;
     }
 
     public User login(String username, String password) {
@@ -102,5 +77,9 @@ public class RecipeSystemFACADE {
     public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
         return null;
         
+    }
+
+    public void logout() {
+        UserList.getInstance().save();
     }
 }

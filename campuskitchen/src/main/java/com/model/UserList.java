@@ -18,13 +18,16 @@ public class UserList {
         return userList;
     }
 
-    public void addUser(String firstName, String lastName, String email, String universityID, String username, String password){
+    public boolean addUser(String firstName, String lastName, String email, String universityID, String username, String password){
         User newUser = new User(firstName, lastName, email, universityID, username, password);
         users.add(newUser);
+        return true;
     }
     
     public User getUser(String username){
         for (User u : users) {
+            String myUserName = u.getUsername();
+            
             if (u != null && u.getUsername().equals(username)) {
                 return u;
             }
@@ -70,4 +73,7 @@ public class UserList {
         }
     }
     
+    public boolean save() {
+        return DataWriter.saveUsers();
+    }
 }

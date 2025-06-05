@@ -1,1 +1,1 @@
-[]
+[{"firstName":"Emily","lastName":"Miller","universityID":"F193742","password":"321","mealPlanIDs":["MP001"],"dietaryRestrictions":["VEGETARIAN","KOSHER"],"email":"emily.miller@gmail.com","username":"emill23"},{"firstName":"David","lastName":"Tren","universityID":"G192730","password":"123","mealPlanIDs":["MP002"],"dietaryRestrictions":["PALEO"],"email":"david.tren@gmail.com","username":"dtren98"},{"firstName":"asmith","lastName":"Amy","universityID":"1234","password":"2309553344","mealPlanIDs":[],"dietaryRestrictions":[],"email":"Smith","username":"pplante"}]
