@@ -27,11 +27,8 @@ public class DataLoader {
                 String universityID = (String) j.get("universityID");
                 String username = (String) j.get("username");
                 String password = (String) j.get("password");
-                System.out.println(firstName);
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
-                ArrayList<String> mealPlans = parseMealPlans(j);
-                System.out.println(dietList);
-                System.out.println(mealPlans);
+                ArrayList<MealPlan> mealPlans = parseMealPlans(j);
             }
             return users;
         } catch (Exception e) {
@@ -53,14 +50,82 @@ public class DataLoader {
 
     public static ArrayList<MealPlan> parseMealPlans(JSONObject j) {
         ArrayList<MealPlan> mealPlans = new ArrayList<>();
-        JSONArray mealPlanArray = (JSONArray) j.get("mealPlan");
+        JSONArray mealPlanArray = (JSONArray) j.get("mealPlans");
         if (mealPlanArray != null) {
-            for (Object object : mealPlanArray) {
-                mealPlans.add(MeaPlan.);
+            for (Object obj : mealPlanArray) {
+                JSONObject planObj = (JSONObject) obj;
+                String name = (String) planObj.get("name");
+                String mealPlanID = (String) planObj.get("mealPlanIDs");
+                JSONArray recipesArray = (JSONArray) planObj.get("recipes");
+                ArrayList<Recipe> recipes = new ArrayList<>();
+                if (recipesArray != null) {
+                    for (Object recipeIdObj : recipesArray) {
+                        //String recipeId = (String) recipeIdObj;
+                        //recipes.add(new Recipe(recipeId));
+                    }
+                }
+                MealPlan mealPlan = new MealPlan(name, recipes, mealPlanID);
+                mealPlans.add(mealPlan);
             }
         }
         return mealPlans;
     }
+
+
+    public static ArrayList<Recipe> getRecipes(JSONObject j) {
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        JSONArray recipeArray = (JSONArray) j.get("recipes");
+        if (recipeArray == null) return recipes;
+        for (Object obj : recipeArray) {
+            JSONObject recipeObj = (JSONObject) obj;
+            String name = (String) recipeObj.get("name");
+            String description = (String) recipeObj.get("description");
+            int duration = ((Long) recipeObj.get("duration")).intValue();
+    
+            ArrayList<String> steps = new ArrayList<>();
+            JSONArray stepsArray = (JSONArray) recipeObj.get("steps");
+            if (stepsArray != null) {
+                for (Object step : stepsArray) {
+                    steps.add((String) step);
+                }
+            }
+    
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
+            JSONArray ingArray = (JSONArray) recipeObj.get("ingredients");
+            if (ingArray != null) {
+                for (Object ingObj : ingArray) {
+                    JSONObject ing = (JSONObject) ingObj;
+                    String ingName = (String) ing.get("name");
+                    double amount = ((Number) ing.get("amount")).doubleValue();
+                    Unit unit = (Unit) ing.get("unit");
+                    ingredients.add(new Ingredient(ingName, amount, unit));
+                }
+            }
+    
+            ArrayList<String> categories = new ArrayList<>();
+            JSONArray catArray = (JSONArray) recipeObj.get("categories");
+            if (catArray != null) {
+                for (Object cat : catArray) {
+                    categories.add((String) cat);
+                }
+            }
+    
+            Recipe r = new Recipe(name, description, duration, steps, ingredients, categories, null, null);
+            r.setId(UUID.fromString((String) recipeObj.get("id")));
+    
+            recipes.add(r);
+
+            
+
+        }
+        return recipes;
+    }
+    
+    
+    
+    
+    
+    
 
 
     
@@ -75,22 +140,13 @@ public class DataLoader {
     
     
     public static void main(String[] args) {
-       DataLoader.getUsers();
-    }
-
-    public static ArrayList<Recipe> getRecipes(){
-       
-    }
-    public static ArrayList<MealPlan> getMealPlans(){
-
-    }
-
-    public static ArrayList<Ingredient> getIngredients(){
-
-    }
-
-    public static ArrayList<Admin> getAdmin(){
-
+       ArrayList<User> users = DataLoader.getUsers();
+       for(User user : users){
+        System.out.println(user);
+       }
     }
 
 }
+
+     
+

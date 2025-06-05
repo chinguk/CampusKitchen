@@ -7,9 +7,10 @@ public class MealPlan {
     private ArrayList<Recipe> recipes;
     private String id;
 
-    public MealPlan(String name, ArrayList<Recipe> recipes){
+    public MealPlan(String name, ArrayList<Recipe> recipes, String id){
         this.name = name;
         this.recipes = (recipes != null) ? recipes : new ArrayList<>();
+        this.id = id;
     }
 
     public String getName() {
