@@ -3,14 +3,25 @@ package com.model;
 import java.util.ArrayList;
 
 public class MealPlan {
+    private static final User userList = null;
     private String name;
-    private ArrayList<Recipe> recipes;
+    private ArrayList<String> recipes;
     private String id;
+
 
     public MealPlan(String name, ArrayList<Recipe> recipes, String id){
         this.name = name;
         this.recipes = (recipes != null) ? recipes : new ArrayList<>();
         this.id = id;
+
+    public MealPlan(String name, ArrayList<String> recipes){
+        this.name = name;
+        this.recipes = recipes;
+    }
+
+    public MealPlan(String name2, String string) {
+        //TODO Auto-generated constructor stub
+
     }
 
     public String getName() {
@@ -27,6 +38,11 @@ public class MealPlan {
         return this.id;
     }
 
+    public String getRecipe(){
+        return this.id;
+
+    }
+
     public void addRecipe(Recipe recipe){
 
     }
@@ -38,5 +54,12 @@ public class MealPlan {
     public ArrayList<Ingredient> generateGroceryList(){
         return null;
 
+    }
+
+    public static User getInstance() {
+        if (userList == null) {
+            userList = new User();
+        }
+        return userList;
     }
 }

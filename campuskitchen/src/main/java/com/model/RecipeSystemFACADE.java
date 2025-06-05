@@ -1,32 +1,60 @@
 package com.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class RecipeSystemFACADE {
+    private static final User newUser = null;
     private User user;
 
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
-        return user;
+        ArrayList<MealPlan> mealPlans = new ArrayList<>();
+        ArrayList<Dietary> dietaryRestrictions = new ArrayList<>();
 
+        User newUser(firstName, lastName, email, universityID, username, password, dietaryRestrictions, mealPlans);
+        UserList.getInstance().getUser().add(newUser);
+        this.user = newUser;
+        
+        return newUser;
+        /* 
+        UserList stored = UserList.getInstance();
+        // check if username already exists
+        if (stored.getUser(username) != null) {
+            return null;
+        }
+
+        // if not taken, construct a new User and add it:
+        stored.addUser(firstName, lastName, email, universityID, username, password);
+        User created = stored.getUser(username);
+        this.user = created;
+        return created;
+        */
     }
 
     public void updateProfile(User user) {
 
     }
 
-    public void deleteAccount(String UniversityID) {
-
-    }
 
     public void logout() {
-
+        this.user = null;
     }
 
     public User login(String username, String password) {
-        return user;
+        if (username == null || password == null) {
+            return null;
+        }
 
+        UserList stored = UserList.getInstance();
+        User found = stored.getUser(username);
+
+        if (found != null && found.getPassword().equals(password)) {
+            this.user = found;
+            return found;
+        }
+        return null;
     }
 
     public Recipe getRecipeByKeyWord(String word) {
