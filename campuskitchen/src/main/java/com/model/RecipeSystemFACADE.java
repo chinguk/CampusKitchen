@@ -1,14 +1,23 @@
 package com.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class RecipeSystemFACADE {
+    private static final User newUser = null;
     private User user;
 
     public User createAccount(String firstName, String lastName, String email, String universityID, String username, String password) {
-        return user;
+        ArrayList<MealPlan> mealPlans = new ArrayList<>();
+        ArrayList<Dietary> dietaryRestrictions = new ArrayList<>();
+
+        User newUser(firstName, lastName, email, universityID, username, password, dietaryRestrictions, mealPlans);
+        UserList.getInstance().getUser().add(newUser);
+        this.user = newUser;
+        
+        return newUser;
     }
 
     public void updateProfile(User user) {

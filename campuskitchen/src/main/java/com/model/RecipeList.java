@@ -5,8 +5,8 @@ import java.util.UUID;
 
 public class RecipeList {
     private static RecipeList instance = null;
-    private ArrayList<Recipe> recipes;
-    private RecipeList recipeList;
+    private  ArrayList<Recipe> recipes;
+    private static RecipeList recipeList;
 
     private RecipeList(ArrayList<Recipe> recipes) {
         this.recipes = new ArrayList<>();
@@ -17,9 +17,9 @@ public class RecipeList {
      * a list of all the recipes in the system. If the instance does not
      * exist yet, it is created.
      */
-    public RecipeList getInstance() {
-        if (instance == null) {
-            instance = new RecipeList(recipes);
+    public static RecipeList getInstance() {
+        if (recipeList == null) {
+            recipeList = new RecipeList(new ArrayList<>());
         }
         return instance;
     }
@@ -64,5 +64,9 @@ public class RecipeList {
         if (id != null) {
             recipes.removeIf(recipe -> recipe.getId().toString().equals(id));
         }
+    }
+
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
     }
 }
