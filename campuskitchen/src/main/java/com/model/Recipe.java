@@ -128,10 +128,6 @@ public class Recipe {
         this.ratings = ratings;
     }
 
-    public void calculateCost() {
-
-    }
-
     public double getAverageRating() {
         if(ratings.isEmpty()) {
             return 0.0;
