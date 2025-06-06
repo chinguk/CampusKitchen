@@ -7,13 +7,15 @@ import java.util.UUID;
 public class MealPlan {
     private ArrayList<Recipe> recipes;
     private  String id;
+    private String name;
 
-    public MealPlan(List<Recipe> recipes){
+    public MealPlan(String name, List<Recipe> recipes){
         this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
         this.id = UUID.randomUUID().toString();
+        this.name = name;
     }
 
-    public MealPlan (List<Recipe> recipes, String existingID){
+    public MealPlan (String name, List<Recipe> recipes, String existingID){
         this.id = existingID;
         this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
     }
@@ -22,8 +24,16 @@ public class MealPlan {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<Recipe> getRecipes() {
         return recipes;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setRecipes(List<Recipe> recipes) {
@@ -45,10 +55,6 @@ public class MealPlan {
 
     public ArrayList<Ingredient> generateGroceryList(){
         return null;
-
-    }
-
-    public static User getInstance() {
 
     }
 
