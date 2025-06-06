@@ -69,4 +69,20 @@ public class RecipeList {
             recipes.removeIf(recipe -> recipe.getId().toString().equals(id));
         }
     }
+
+    public Recipe getByID(UUID id) {
+        for (Recipe recipe : recipes) {
+            if (recipe.getId().equals(id)) {
+                return recipe;
+            }
+        }
+        return null;
+    }
+
+    public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
+        if (instance == null) {
+            instance = new RecipeList(loadedRecipes);
+        }
+        return instance;
+    }
 }

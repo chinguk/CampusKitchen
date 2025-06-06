@@ -8,7 +8,7 @@ public class MealPlan {
     private ArrayList<Recipe> recipes;
     private  String id;
 
-    public MealPlan(ArrayList<Recipe> recipes){
+    public MealPlan(List<Recipe> recipes){
         this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
         this.id = UUID.randomUUID().toString();
     }
@@ -20,6 +20,10 @@ public class MealPlan {
 
     public String getID() {
         return id;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
     public void setRecipes(List<Recipe> recipes) {

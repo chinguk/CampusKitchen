@@ -76,13 +76,13 @@ public class DataWriter {
      */
     @SuppressWarnings("unchecked")
     public static void saveMealPlans() {
-        ArrayList<MealPlan> mealPlans = MealPlan.getInstance().getMealPlans();
-        JSONArray mpJson = new JSONArray();
-        for (MealPlan mp : mealPlans) {
-            mpJson.add(getMealPlanJSON(mp));
+        ArrayList<MealPlan> allPlans = new ArrayList<>(MealPlan.getInstance().getMealPlans());
+        JSONArray mealPlanArray = new JSONArray();
+        for (MealPlan mp : allPlans) {
+            mealPlanArray.add(getMealPlanJSON(mp));
         }
         try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
-            file.write(mpJson.toJSONString());
+            file.write(mealPlanArray.toJSONString());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -95,12 +95,18 @@ public class DataWriter {
      * The id field is the MealPlan's ID, the name field is the MealPlan's name, and
      * the recipes field is the MealPlan's list of recipes.
      */
+
+    @SuppressWarnings("unchecked")
     private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
         JSONObject mealPlanDetails = new JSONObject();
         mealPlanDetails.put("id", mealPlan.getID());
-        mealPlanDetails.put("name", mealPlan.getName());
-        mealPlanDetails.put("recipes", mealPlan.getRecipe());
 
+        JSONArray recipesArray = new JSONArray();
+        for (Recipe r : mealPlan.getRecipes()) {
+            recipesArray.add(r.getId().toString());
+        }
+        mealPlanDetails.put("recipes", recipesArray);
+        
         return mealPlanDetails;
     }
 
