@@ -21,6 +21,9 @@ public class User {
         this.universityID = universityID;
         this.username = username;
         this.password = password;
+
+        this.dietaryRestrictions = new ArrayList<>();
+        this.mealPlans           = new ArrayList<>();
     }
 
     // Overloaded constructor with dietary restictions and mealplans

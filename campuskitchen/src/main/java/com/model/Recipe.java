@@ -15,7 +15,7 @@ public class Recipe {
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
 
-    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
+    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient, ArrayList<String> categories, User author, RecipeStatus status) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
@@ -26,6 +26,10 @@ public class Recipe {
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
+
+                this.ingredient = (ingredient != null) 
+            ? new ArrayList<>(ingredient) 
+            : new ArrayList<>();
     }
 
     public UUID getId() {
@@ -84,9 +88,10 @@ public class Recipe {
         return ingredient;
     }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
-        this.ingredient = (ingredients == null) ? new ArrayList<Ingredient>() : ingredients;
-    }
+    public void setIngredients(ArrayList<Ingredient> ingredient) {
+        this.ingredient = (ingredient != null) 
+            ? new ArrayList<>(ingredient) 
+            : new ArrayList<>();    }
 
     public void addIngredient(Ingredient ingredient) {
         this.ingredient.add(ingredient);

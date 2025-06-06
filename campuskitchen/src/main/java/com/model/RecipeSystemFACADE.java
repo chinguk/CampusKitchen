@@ -1,5 +1,7 @@
 package com.model;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,17 +68,44 @@ public class RecipeSystemFACADE {
     }
 
     public void createMealPlan(String name, ArrayList<Recipe> recipes) {
+    User currentUser = this.user;
 
+    if (currentUser == null) {
+        System.out.println("No user is currently logged in. Cannot create meal plan.");
+        return;
+    }
+
+    MealPlan newPlan = new MealPlan(name, recipes);
+    currentUser.getMealPlans().add(newPlan);
+    List<Ingredient> grocery = generateGroceryList(newPlan);
+    System.out.println("Created meal plan '" + name + "'. Grocery list has been written.");
     }
 
     public List<MealPlan> getUserMealPlans(User user) {
         return null;
-
     }
 
     public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
-        return null;
-        
+        if (mealPlan == null) {
+            return null;
+        }
+        List<Ingredient> groceryList = mealPlan.generateGroceryList();
+        writeGroceryListToFile(mealPlan, groceryList);
+        return groceryList;        
+    }
+
+    private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
+        String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("Grocery List for MealPlan \"" + mealPlan.getName() + "\" (ID=" + mealPlan.getID() + ")\n");
+            for (Ingredient ing : groceryList) {
+                writer.write(ing.getName() + ": " + ing.getAmount() + " " + ing.getUnit().name() + "\n");
+            }
+            writer.flush();
+            System.out.println("Wrote grocery list to " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void logout() {

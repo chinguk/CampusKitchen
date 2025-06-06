@@ -1,0 +1,5 @@
+Grocery List for MealPlan "Bob’s Weekend Plan" (ID=cc483100-c39d-48ac-8b9d-c2f3df52ba86)
+----------------------------------------------------
+Tomato: 1.5 KILOGRAM
+Onion: 2.0 PIECE
+Lettuce: 1.0 PIECE
