@@ -1,41 +1,33 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class MealPlan {
-    private static final User userList = null;
-    private String name;
     private ArrayList<Recipe> recipes;
-    private String id;
+    private  String id;
 
-
-    public MealPlan(String name, ArrayList<Recipe> recipes, String id){
-        this.name = name;
-        this.recipes = (recipes != null) ? recipes : new ArrayList<>();
-        this.id = id;
+    public MealPlan(ArrayList<Recipe> recipes){
+        this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
+        this.id = UUID.randomUUID().toString();
     }
 
-    public MealPlan(String name, ArrayList<Recipe> recipes){
-        this.name = name;
-        this.recipes = recipes;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void rename(String newName) {
-        if (newName != null && !newName.trim().isEmpty()) {
-            this.name = newName.trim();
-        }
+    public MealPlan (List<Recipe> recipes, String existingID){
+        this.id = existingID;
+        this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
     }
 
     public String getID() {
-        return this.id;
+        return id;
     }
 
-    public String getRecipe(){
-        return this.id;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
+    }
+
+    public List<Recipe> getRecipe(){
+        return recipes;
 
     }
 
@@ -52,10 +44,12 @@ public class MealPlan {
 
     }
 
-    /*public static User getInstance() {
-        if (userList == null) {
-            userList = new User();
-        }
-        return userList;
-    }*/
+    public static User getInstance() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "MealPlan{id='"  + id + "', recipes=" + recipes + "}";
+    }
 }
