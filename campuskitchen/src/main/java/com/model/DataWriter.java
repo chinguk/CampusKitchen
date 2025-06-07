@@ -201,7 +201,6 @@ public class DataWriter {
         ArrayList<Recipe> loaded = DataLoader.getRecipes();
         System.out.println("DataLoader.getRecipes() returned " + loaded.size() + " recipes.");
 
-        // 2) Seed the singleton
         RecipeList.getInstance(loaded);
 
         // 3) Print each recipe’s basic info
@@ -216,7 +215,6 @@ public class DataWriter {
         // 4) Invoke saveRecipes() to write them back out
         saveRecipes();
 
-        // 5) Final confirmation
         System.out.println("testSaveRecipes(): saveRecipes() completed. " +
                            "Open campuskitchen/src/main/json/Recipes.json to verify.");
         System.out.println("=== testSaveRecipes() finished ===");
@@ -226,7 +224,6 @@ public class DataWriter {
         // If you just run DataWriter with no arguments, do the normal saves:
         //   saveUsers(), saveRecipes(), saveMealPlans().
         //
-        // But if you pass "test" as the first argument, run our quick test instead.
 
         if (args.length > 0 && args[0].equalsIgnoreCase("test")) {
             // Only test saving recipes:
@@ -234,7 +231,7 @@ public class DataWriter {
             return;
         }
 
-        // Normal behavior:
+        // Normal behavior
         saveUsers();
         saveRecipes();
         saveMealPlans();
