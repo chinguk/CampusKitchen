@@ -12,6 +12,7 @@ import java.util.UUID;
  */
 public class MealPlan {
     private ArrayList<Recipe> recipes;
+    private static MealPlan instance = null;
     private String id;
     private String name;
 

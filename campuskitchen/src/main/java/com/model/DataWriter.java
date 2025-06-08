@@ -1,11 +1,17 @@
 package com.model;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class DataWriter {
 
@@ -13,24 +19,48 @@ public class DataWriter {
      * Saves the current list of users to a JSON file.
      * Adds two test users, "pplante" and "Kim", to the list before saving.
      * Each user is converted to a JSON object and added to a JSON array.
+     * 
+     * @throws org.json.simple.parser.ParseException
      */
 
     @SuppressWarnings("unchecked")
-    public static boolean saveUsers() {
-        ArrayList<User> userList = UserList.getInstance().getUsers();
+    public static boolean saveUsers() throws ParseException, org.json.simple.parser.ParseException {
+        JSONParser parser = new JSONParser();
+        File file = new File("campuskitchen/src/main/json/Users.json");
+        JSONArray merged = new JSONArray();
 
-        JSONArray userArray = new JSONArray();
-
-        for (User u : userList) {
-            userArray.add(getUserJSON(u));
+        // 1) load existing
+        if (file.exists()) {
+            try (FileReader fr = new FileReader(file)) {
+                merged = (JSONArray) parser.parse(fr);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
-            file.write(userArray.toJSONString());
-            file.flush();
+
+        // 2) index by username
+        Map<String, JSONObject> byUsername = new LinkedHashMap<>();
+        for (Object o : merged) {
+            JSONObject jo = (JSONObject) o;
+            byUsername.put((String) jo.get("username"), jo);
+        }
+
+        // 3) overlay in-memory users
+        for (User u : UserList.getInstance().getUsers()) {
+            JSONObject jo = getUserJSON(u);
+            byUsername.put(u.getUsername(), jo);
+        }
+
+        // 4) write back
+        JSONArray out = new JSONArray();
+        out.addAll(byUsername.values());
+        try (FileWriter fw = new FileWriter(file)) {
+            fw.write(out.toJSONString());
+            fw.flush();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-
         return true;
     }
 
@@ -58,13 +88,25 @@ public class DataWriter {
         }
         userDetails.put("dietaryRestrictions", dietJson);
 
-        JSONArray mpJson = new JSONArray();
+        JSONArray mealPlansJson = new JSONArray();
         if (user.getMealPlans() != null) {
             for (MealPlan mp : user.getMealPlans()) {
-                mpJson.add(mp.getID());
+                JSONObject mpObj = new JSONObject();
+                mpObj.put("name", mp.getName());
+                mpObj.put("mealPlanIDs", mp.getID().toString());
+                mpObj.put("recipes", mp.getRecipes());
+                mealPlansJson.add(mpObj);
+
+                JSONArray recipesArr = new JSONArray();
+                for (Recipe r : mp.getRecipes()) {
+                    recipesArr.add(r.getId().toString());
+                }
+                mpObj.put("recipes", recipesArr);
+
+                mealPlansJson.add(mpObj);
             }
         }
-        userDetails.put("mealPlanIDs", mpJson);
+        userDetails.put("mealPlans", mealPlansJson);
 
         return userDetails;
     }
@@ -76,12 +118,19 @@ public class DataWriter {
      */
     @SuppressWarnings("unchecked")
     public static void saveMealPlans() {
-        ArrayList<MealPlan> allPlans = new ArrayList<>(MealPlan.getInstance().getMealPlans());
+        ArrayList<MealPlan> allPlans = new ArrayList<>();
+        for (User u : UserList.getInstance().getUsers()) {
+            if (u.getMealPlans() != null) {
+                allPlans.addAll(u.getMealPlans());
+            }
+        }
+
         JSONArray mealPlanArray = new JSONArray();
         for (MealPlan mp : allPlans) {
             mealPlanArray.add(getMealPlanJSON(mp));
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
+
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/User.json")) {
             file.write(mealPlanArray.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -106,7 +155,7 @@ public class DataWriter {
             recipesArray.add(r.getId().toString());
         }
         mealPlanDetails.put("recipes", recipesArray);
-        
+
         return mealPlanDetails;
     }
 
@@ -115,21 +164,49 @@ public class DataWriter {
      * and added to a JSON array.
      * The JSON object contains the recipe's name, description, duration, steps,
      * ingredients, categories, author, and status.
+     * 
+     * @throws org.json.simple.parser.ParseException
      */
     @SuppressWarnings("unchecked")
-    public static void saveRecipes() {
-        ArrayList<Recipe> allRecipes = new ArrayList<>(RecipeList.getInstance().getRecipes());
-        JSONArray recipesArray = new JSONArray();
-        for (Recipe r : allRecipes) {
-            recipesArray.add(getRecipeJSON(r));
+    public static boolean saveRecipes() throws ParseException, org.json.simple.parser.ParseException {
+        JSONParser parser = new JSONParser();
+        File file = new File("campuskitchen/src/main/json/Recipes.json");
+        JSONArray merged = new JSONArray();
+
+        // 1) load existing
+        if (file.exists()) {
+            try (FileReader fr = new FileReader(file)) {
+                merged = (JSONArray) parser.parse(fr);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Recipes.json")) {
-            file.write(recipesArray.toJSONString());
-            file.flush();
-            System.out.println("Successfully saved " + allRecipes.size() + " recipes.");
+
+        // 2) index by recipe ID
+        Map<String, JSONObject> byId = new LinkedHashMap<>();
+        for (Object o : merged) {
+            JSONObject jo = (JSONObject) o;
+            byId.put((String) jo.get("id"), jo);
+        }
+
+        // 3) overlay in-memory recipes
+        for (Recipe r : RecipeList.getInstance().getRecipes()) {
+            JSONObject jo = getRecipeJSON(r);
+            byId.put(r.getId().toString(), jo);
+        }
+
+        // 4) write back
+        JSONArray out = new JSONArray();
+        out.addAll(byId.values());
+        try (FileWriter fw = new FileWriter(file)) {
+            fw.write(out.toJSONString());
+            fw.flush();
+            System.out.println("Successfully saved " + byId.size() + " recipes.");
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     /**
@@ -150,13 +227,13 @@ public class DataWriter {
         recipeDetails.put("status", recipe.getStatus());
         recipeDetails.put("recipeStatus", recipe.getStatus());
         recipeDetails.put("author", recipe.getAuthor());
-        
+
         JSONArray ingredientsArray = new JSONArray();
         for (Ingredient ing : recipe.getIngredients()) {
             JSONObject ingObj = new JSONObject();
-            ingObj.put("name",   ing.getName());
+            ingObj.put("name", ing.getName());
             ingObj.put("amount", ing.getAmount());
-            ingObj.put("unit",   ing.getUnit().toString());
+            ingObj.put("unit", ing.getUnit().toString());
             ingredientsArray.add(ingObj);
         }
         recipeDetails.put("ingredients", ingredientsArray);
@@ -170,12 +247,12 @@ public class DataWriter {
         JSONArray ratingsArray = new JSONArray();
         for (Rating rating : recipe.getRatings()) {
             JSONObject ratingObj = new JSONObject();
-            ratingObj.put("user",    rating.getUser());
+            ratingObj.put("user", rating.getUser());
             ratingObj.put("comment", rating.getComment());
-            ratingObj.put("date",    rating.getDate());
-            ratingObj.put("score",   rating.getScore());
+            ratingObj.put("date", rating.getDate());
+            ratingObj.put("score", rating.getScore());
             // “recipe” field points back to this recipe’s ID
-            ratingObj.put("recipe",  recipe.getId().toString());
+            ratingObj.put("recipe", recipe.getId().toString());
             ratingsArray.add(ratingObj);
         }
         recipeDetails.put("ratings", ratingsArray);
@@ -187,53 +264,12 @@ public class DataWriter {
      * The main method of the DataWriter class is used to write the users, recipes,
      * and meal plans to their respective JSON files.
      * This method is called when the DataWriter class is run as a Java application.
+     * 
+     * @throws org.json.simple.parser.ParseException
+     * @throws ParseException
      */
-    // public static void main(String[] args) {
-    //     DataWriter.saveUsers();
-    //     DataWriter.saveRecipes();
-    //     DataWriter.saveMealPlans();
-    // }
-
-    private static void testSaveRecipes() {
-        System.out.println("=== Running testSaveRecipes() ===");
-
-        // 1) Load existing recipes from disk (via DataLoader)
-        ArrayList<Recipe> loaded = DataLoader.getRecipes();
-        System.out.println("DataLoader.getRecipes() returned " + loaded.size() + " recipes.");
-
-        RecipeList.getInstance(loaded);
-
-        // 3) Print each recipe’s basic info
-        for (Recipe r : RecipeList.getInstance().getRecipes()) {
-            System.out.println("  • Recipe: \"" 
-                + r.getName() 
-                + "\" (ID=" 
-                + r.getId().toString() 
-                + ")");
-        }
-
-        // 4) Invoke saveRecipes() to write them back out
-        saveRecipes();
-
-        System.out.println("testSaveRecipes(): saveRecipes() completed. " +
-                           "Open campuskitchen/src/main/json/Recipes.json to verify.");
-        System.out.println("=== testSaveRecipes() finished ===");
-    }
-
-    public static void main(String[] args) {
-        // If you just run DataWriter with no arguments, do the normal saves:
-        //   saveUsers(), saveRecipes(), saveMealPlans().
-        //
-
-        if (args.length > 0 && args[0].equalsIgnoreCase("test")) {
-            // Only test saving recipes:
-            testSaveRecipes();
-            return;
-        }
-
-        // Normal behavior
-        saveUsers();
-        saveRecipes();
-        saveMealPlans();
+    public static void main(String[] args) throws ParseException, org.json.simple.parser.ParseException {
+        DataWriter.saveUsers();
+        DataWriter.saveRecipes();
     }
 }
