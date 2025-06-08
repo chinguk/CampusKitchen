@@ -3,6 +3,9 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Represents a Recipe
+ */
 public class Recipe {
     private UUID id;
     private String name;
@@ -15,6 +18,17 @@ public class Recipe {
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
 
+    /**
+     * Constructs new Recipe with UUID
+     * @param name Recipe name
+     * @param description Recipe desciption
+     * @param duration Prep time in minutes
+     * @param steps list of prepartion steps
+     * @param ingredient list of ingredients
+     * @param categories classification of recipe
+     * @param author user who created the recipe
+     * @param status approval status
+     */
     public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient, ArrayList<String> categories, User author, RecipeStatus status) {
         this.id = UUID.randomUUID();
         this.name = name;
@@ -29,6 +43,9 @@ public class Recipe {
         this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
     }
 
+    /** 
+     * Setters and getters
+     */
     public UUID getId() {
         return id;
     }
@@ -69,33 +86,12 @@ public class Recipe {
         this.steps = (steps == null) ? new ArrayList<String>() : steps;
     }
 
-    public void addStep(String step) {
-        this.steps.add(step);
-    }
-
-    public void removeStep(String step) {
-        this.steps.remove(step);
-    }
-
-    public void updateStep(int index, String step) {
-        this.steps.set(index, step);
-    }
-
     public ArrayList<Ingredient> getIngredients() {
         return ingredient;
     }
 
     public void setIngredients(ArrayList<Ingredient> ingredient) {
-        this.ingredient = (ingredient != null) 
-            ? new ArrayList<>(ingredient) 
-            : new ArrayList<>();    }
-
-    public void addIngredient(Ingredient ingredient) {
-        this.ingredient.add(ingredient);
-    }
-
-    public void removeIngredient(Ingredient ingredient) {
-        this.ingredient.remove(ingredient);
+        this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
     }
 
     public ArrayList<String> getCategories() {
@@ -113,7 +109,6 @@ public class Recipe {
     public void setAuthor(User author) {
         this.author = author;
     }
-
     public RecipeStatus getStatus() {
         return status;
     }
@@ -130,6 +125,51 @@ public class Recipe {
         this.ratings = ratings;
     }
 
+    /**
+     * Adds new step to preparation list
+     * @param step Step desciption to add
+     */
+    public void addStep(String step) {
+        this.steps.add(step);
+    }
+
+    /**
+     * Removes specified step
+     * @param step Step desciption to remove
+     */
+    public void removeStep(String step) {
+        this.steps.remove(step);
+    }
+
+    /**
+     * Updates particular step
+     * @param index index of step
+     * @param step new text for step
+     */
+    public void updateStep(int index, String step) {
+        this.steps.set(index, step);
+    }
+
+    /**
+     * Adds an ingredient to recipe
+     * @param ingredient Ingredient to add
+     */
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredient.add(ingredient);
+    }
+
+    /**
+     * Removes ingredient from recipe
+     * @param ingredient Ingredient to remove
+     */
+    public void removeIngredient(Ingredient ingredient) {
+        this.ingredient.remove(ingredient);
+    }
+
+    /**
+     * Calculates average score of all ratings
+     * @return Average rating
+     */
     public double getAverageRating() {
         if(ratings.isEmpty()) {
             return 0.0;
@@ -141,14 +181,25 @@ public class Recipe {
         return (double) sum / ratings.size();
     }
 
+    /**
+     * Finds similar recipes based on ingredients
+     */
     public void getSimilarRecipes() {
 
     }
 
+    /**
+     * Grovery list from recipe's ingredients
+     * @return List of ingredients
+     */
     public ArrayList<Ingredient> generateGroceryList() {
         return new ArrayList<>(this.ingredient);
     }
 
+    /**
+     * Renames recipe
+     * @param name new name of recipe
+     */
     public void rename(String name) {
         this.name = name;
     }

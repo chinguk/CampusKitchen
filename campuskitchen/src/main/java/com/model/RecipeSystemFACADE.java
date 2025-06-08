@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class RecipeSystemFACADE {
-    private static final User newUser = null;
+    private static final User NEW_USER = null;
     private User user;
     private static RecipeSystemFACADE recipeSystemFACADE;
 
