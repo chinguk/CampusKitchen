@@ -63,7 +63,7 @@ public class DataWriter {
         userDetails.put("dietaryRestrictions", dietJson);
 
         JSONArray mealPlansArray = new JSONArray();
-        if (user.getMealPlans() != null) {
+        if (user.getMealPlans() != null && !user.getMealPlans().isEmpty()) {
             for (MealPlan mp : user.getMealPlans()) {
                 JSONObject planObj = new JSONObject();
                 planObj.put("name", mp.getName());
@@ -223,7 +223,28 @@ public class DataWriter {
     // DataWriter.saveMealPlans();
     // }
 
-    // inside DataWriter.java, just above main(...)
+
+
+
+
+
+// private static void testPrintUsersJSON() {
+//     System.out.println("=== testPrintUsersJSON ===");
+
+//     // 1) Load in-memory users
+//     ArrayList<User> users = DataLoader.getUsers();
+//     UserList.getInstance();
+
+//     // 2) Build a JSONArray of JSONObjects
+//     JSONArray arr = new JSONArray();
+//     for (User u : UserList.getInstance().getUsers()) {
+//         arr.add(getUserJSON(u));
+//     }
+
+//     // 3) Print it raw (compact) – for pretty, you can manually indent
+//     System.out.println(arr.toJSONString());
+// }
+
 
     private static void testSaveRecipes() {
         System.out.println("=== testSaveRecipes ===");
@@ -243,43 +264,41 @@ public class DataWriter {
         System.out.println("saveRecipes() completed. Check Recipes.json.\n");
     }
 
-    private static void testSaveUserMealPlan() {
-        System.out.println("=== testSaveUserMealPlan ===");
+    // private static void testSaveUserMealPlan() {
+    //     System.out.println("=== testSaveUserMealPlan ===");
 
-        // 1) Load users (this also parses existing mealPlans for each user)
-        ArrayList<User> users = DataLoader.getUsers();
-        System.out.println("Loaded " + users.size() + " users.");
-        UserList.getInstance();
+    //     // 1) Load users (this also parses existing mealPlans for each user)
+    //     ArrayList<User> users = DataLoader.getUsers();
+    //     System.out.println("Loaded " + users.size() + " users.");
+    //     UserList.getInstance();
 
-        // 2) Load recipes (so we can build a new plan)
-        ArrayList<Recipe> recipes = DataLoader.getRecipes();
-        RecipeList.getInstance(recipes);
-        System.out.println("Loaded " + recipes.size() + " recipes for plan creation.");
+    //     // 2) Load recipes (so we can build a new plan)
+    //     ArrayList<Recipe> recipes = DataLoader.getRecipes();
+    //     RecipeList.getInstance(recipes);
+    //     System.out.println("Loaded " + recipes.size() + " recipes for plan creation.");
 
-        // 3) Pick first user & show how many plans they have now
-        User u = users.get(0);
-        System.out.println("User '" + u.getUsername() + "' has "
-                + u.getMealPlans().size() + " mealPlans before.");
+    //     // 3) Pick first user & show how many plans they have now
+    //     User u = users.get(0);
+    //     System.out.println("User '" + u.getUsername() + "' has "
+    //             + u.getMealPlans().size() + " mealPlans before.");
 
-        // 4) Create a dummy plan (with the first recipe, if any) and attach
-        ArrayList<Recipe> oneRecipe = new ArrayList<Recipe>();
-        if (!recipes.isEmpty()) {
-            oneRecipe.add(recipes.get(0));
-        }
-        MealPlan dummy = new MealPlan("Dummy Plan", oneRecipe);
-        u.getMealPlans().add(dummy);
-        System.out.println("Added Dummy Plan (ID=" + dummy.getID() + ").");
+    //     // 4) Create a dummy plan (with the first recipe, if any) and attach
+    //     ArrayList<Recipe> oneRecipe = new ArrayList<Recipe>();
+    //     if (!recipes.isEmpty()) {
+    //         oneRecipe.add(recipes.get(0));
+    //     }
+    //     MealPlan dummy = new MealPlan("Dummy Plan", oneRecipe);
+    //     u.getMealPlans().add(dummy);
+    //     System.out.println("Added Dummy Plan (ID=" + dummy.getID() + ").");
 
-        // 5) Persist users (which now includes the new plan under "mealPlans")
-        saveUsers();
-        System.out.println("saveUsers() completed. Check Users.json for nested mealPlans.\n");
-    }
+    //     // 5) Persist users (which now includes the new plan under "mealPlans")
+    //     saveUsers();
+    //     System.out.println("saveUsers() completed. Check Users.json for nested mealPlans.\n");
+    // }
 
     public static void main(String[] args) {
         if (args.length == 1 && args[0].equalsIgnoreCase("testRecipes")) {
             testSaveRecipes();
-        } else if (args.length == 1 && args[0].equalsIgnoreCase("testUserPlan")) {
-            testSaveUserMealPlan();
         } else {
             // Normal behavior
             saveUsers();
