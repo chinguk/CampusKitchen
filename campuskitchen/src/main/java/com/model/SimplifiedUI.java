@@ -8,6 +8,7 @@ public class SimplifiedUI {
 
     public void run(){
         //scenario1();
+        //scenario2();
         scenario3();
     }
 
