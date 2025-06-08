@@ -38,10 +38,23 @@ public class DataWriter {
             }
         }
 
+        for (Object ob : merged) {
+            JSONObject jo = (JSONObject) ob;
+            if (jo.containsKey("mealPlanIDs") && jo.get("mealPlanIDs") instanceof JSONObject) {
+                // pull out the old object
+                JSONObject oldPlan = (JSONObject) jo.remove("mealPlanIDs");
+                // wrap it in a new array
+                JSONArray fixed = new JSONArray();
+                fixed.add(oldPlan);
+                // replace or set the correct key
+                jo.put("mealPlans", fixed);
+            }
+        }
+
         // 2) index by username
         Map<String, JSONObject> byUsername = new LinkedHashMap<>();
-        for (Object o : merged) {
-            JSONObject jo = (JSONObject) o;
+        for (Object ob : merged) {
+            JSONObject jo = (JSONObject) ob;
             byUsername.put((String) jo.get("username"), jo);
         }
 
@@ -109,54 +122,6 @@ public class DataWriter {
         userDetails.put("mealPlans", mealPlansJson);
 
         return userDetails;
-    }
-
-    /**
-     * Saves all meal plans to a JSON file. Each meal plan is converted to a JSON
-     * object and added to a JSON array.
-     * The JSON object contains the meal plan's name, ID, and list of recipes.
-     */
-    @SuppressWarnings("unchecked")
-    public static void saveMealPlans() {
-        ArrayList<MealPlan> allPlans = new ArrayList<>();
-        for (User u : UserList.getInstance().getUsers()) {
-            if (u.getMealPlans() != null) {
-                allPlans.addAll(u.getMealPlans());
-            }
-        }
-
-        JSONArray mealPlanArray = new JSONArray();
-        for (MealPlan mp : allPlans) {
-            mealPlanArray.add(getMealPlanJSON(mp));
-        }
-
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/User.json")) {
-            file.write(mealPlanArray.toJSONString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Converts a MealPlan object to a JSON object with the following fields: id,
-     * name, recipes.
-     * The id field is the MealPlan's ID, the name field is the MealPlan's name, and
-     * the recipes field is the MealPlan's list of recipes.
-     */
-
-    @SuppressWarnings("unchecked")
-    private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
-        JSONObject mealPlanDetails = new JSONObject();
-        mealPlanDetails.put("id", mealPlan.getID());
-
-        JSONArray recipesArray = new JSONArray();
-        for (Recipe r : mealPlan.getRecipes()) {
-            recipesArray.add(r.getId().toString());
-        }
-        mealPlanDetails.put("recipes", recipesArray);
-
-        return mealPlanDetails;
     }
 
     /**
