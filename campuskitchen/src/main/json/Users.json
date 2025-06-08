@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-[{"firstName":"Emily","lastName":"Miller","universityID":"F193742","password":"321","mealPlanIDs":[],"dietaryRestrictions":["VEGETARIAN","KOSHER"],"email":"emily.miller@gmail.com","username":"emill23"},{"firstName":"David","lastName":"Tren","universityID":"G192730","password":"123","mealPlanIDs":[],"dietaryRestrictions":["PALEO"],"email":"david.tren@gmail.com","username":"dtren98"},{"firstName":"Amy","lastName":"Smith","universityID":"1234","password":"2309553344","mealPlanIDs":[],"dietaryRestrictions":[],"email":"asmith@asmith.com","username":"asmith"}]
-=======
+
 [
     {
       "firstName": "Emily",
@@ -23,4 +21,4 @@
       "mealPlanIDs": {"name": "Weekend Meal Plan", "recipes": ["dd772f9e-0f18-4bd7-90a4-13ae71d9f531"] ,"mealPlanIDs" : "MP002"}
     }
 ]
->>>>>>> 2fedddf3a6670514a5129518201ee86f814555bc
+35e7a32abb530be7d6ed449a5a64562bdd79e3d1
