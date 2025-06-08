@@ -18,7 +18,13 @@ import org.json.simple.parser.JSONParser;
 import java.util.ArrayList;
 
 public class DataLoader {
-    
+
+    /**
+    * Loads all users from the Users.json file and creates User objects.
+    * Each user includes dietary restrictions and meal plans.
+    * 
+    * @return list of all users
+    */
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -45,6 +51,12 @@ public class DataLoader {
     return users;
     }
 
+    /**
+    * Parses dietary restrictions from a user JSONObject.
+    * 
+    * @param j JSONObject representing a user
+    * @return list of dietary restrictions for the user
+    */
     public static ArrayList<Dietary> parseDietaryRestrictions(JSONObject j) {
         ArrayList<Dietary> dietList = new ArrayList<>();
         JSONArray dietJson = (JSONArray) j.get("dietaryRestrictions");
@@ -56,29 +68,66 @@ public class DataLoader {
         return dietList;
     }
 
+    /**
+    * Parses meal plans from a user JSONObject.
+    * It also links recipes to the meal plans by matching IDs.
+    * 
+    * @param j JSONObject representing a user
+    * @return list of meal plans for the user
+    */
     public static ArrayList<MealPlan> parseMealPlans(JSONObject j) {
         ArrayList<MealPlan> mealPlans = new ArrayList<>();
         JSONArray mealPlanArray = (JSONArray) j.get("mealPlans");
+        ArrayList<Recipe> allRecipes = getRecipes();
+    
         if (mealPlanArray != null) {
             for (Object obj : mealPlanArray) {
                 JSONObject planObj = (JSONObject) obj;
                 String name = (String) planObj.get("name");
                 String mealPlanID = (String) planObj.get("mealPlanIDs");
                 JSONArray recipesArray = (JSONArray) planObj.get("recipes");
+    
                 ArrayList<Recipe> recipes = new ArrayList<>();
                 if (recipesArray != null) {
                     for (Object recipeIdObj : recipesArray) {
-                        //String recipeId = (String) recipeIdObj;
-                        //recipes.add(new Recipe(recipeId));
+                        String recipeIdStr = (String) recipeIdObj;
+                        UUID recipeId = UUID.fromString(recipeIdStr);
+                        Recipe matchedRecipe = findRecipeById(allRecipes, recipeId);
+                        if (matchedRecipe != null) {
+                            recipes.add(matchedRecipe);
+                        }
                     }
                 }
+    
                 MealPlan mealPlan = new MealPlan(name, recipes, mealPlanID);
                 mealPlans.add(mealPlan);
             }
         }
         return mealPlans;
     }
+    
+    /**
+    * Finds a recipe in the given list by matching its UUID.
+    * 
+    * @param recipes list of all recipes
+    * @param id the UUID to search for
+    * @return the matching Recipe or null if not found
+    */
+    private static Recipe findRecipeById(ArrayList<Recipe> recipes, UUID id) {
+        for (Recipe recipe : recipes) {
+            if (recipe.getId().equals(id)) {
+                return recipe;
+            }
+        }
+        return null;
+    }
+    
 
+    /**
+    * Loads all recipes from the Recipes.json file and creates Recipe objects.
+    * 
+    * @return list of all recipes
+    */
     public static ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
         try {
@@ -96,7 +145,7 @@ public class DataLoader {
                 User author = (User) j.get("author");
                 RecipeStatus recipeStatus = (RecipeStatus) j.get("recipestatus");
                 Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
-                recipe.add(recipe);
+                recipes.add(recipe);
             }
         }
         catch(Exception e){
@@ -104,7 +153,12 @@ public class DataLoader {
         }
         return recipes;
     }
-
+    /**
+    * Parses the list of steps for a recipe from its JSONObject.
+    * 
+    * @param j JSONObject representing a recipe
+    * @return list of steps for the recipe
+    */
     public static ArrayList<String> parseSteps(JSONObject j){
         ArrayList<String> steps = new ArrayList<>();
         JSONArray stepsArray = (JSONArray) j.get("steps");
@@ -116,7 +170,12 @@ public class DataLoader {
         return steps;
     }
     
-    
+    /**
+    * Parses the list of ingredients for a recipe from its JSONObject.
+    * 
+    * @param j JSONObject representing a recipe
+     * @return list of ingredients for the recipe
+    */
     public static ArrayList<Ingredient> parseIngredients(JSONObject j){
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         JSONArray ingArray = (JSONArray) j.get("ingredients");
@@ -132,6 +191,12 @@ public class DataLoader {
         return ingredients;
     }
 
+    /**
+    * Parses the list of categories for a recipe from its JSONObject.
+    * 
+    * @param j JSONObject representing a recipe
+    * @return list of categories for the recipe
+    */
     public static ArrayList<String> parseCategories(JSONObject j){
         ArrayList<String> categories = new ArrayList<>();
         JSONArray catArray = (JSONArray) j.get("categories");
@@ -141,34 +206,6 @@ public class DataLoader {
             }
         }
         return categories;
-    }
-
-    
-    
-    
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public static void main(String[] args) {
-       ArrayList<User> users = DataLoader.getUsers();
-       for(User user : users){
-        System.out.println(user);
-       }
-       /*ArrayList<Recipe> recipes = DataLoader.getRecipes();
-       for(Recipe recipe : recipes){
-        System.out.println(recipe);
-       }*/
     }
 
 }

@@ -26,10 +26,7 @@ public class Recipe {
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
-
-                this.ingredient = (ingredient != null) 
-            ? new ArrayList<>(ingredient) 
-            : new ArrayList<>();
+        this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
     }
 
     public UUID getId() {
