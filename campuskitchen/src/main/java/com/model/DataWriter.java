@@ -186,12 +186,12 @@ public class DataWriter {
         JSONObject recipeDetails = new JSONObject();
         recipeDetails.put("id", recipe.getId().toString());
         recipeDetails.put("name", recipe.getName());
-        recipeDetails.put("user", recipe.getAuthor());
+        recipeDetails.put("user", recipe.getAuthor().getUsername());
         recipeDetails.put("description", recipe.getDescription());
         recipeDetails.put("duration", recipe.getDuration());
-        recipeDetails.put("status", recipe.getStatus());
-        recipeDetails.put("recipeStatus", recipe.getStatus());
-        recipeDetails.put("author", recipe.getAuthor());
+        recipeDetails.put("status", recipe.getStatus().name());
+        recipeDetails.put("recipeStatus", recipe.getStatus().name());
+        recipeDetails.put("author", recipe.getAuthor().getUsername());
 
         JSONArray ingredientsArray = new JSONArray();
         for (Ingredient ing : recipe.getIngredients()) {
