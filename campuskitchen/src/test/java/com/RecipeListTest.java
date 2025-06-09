@@ -1,4 +1,4 @@
-package com.model;
+package com;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,11 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class RecipeFACADETest {
-    
+public class RecipeListTest {
     @Test
-    public void RecipeFacadeTest() {
+    public void RecipeTest() {
         assertTrue(true);
-    }   
-
+    }
 }
