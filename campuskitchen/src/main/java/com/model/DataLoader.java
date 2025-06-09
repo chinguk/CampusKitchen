@@ -8,13 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-/*
- * Questions:
- * -Do we need addRecipe()?
- * -should recipes in json be a String value of IDs(because that is what it is)
- */
-
-
 import java.util.ArrayList;
 
 public class DataLoader {
