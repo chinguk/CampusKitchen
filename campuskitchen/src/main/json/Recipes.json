@@ -73,5 +73,34 @@
             "Combine with dressing and serve."
         ],
         "status": "APPROVED"
+    },
+    {
+        "duration": 15,
+        "author": "TonyaHam",
+        "ratings": [],
+        "name": "Simple Sugar Cookies",
+        "description": "Mix ingredients, roll into balls, and bake at 350°F for 12 minutes.",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "CUP",
+                "name": "Flour"
+            },
+            {
+                "amount": 1.0,
+                "unit": "CUP",
+                "name": "Sugar"
+            },
+            {
+                "amount": 0.5,
+                "unit": "CUP",
+                "name": "Butter"
+            }
+        ],
+        "recipeStatus": "APPROVED",
+        "id": "1d8d07ed-7170-4d39-b51b-623c59fb610a",
+        "categories": [],
+        "user": "TonyaHam",
+        "status": "APPROVED"
     }
 ]

@@ -13,15 +13,15 @@ public class SimplifiedUI {
     public void run(){
         //scenario1();
         //scenario2();
-        //scenario3();
-        scenario4();
+        scenario3();
+        //scenario4();
     }
 
     /**
      * Login scenerio
      */
     public void scenario1() {
-        User user = RecipeSystemFACADE.getInstance().login("emill23", "321");
+        User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
 
         if(user == null) {
             System.out.println("We didn't successfully login");
@@ -72,7 +72,7 @@ public class SimplifiedUI {
     public void scenario3() {
         System.out.println("Scenario 3");
 
-        User loggedIn = RecipeSystemFACADE.getInstance().login("emill23", "321");
+        User loggedIn = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
         if (loggedIn == null) {
             System.out.println("Login failed");
             return;
