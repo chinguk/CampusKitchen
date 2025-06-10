@@ -19,6 +19,12 @@ import com.model.User;
 public class RecipeListTest {
     private RecipeList list;
 
+/**
+ * Set up method to reset the singleton instances of RecipeList before each test.
+ * Uses reflection to set the private static fields 'instance' and 'recipeList' to null.
+ * Initializes the 'list' variable with a new RecipeList instance.
+ */
+
     @Before
     public void setUp() {
         // Reset singleton instances via reflection
@@ -35,6 +41,12 @@ public class RecipeListTest {
         list = RecipeList.getInstance();
     }
 
+    /**
+     * Test the addRecipe method to ensure that it correctly adds a recipe to the list of all recipes.
+     * A recipe with all required fields is arranged and added to the RecipeList. The test verifies that
+     * the method successfully adds the recipe by asserting that the recipe is contained in the list
+     * of all recipes retrieved from the RecipeList.
+     */
     @Test
     public void addRecipe() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -49,6 +61,13 @@ public class RecipeListTest {
         assertTrue("Recipe should be added when all info is present", list.getRecipes().contains(r));
     }
 
+    /**
+     * Test the addRecipe method to ensure that it correctly does not add a duplicate
+     * recipe to the list of all recipes by name. Two recipes with the same name but
+     * different IDs and descriptions are arranged and added to the RecipeList. The test
+     * verifies that the method does not add the second recipe by asserting that the size
+     * of the list of all recipes retrieved from the RecipeList is 1.
+     */
     @Test
     public void duplicateRecipeByName() {
         Recipe r1 = new Recipe(null, null, 0, null, null, null, null, null);
@@ -68,6 +87,13 @@ public class RecipeListTest {
         assertEquals("Should not add duplicate by name", 1, list.getRecipes().size());
     }
 
+    /**
+     * Test the addRecipe method to ensure that it correctly does not add a duplicate
+     * recipe to the list of all recipes by ID. Two recipes with the same ID but
+     * different names and descriptions are arranged and added to the RecipeList. The
+     * test verifies that the method does not add the second recipe by asserting that
+     * the size of the list of all recipes retrieved from the RecipeList is 1.
+     */
     @Test
     public void dubliplicateRecipeByID() {
         Recipe r1 = new Recipe(null, null, 0, null, null, null, null, null);
@@ -88,6 +114,12 @@ public class RecipeListTest {
         assertEquals("Should not add duplicate by ID", 1, list.getRecipes().size());
     }
 
+    /**
+     * Test that a recipe with missing mandatory fields (ID, name, description, author)
+     * is not added to the list of all recipes. The test verifies that attempting to add
+     * such a recipe results in no change to the list, asserting that it remains empty.
+     */
+
     @Test
     public void missingRecipeInfo() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -96,6 +128,11 @@ public class RecipeListTest {
         assertTrue("Should not add recipe with missing fields", list.getRecipes().isEmpty());
     }
 
+    /**
+     * Test that a recipe without an author is not added to the list of all recipes.
+     * The test verifies that attempting to add such a recipe results in no change to
+     * the list, asserting that it remains empty.
+     */
     @Test
     public void nonUserCreatesRecipe() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -106,6 +143,14 @@ public class RecipeListTest {
         list.addRecipe(r);
         assertTrue("Should not add recipe without an author", list.getRecipes().isEmpty());
     }
+
+/**
+ * Test the getRecipe method to ensure that it correctly searches for recipes
+ * containing the given keyword in either the name or the description.
+ * Two recipes are arranged and added to the RecipeList. The test verifies that
+ * the method returns the correct recipe(s) by asserting the size of the result
+ * list and confirming the presence of the expected recipe.
+ */
 
     @Test
     public void getRecipe() {
@@ -132,12 +177,23 @@ public class RecipeListTest {
         assertTrue(results.contains(r2));
     }
 
+    /**
+     * Test that searching for a recipe with a non-existent keyword returns an empty list.
+     * The test verifies that the getRecipe method correctly handles the case where no
+     * recipes match the provided keyword by asserting that the result list is empty.
+     */
+
     @Test
     public void notExistingRecipe() {
         ArrayList<Recipe> results = list.getRecipe("nonexistent");
         assertTrue("Search for nonexistent should return empty", results.isEmpty());
     }
 
+    /**
+     * Test that searching for a recipe with a misspelled keyword returns an empty list.
+     * The test verifies that the getRecipe method correctly handles the case where the
+     * keyword is misspelled by asserting that the result list is empty.
+     */
     @Test
     public void missplelledRecipe() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -151,6 +207,12 @@ public class RecipeListTest {
         assertTrue("Misspelled keyword should not match", results.isEmpty());
     }
 
+    /**
+     * Test that searching for a recipe by author name returns an empty list when
+     * author filtering is not implemented. The test verifies that the getRecipe
+     * method correctly handles the case where the keyword is a username by
+     * asserting that the result list is empty.
+     */
     @Test
     public void noAuthoredRecipe() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -164,6 +226,11 @@ public class RecipeListTest {
         assertTrue("Searching by author name should not match if author filtering not implemented", results.isEmpty());
     }
 
+    /**
+     * Tests the deleteRecipe method by adding a recipe to the list and then
+     * deleting it by ID. The test verifies that the method successfully deletes
+     * the recipe by asserting that the list of recipes is empty after deletion.
+     */
     @Test
     public void deleteRecipe() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);
@@ -178,6 +245,11 @@ public class RecipeListTest {
         assertTrue("Recipe should be deleted by ID", list.getRecipes().isEmpty());
     }
 
+    /**
+     * Retrieves a recipe by its UUID
+     * @param id the UUID to search for
+     * @return the matching Recipe or null if not found
+     */
     @Test
     public void getByID() {
         Recipe r = new Recipe(null, null, 0, null, null, null, null, null);

@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -18,9 +17,12 @@ public class DataWriter {
     /**
      * Saves the current list of users to a JSON file.
      * Each user is converted to a JSON object and added to a JSON array.
+     * The JSON object contains the user's first name, last name, email, university
+     * ID, username, password, dietary restrictions, meal plans, and status.
+     * The dietary restrictions and meal plans are stored in JSON arrays within
+     * the user JSON object.
      * @throws org.json.simple.parser.ParseException
      */
-
     @SuppressWarnings("unchecked")
     public static boolean saveUsers() throws ParseException, org.json.simple.parser.ParseException {
         JSONParser parser = new JSONParser();

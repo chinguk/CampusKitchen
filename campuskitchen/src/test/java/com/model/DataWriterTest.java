@@ -8,9 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Method;
-import java.util.Collections;
 import java.util.UUID;
-import java.util.Locale.Category;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,21 +16,13 @@ import org.json.simple.parser.JSONParser;
 import org.junit.Before;
 import org.junit.Test;
 
-
-import com.model.DataWriter;
-import com.model.Dietary;
-import com.model.Ingredient;
-import com.model.MealPlan;
-import com.model.Rating;
-import com.model.Recipe;
-import com.model.RecipeList;
-import com.model.RecipeStatus;
-import com.model.User;
-import com.model.UserList;
-
 public class DataWriterTest {
     private JSONParser parser = new JSONParser();
 
+    /**
+     * Before each test, clear the in-memory collections and remove any existing JSON files.
+     * This ensures that each test starts from a clean slate.
+     */
     @Before
     public void setUp() {
         // Clear in-memory collections
@@ -42,6 +32,14 @@ public class DataWriterTest {
         new File("campuskitchen/src/main/json/Users.json").delete();
         new File("campuskitchen/src/main/json/Recipes.json").delete();
     }
+
+/**
+ * Test the saveUsers method to ensure it correctly writes user data to a JSON file.
+ * The test sets up a User object with specific details, adds it to the UserList,
+ * and invokes the saveUsers method. It then verifies the method's success by
+ * checking the existence of "Users.json", ensuring it contains the expected
+ * number of users, and confirming the correct user details are stored.
+ */
 
     @Test
     public void saveUsers() throws Exception {
@@ -72,6 +70,10 @@ public class DataWriterTest {
         assertTrue(((JSONArray) jo.get("mealPlans")).isEmpty());
     }
 
+    /**
+     * Test the private getUserJSON method via reflection, which takes a User and returns a JSON object representation of it.
+     * The JSON object is verified to contain the expected fields and values from the User object.
+     */
     @Test
     public void getUserJSON() throws Exception {
         // Arrange: user for direct JSON conversion
@@ -98,6 +100,13 @@ public class DataWriterTest {
         assertTrue(((JSONArray) jo.get("mealPlans")).isEmpty());
     }
 
+/**
+ * Test the saveRecipes method to ensure that it correctly saves a recipe to a JSON file.
+ * A single recipe is arranged and added to the RecipeList. The test verifies that the
+ * method successfully writes the recipe to "Recipes.json" by asserting the file's
+ * existence and checking that the JSON content matches the expected values of the
+ * arranged recipe, including the recipe's ID, name, user, and description.
+ */
     @Test
     public void saveRecipes() throws Exception {
         // Arrange: one recipe
@@ -130,6 +139,12 @@ public class DataWriterTest {
         assertEquals("Tasty", jo.get("description"));
     }
 
+    /**
+     * Test the private getRecipeJSON method via reflection, which
+     * takes a Recipe and returns a JSON object representation of it.
+     * The JSON object is verified to contain the expected fields and
+     * values from the Recipe object.
+     */
     @Test
     public void getRecipeJSON() throws Exception {
         // Arrange: recipe for direct JSON conversion
