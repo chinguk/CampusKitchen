@@ -3,6 +3,9 @@ package com.model;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -100,13 +103,14 @@ public class DataWriter {
     private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
         JSONObject mealPlanDetails = new JSONObject();
         mealPlanDetails.put("id", mealPlan.getID());
+        mealPlanDetails.put("name", mealPlan.getName());
 
         JSONArray recipesArray = new JSONArray();
         for (Recipe r : mealPlan.getRecipes()) {
             recipesArray.add(r.getId().toString());
         }
         mealPlanDetails.put("recipes", recipesArray);
-        
+
         return mealPlanDetails;
     }
 
@@ -150,13 +154,13 @@ public class DataWriter {
         recipeDetails.put("status", recipe.getStatus());
         recipeDetails.put("recipeStatus", recipe.getStatus());
         recipeDetails.put("author", recipe.getAuthor());
-        
+
         JSONArray ingredientsArray = new JSONArray();
         for (Ingredient ing : recipe.getIngredients()) {
             JSONObject ingObj = new JSONObject();
-            ingObj.put("name",   ing.getName());
+            ingObj.put("name", ing.getName());
             ingObj.put("amount", ing.getAmount());
-            ingObj.put("unit",   ing.getUnit().toString());
+            ingObj.put("unit", ing.getUnit().toString());
             ingredientsArray.add(ingObj);
         }
         recipeDetails.put("ingredients", ingredientsArray);
@@ -170,18 +174,114 @@ public class DataWriter {
         JSONArray ratingsArray = new JSONArray();
         for (Rating rating : recipe.getRatings()) {
             JSONObject ratingObj = new JSONObject();
-            ratingObj.put("user",    rating.getUser());
+            ratingObj.put("user", rating.getUser());
             ratingObj.put("comment", rating.getComment());
-            ratingObj.put("date",    rating.getDate());
-            ratingObj.put("score",   rating.getScore());
+            ratingObj.put("date", rating.getDate());
+            ratingObj.put("score", rating.getScore());
             // “recipe” field points back to this recipe’s ID
-            ratingObj.put("recipe",  recipe.getId().toString());
+            ratingObj.put("recipe", recipe.getId().toString());
             ratingsArray.add(ratingObj);
         }
         recipeDetails.put("ratings", ratingsArray);
 
         return recipeDetails;
     }
+
+    // /**
+    // * Generates grocery list for recipes in meal plans
+    // *
+    // * @param mealPlan Meal plan to generate list for
+    // * @return List of ingredients
+    // */
+    // public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
+    // if (mealPlan == null) {
+    // return null;
+    // }
+    // List<Ingredient> groceryList = mealPlan.generateGroceryList();
+    // writeGroceryListToFile(mealPlan, groceryList);
+    // return groceryList;
+    // }
+    // // Pass in the name of the meal plan (User.groceryList)
+
+    // /**
+    // * Saves grocery list of meal plan to text file
+    // *
+    // * @param mealPlan Meal plan from which the list is generated
+    // * @param groceryList List of ingredients to write
+    // */
+    // private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient>
+    // groceryList) {
+    // String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
+    // try (FileWriter writer = new FileWriter(fileName)) {
+    // writer.write("Grocery List for MealPlan \"" + mealPlan.getName() + "\" (ID="
+    // + mealPlan.getID() + ")\n");
+    // for (Ingredient ing : groceryList) {
+    // writer.write(ing.getName() + ": " + ing.getAmount() + " " +
+    // ing.getUnit().name() + "\n");
+    // }
+    // writer.flush();
+    // System.out.println("Wrote grocery list to " + fileName);
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // }
+
+    // public static void generateGroceryList(Object plan) {
+    //     if (plan == null || ((MealPlan) plan).getRecipes().isEmpty()) {
+    //         System.out.println("No recipes in meal plan; skipping grocery‐list generation.");
+    //         return;
+    //     }
+
+    //     // 1) Gather every Ingredient from each Recipe in the plan
+    //     // and sum up quantities for identical ingredient names.
+    //     // We'll key by ingredientName + unit
+    //     Map<String, Double> Quantities = new HashMap<>();
+    //     Map<String, Unit> ingredientUnit = new HashMap<>();
+
+    //     for (Recipe r : ((MealPlan) plan).getRecipes()) {
+    //         ArrayList<Ingredient> ings = r.generateGroceryList();
+
+    //         for (Ingredient ing : ings) {
+    //             String name = ing.getName();
+    //             Unit unit = ing.getUnit();
+    //             double amount = ing.getAmount();
+
+    //             String key = name + "#" + unit.toString();
+    //             double prev = Quantities.getOrDefault(key, 0.0);
+    //             Quantities.put(key, prev + amount);
+    //             ingredientUnit.put(key, unit);
+    //         }
+    //     }
+
+    //     // 2) Write out to a text file.
+    //     String outFile = "campuskitchen/src/main/resources/grocerylist_" + ((MealPlan) plan).getID() + ".txt";
+
+    //     try (FileWriter writer = new FileWriter(outFile)) {
+    //         writer.write("Grocery List for MealPlan ID: " + ((MealPlan) plan).getID() + "\n");
+    //         writer.write("––––––––––––––––––––––––––––––––––––––––––––\n");
+
+    //         for (Map.Entry<String, Double> entry : Quantities.entrySet()) {
+    //             String Key = entry.getKey();
+    //             double totalAmt = entry.getValue();
+    //             Unit unit = ingredientUnit.get(Key);
+    //             String name = Key.split("#")[0];
+
+    //             // Format: "2.0 pcs Tomato"
+    //             writer.write(String.format("%.2f %s %s%n", totalAmt, unit.toString(), name));
+    //         }
+
+    //         System.out.println("Wrote grocery list to: " + outFile);
+    //     } catch (IOException e) {
+    //         System.err.println("Error writing grocery‐list file: " + e.getMessage());
+    //     }
+    // }
+
+
+    // //Test generateGroceryList
+    // public static void main(String[] args) {
+    //     Object plan = MealPlan.getInstance().getMealPlans();
+    //     generateGroceryList(plan);
+    // }
 
     /**
      * The main method of the DataWriter class is used to write the users, recipes,

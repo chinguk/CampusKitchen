@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages collection of all users
@@ -113,5 +114,9 @@ public class UserList {
      */
     public boolean save() {
         return DataWriter.saveUsers();
+    }
+
+    public List<Ingredient> generateGroceryList(MealPlan plan) {
+        return plan.generateGroceryList();
     }
 }
