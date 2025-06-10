@@ -214,5 +214,22 @@ public class User {
          + " | Dietary: " + dietaryRestrictions
          + " | MealPlans: " + mealPlans;
     }
+
+    private static User instance = null;
+
+    private static ArrayList<User> users = new ArrayList<>();
+
+    private User() {}
+
+    public static User getInstance() {
+        if (instance == null) {
+            instance = new User();
+        }
+        return instance;
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
 }
 

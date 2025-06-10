@@ -12,7 +12,8 @@ import java.util.UUID;
  */
 public class MealPlan {
     private ArrayList<Recipe> recipes;
-    private  String id;
+    private static MealPlan instance = null;
+    private String id;
     private String name;
 
     /**
@@ -32,7 +33,7 @@ public class MealPlan {
      * @param recipes Initial list of recipes
      * @param existingID Existing ID to reuse
      */
-    public MealPlan (String name, List<Recipe> recipes, String existingID){
+    public MealPlan(String name, List<Recipe> recipes, String existingID){
         this.name = name;
         this.id = existingID;
         this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
@@ -116,6 +117,9 @@ public class MealPlan {
         return new ArrayList<>(aggregated.values());
     }
     
+    /**
+     * Returns String representation of meal plan
+     */
     @Override
     public String toString() {
         return "MealPlan{id='"  + id + "', recipes=" + recipes + "}";

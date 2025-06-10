@@ -8,8 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.util.ArrayList;
-
 public class DataLoader {
 
     /**
@@ -106,7 +104,7 @@ public class DataLoader {
     * @param id the UUID to search for
     * @return the matching Recipe or null if not found
     */
-    private static Recipe findRecipeById(ArrayList<Recipe> recipes, UUID id) {
+    public static Recipe findRecipeById(ArrayList<Recipe> recipes, UUID id) {
         for (Recipe recipe : recipes) {
             if (recipe.getId().equals(id)) {
                 return recipe;
@@ -134,7 +132,7 @@ public class DataLoader {
                 int duration = ((Long) j.get("duration")).intValue();
                 ArrayList<String> stepsList = parseSteps(j);
                 ArrayList<Ingredient> ingredientsList = parseIngredients(j);
-                ArrayList<String> categoriesList = parseCategories(j);
+                ArrayList<Category> categoriesList = parseCategories(j);
                 User author = (User) j.get("author");
                 RecipeStatus recipeStatus = (RecipeStatus) j.get("recipestatus");
                 Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
@@ -173,16 +171,17 @@ public class DataLoader {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         JSONArray ingArray = (JSONArray) j.get("ingredients");
         if (ingArray != null) {
-         for (Object ingObj : ingArray) {
+            for (Object ingObj : ingArray) {
                 JSONObject ing = (JSONObject) ingObj;
                 String ingName = (String) ing.get("name");
                 double amount = ((Number) ing.get("amount")).doubleValue();
-                Unit unit = (Unit) ing.get("unit");
+                Unit unit = Unit.valueOf(((String) ing.get("unit")).toUpperCase());
                 ingredients.add(new Ingredient(ingName, amount, unit));
             }
         }
         return ingredients;
     }
+    
 
     /**
     * Parses the list of categories for a recipe from its JSONObject.
@@ -190,18 +189,22 @@ public class DataLoader {
     * @param j JSONObject representing a recipe
     * @return list of categories for the recipe
     */
-    public static ArrayList<String> parseCategories(JSONObject j){
-        ArrayList<String> categories = new ArrayList<>();
+    public static ArrayList<Category> parseCategories(JSONObject j){
+        ArrayList<Category> categories = new ArrayList<>();
         JSONArray catArray = (JSONArray) j.get("categories");
         if (catArray != null) {
             for (Object cat : catArray) {
-                categories.add((String) cat);
+                try {
+                    categories.add(Category.valueOf(cat.toString().toUpperCase()));
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Unknown category: " + cat);
+                }
             }
         }
         return categories;
     }
-
 }
+    
 
      
 

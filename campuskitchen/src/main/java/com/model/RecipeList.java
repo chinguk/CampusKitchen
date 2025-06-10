@@ -3,9 +3,12 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Singleton manager for recipes in the system
+ */
 public class RecipeList {
     private static RecipeList instance = null;
-    private  ArrayList<Recipe> recipes;
+    private ArrayList<Recipe> recipes;
     private static RecipeList recipeList;
 
     private RecipeList(ArrayList<Recipe> recipes) {
@@ -32,10 +35,7 @@ public class RecipeList {
         if (recipe != null) {
             recipes.add(recipe);
         }
-
     }
-
-    //Overload addRecipe
 
     /**
      * Searches for recipes containing the given keyword in either the name or the description.
@@ -56,20 +56,36 @@ public class RecipeList {
         return matches;
     }
 
+    /**
+     * Retreives list of recipes
+     * @return List of all Recipes
+     */
     public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
 
+    /**
+     * Edits existing recipe identified by its ID
+     */
     public void editRecipe(String id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
         
     }
 
+    /**
+     * Deletes recipe from system
+     * @param id UUID of recipe to remove
+     */
     public void deleteRecipe(String id) {
         if (id != null) {
             recipes.removeIf(recipe -> recipe.getId().toString().equals(id));
         }
     }
 
+    /**
+     * Retrieves recipe by UUID
+     * @param id UUID to search for
+     * @return Matching Recipe
+     */
     public Recipe getByID(UUID id) {
         for (Recipe recipe : recipes) {
             if (recipe.getId().equals(id)) {
@@ -79,6 +95,11 @@ public class RecipeList {
         return null;
     }
 
+    /**
+     * Returns singleton instance of RecipeList 
+     * @param loadedRecipes initial list of recipes to seed
+     * @return RecipeList singleton
+     */
     public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
         if (instance == null) {
             instance = new RecipeList(loadedRecipes);
