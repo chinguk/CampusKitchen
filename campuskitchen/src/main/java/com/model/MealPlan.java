@@ -137,8 +137,4 @@ public class MealPlan {
         }
         return instance;
     }
-
-    public Object getMealPlans() {
-        
-    }
 }

@@ -15,11 +15,14 @@ public class RecipeSystemFACADE {
     private static final User NEW_USER = null;
     private User user;
     private static RecipeSystemFACADE recipeSystemFACADE;
+    private RecipeStatus recipeStatus;
 
     /**
      * Private constructor to enforce singleton pattern
      */
-    private RecipeSystemFACADE() {}
+    private RecipeSystemFACADE() {
+
+    }
 
     /**
      * Returns singleton instance of facade and creates it if necessary
@@ -51,7 +54,7 @@ public class RecipeSystemFACADE {
      * @param user Updated User
      */
     public void updateProfile(User user) {
-
+        return;
     }
 
     /**
@@ -69,8 +72,8 @@ public class RecipeSystemFACADE {
      * @param word Search word
      * @return matching recipe or null if not found
      */
-    public Recipe getRecipeByKeyWord(String word) {
-        return null;
+    public Recipe getRecipeByKeyWord(Recipe word) {
+        return word;
     }
 
     /**
@@ -82,15 +85,16 @@ public class RecipeSystemFACADE {
     }
 
     public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
-
+        return;
     }
 
-    public void approveRecipe(Recipe recipe) {
-
+    @SuppressWarnings("static-access")
+    public RecipeStatus approveRecipe(Recipe recipe) {
+        return recipeStatus.APPROVED;
     }
 
     public void deleteRecipe(Recipe recipe) {
-
+        return;
     }
 
     public void rateRecipe(Recipe recipe, Rating rating) {
@@ -135,5 +139,6 @@ public class RecipeSystemFACADE {
      */
     public void logout() {
         UserList.getInstance().save();
+        RecipeList.getInstance().saveRecipes();
     }
 }

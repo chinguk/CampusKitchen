@@ -119,9 +119,10 @@ public class DataWriter {
      * and added to a JSON array.
      * The JSON object contains the recipe's name, description, duration, steps,
      * ingredients, categories, author, and status.
+     * @return 
      */
     @SuppressWarnings("unchecked")
-    public static void saveRecipes() {
+    public static boolean saveRecipes() {
         ArrayList<Recipe> allRecipes = new ArrayList<>(RecipeList.getInstance().getRecipes());
         JSONArray recipesArray = new JSONArray();
         for (Recipe r : allRecipes) {
@@ -134,6 +135,7 @@ public class DataWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     /**
@@ -226,71 +228,71 @@ public class DataWriter {
     // }
     // }
 
-    // public static void generateGroceryList(Object plan) {
-    //     if (plan == null || ((MealPlan) plan).getRecipes().isEmpty()) {
-    //         System.out.println("No recipes in meal plan; skipping grocery‐list generation.");
-    //         return;
-    //     }
+    public static void generateGroceryList(Object plan) {
+        if (plan == null || ((MealPlan) plan).getRecipes().isEmpty()) {
+            System.out.println("No recipes in meal plan; skipping grocery‐list generation.");
+            return;
+        }
 
-    //     // 1) Gather every Ingredient from each Recipe in the plan
-    //     // and sum up quantities for identical ingredient names.
-    //     // We'll key by ingredientName + unit
-    //     Map<String, Double> Quantities = new HashMap<>();
-    //     Map<String, Unit> ingredientUnit = new HashMap<>();
+        // 1) Gather every Ingredient from each Recipe in the plan
+        // and sum up quantities for identical ingredient names.
+        // We'll key by ingredientName + unit
+        Map<String, Double> Quantities = new HashMap<>();
+        Map<String, Unit> ingredientUnit = new HashMap<>();
 
-    //     for (Recipe r : ((MealPlan) plan).getRecipes()) {
-    //         ArrayList<Ingredient> ings = r.generateGroceryList();
+        for (Recipe r : ((MealPlan) plan).getRecipes()) {
+            ArrayList<Ingredient> ings = r.generateGroceryList();
 
-    //         for (Ingredient ing : ings) {
-    //             String name = ing.getName();
-    //             Unit unit = ing.getUnit();
-    //             double amount = ing.getAmount();
+            for (Ingredient ing : ings) {
+                String name = ing.getName();
+                Unit unit = ing.getUnit();
+                double amount = ing.getAmount();
 
-    //             String key = name + "#" + unit.toString();
-    //             double prev = Quantities.getOrDefault(key, 0.0);
-    //             Quantities.put(key, prev + amount);
-    //             ingredientUnit.put(key, unit);
-    //         }
-    //     }
+                String key = name + "#" + unit.toString();
+                double prev = Quantities.getOrDefault(key, 0.0);
+                Quantities.put(key, prev + amount);
+                ingredientUnit.put(key, unit);
+            }
+        }
 
-    //     // 2) Write out to a text file.
-    //     String outFile = "campuskitchen/src/main/resources/grocerylist_" + ((MealPlan) plan).getID() + ".txt";
+        // 2) Write out to a text file.
+        String outFile = "campuskitchen/src/main/resources/grocerylist_" + ((MealPlan) plan).getID() + ".txt";
 
-    //     try (FileWriter writer = new FileWriter(outFile)) {
-    //         writer.write("Grocery List for MealPlan ID: " + ((MealPlan) plan).getID() + "\n");
-    //         writer.write("––––––––––––––––––––––––––––––––––––––––––––\n");
+        try (FileWriter writer = new FileWriter(outFile)) {
+            writer.write("Grocery List for MealPlan ID: " + ((MealPlan) plan).getID() + "\n");
+            writer.write("––––––––––––––––––––––––––––––––––––––––––––\n");
 
-    //         for (Map.Entry<String, Double> entry : Quantities.entrySet()) {
-    //             String Key = entry.getKey();
-    //             double totalAmt = entry.getValue();
-    //             Unit unit = ingredientUnit.get(Key);
-    //             String name = Key.split("#")[0];
+            for (Map.Entry<String, Double> entry : Quantities.entrySet()) {
+                String Key = entry.getKey();
+                double totalAmt = entry.getValue();
+                Unit unit = ingredientUnit.get(Key);
+                String name = Key.split("#")[0];
 
-    //             // Format: "2.0 pcs Tomato"
-    //             writer.write(String.format("%.2f %s %s%n", totalAmt, unit.toString(), name));
-    //         }
+                // Format: "2.0 pcs Tomato"
+                writer.write(String.format("%.2f %s %s%n", totalAmt, unit.toString(), name));
+            }
 
-    //         System.out.println("Wrote grocery list to: " + outFile);
-    //     } catch (IOException e) {
-    //         System.err.println("Error writing grocery‐list file: " + e.getMessage());
-    //     }
-    // }
+            System.out.println("Wrote grocery list to: " + outFile);
+        } catch (IOException e) {
+            System.err.println("Error writing grocery‐list file: " + e.getMessage());
+        }
+    }
 
 
-    // //Test generateGroceryList
-    // public static void main(String[] args) {
-    //     Object plan = MealPlan.getInstance().getMealPlans();
-    //     generateGroceryList(plan);
-    // }
+    //Test generateGroceryList
+    public static void main(String[] args) {
+        List<MealPlan> plan = MealPlan.getInstance().getMealPlans();
+        generateGroceryList(plan);
+    }
 
     /**
      * The main method of the DataWriter class is used to write the users, recipes,
      * and meal plans to their respective JSON files.
      * This method is called when the DataWriter class is run as a Java application.
      */
-    public static void main(String[] args) {
-        DataWriter.saveUsers();
-        DataWriter.saveRecipes();
-        DataWriter.saveMealPlans();
-    }
+    // public static void main(String[] args) {
+    //     DataWriter.saveUsers();
+    //     DataWriter.saveRecipes();
+    //     DataWriter.saveMealPlans();
+    // }
 }

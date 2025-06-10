@@ -99,4 +99,8 @@ public class RecipeList {
         }
         return instance;
     }
+
+    public boolean saveRecipes() {
+        return DataWriter.saveRecipes();
+    }
 }
