@@ -149,11 +149,95 @@ public class UserListTest {
     }
 
     /**
-     * Test that getUser returns false when checking if a user exists (via null check).
+     * Test that getUser returns false when checking if a user exists.
      */
     @Test
     public void testGetUserReturnsNullForNonexistentUser() {
-        User user = users.getUser("ghostuser");
+        User user = users.getUser("nonexistentuser");
         assertFalse("getUser should return null for nonexistent user", user != null);
     }
+
+        /**
+     * Test that a newly added user has no dietary restrictions by default.
+     */
+    @Test
+    public void testNewUserHasNoDietaryRestrictions() {
+        users.addUser("Greg", "Green", "greg@green.com", "U1007", "gregg", "greenpass");
+        users.save();
+        User greg = users.getUser("gregg");
+        assertTrue(greg.getDietaryRestrictions().isEmpty());
+    }
+
+    /**
+     * Test that adding a user with same username still works if duplicates are allowed.
+     */
+    @Test
+    public void testAddDuplicateUsernameAllowed() {
+        int initialSize = users.getUsers().size();
+        boolean added = users.addUser("Alice", "Clone", "clone@alice.com", "U9998", "alicew", "anotherpass");
+        users.save();
+        assertTrue(added);
+        assertEquals(initialSize + 1, users.getUsers().size());
+    }
+
+    /**
+     * Test that getUser returns false for logic checking existence of nonexistent user.
+     */
+    @Test
+    public void testUserDoesNotExist() {
+        User u = users.getUser("ghostuser");
+        assertFalse("Expected no user for ghostuser", u != null);
+    }
+
+    /**
+     * Test that removing a user that doesn't exist does not throw exception or change size.
+     */
+    @Test
+    public void testRemoveNonexistentUser() {
+        int before = users.getUsers().size();
+        users.removeUser("doesnotexist123");
+        users.save();
+        assertEquals(before, users.getUsers().size());
+    }
+
+    /**
+     * Test that editing an existing user does not change their username.
+     */
+    @Test
+    public void testEditUserDoesNotChangeUsername() {
+        users.editUser("Alice", "Updated", "newalice@email.com", "U1001", "alicew", "newpass");
+        users.save();
+        User u = users.getUser("alicew");
+        assertEquals("alicew", u.getUsername());
+    }
+
+    /**
+     * Test that editing a nonexistent user fails silently and user is still null.
+     */
+    @Test
+    public void testEditNonexistentUserStillNull() {
+        users.editUser("Fake", "Person", "fake@nope.com", "U0000", "notarealuser", "nope");
+        assertNull(users.getUser("notarealuser"));
+    }
+
+    /**
+     * Test that adding a user with an empty username still adds them.
+     */
+    @Test
+    public void testAddUserWithEmptyUsername() {
+        int before = users.getUsers().size();
+        boolean added = users.addUser("No", "Name", "no@name.com", "U1234", "", "pass");
+        users.save();
+        assertTrue(added);
+        assertEquals(before + 1, users.getUsers().size());
+    }
+
+    /**
+     * Test that getUsers does not return null.
+     */
+    @Test
+    public void testGetUsersNotNull() {
+        assertNotNull(users.getUsers());
+    }
+
 }

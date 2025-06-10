@@ -1,6 +1,7 @@
 package com.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -175,6 +176,57 @@ public class DataLoaderTest {
         DataWriter.saveUsers();
         User editedUser = users.getUser("lbrown");
         assertEquals(newEmail, editedUser.getEmail());
+    }
+
+    /**
+     * Test that getUser returns null for a username not in the system.
+     */
+    @Test
+    public void testGetNonexistentUserReturnsNull() {
+        User user = users.getUser("nonexistent123");
+        assertNull(user);
+    }
+
+    /**
+     * Test that removing a null username does not affect the user list size.
+     */
+    @Test
+    public void testRemoveNullUserDoesNothing() {
+        int sizeBefore = users.getUsers().size();
+        users.removeUser(null);
+        int sizeAfter = users.getUsers().size();
+        assertEquals(sizeBefore, sizeAfter);
+    }
+
+    /**
+     * Test that adding a user with an existing username still increases size 
+     */
+    @Test
+    public void testAddDuplicateUsernameStillAddsUser() throws ParseException, org.json.simple.parser.ParseException {
+        users.addUser("Emily", "Miller", "another@email.com", "X123456", "emill", "diffpass");
+        DataWriter.saveUsers();
+        ArrayList<User> updatedUsers = DataLoader.getUsers();
+        long count = updatedUsers.stream().filter(u -> u.getUsername().equals("emill")).count();
+        assertTrue(count > 1); // Shows duplicates were allowed
+    }
+
+    /**
+     * Test that a newly created user does not have dietary restrictions by default.
+     */
+    @Test
+    public void testNewUserHasNoDietaryRestrictions() {
+        User emily = users.getUser("emill");
+        assertTrue(emily.getDietaryRestrictions().isEmpty());
+    }
+
+    /**
+     * Test that parsing recipe steps returns false when list is not populated.
+     */
+    @Test
+    public void testParseStepsEmptyReturnsFalseForHasSteps() {
+        JSONObject recipe = new JSONObject();
+        ArrayList<String> steps = DataLoader.parseSteps(recipe);
+        assertFalse("Parsed steps should be empty and thus 'not present'", steps.size() > 0);
     }
 }
 
