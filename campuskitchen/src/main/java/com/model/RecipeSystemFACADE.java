@@ -128,38 +128,8 @@ public class RecipeSystemFACADE {
         return null;
     }
 
-    /**
-     * Generates grocery list for recipes in meal plans
-     * @param mealPlan Meal plan to generate list for
-     * @return List of ingredients
-     * NOTE: PASS IN NAME OF MEAL PLAN, DO NOT DO WORK
-     */
-    public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
-        if (mealPlan == null) {
-            return null;
-        }
-        List<Ingredient> groceryList = mealPlan.generateGroceryList();
-        writeGroceryListToFile(mealPlan, groceryList);
-        return groceryList;        
-    }
-
-    /**
-     * Saves grocery list of meal plan to text file
-     * @param mealPlan Meal plan from which the list is generated
-     * @param groceryList List of ingredients to write
-     */
-    private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
-        String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Grocery List for MealPlan \"" + mealPlan.getName() + "\" (ID=" + mealPlan.getID() + ")\n");
-            for (Ingredient ing : groceryList) {
-                writer.write(ing.getName() + ": " + ing.getAmount() + " " + ing.getUnit().name() + "\n");
-            }
-            writer.flush();
-            System.out.println("Wrote grocery list to " + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public List<Ingredient> generateGroceryList(MealPlan plan) {
+        return UserList.getInstance().generateGroceryList(plan);
     }
 
     /**
