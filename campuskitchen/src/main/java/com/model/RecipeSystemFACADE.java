@@ -84,8 +84,15 @@ public class RecipeSystemFACADE {
         return null;
     }
 
+<<<<<<< HEAD
     public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
         return;
+=======
+    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients,
+                                ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author,
+                                RecipeStatus status) {
+
+>>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
     }
 
     @SuppressWarnings("static-access")
@@ -139,6 +146,13 @@ public class RecipeSystemFACADE {
      */
     public void logout() {
         UserList.getInstance().save();
+<<<<<<< HEAD
         RecipeList.getInstance().saveRecipes();
+=======
+        RecipeList.getInstance().save();
+
+       // this.user = null;
+       // recipeSystemFACADE = null;
+>>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
     }
 }
