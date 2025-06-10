@@ -85,10 +85,6 @@ public class RecipeSystemFACADE {
 
     }
 
-    public void editRecipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, RecipeStatus status) {
-
-    }
-
     public void approveRecipe(Recipe recipe) {
 
     }

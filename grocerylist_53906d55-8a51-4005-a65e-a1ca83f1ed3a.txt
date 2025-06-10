@@ -1,0 +1,4 @@
+Grocery List for MealPlan "Weekday lunches" (ID=53906d55-8a51-4005-a65e-a1ca83f1ed3a)
+Tomato: 1.5 PIECE
+Lettuce: 1.0 PIECE
+Onion: 2.0 PIECE
