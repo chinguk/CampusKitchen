@@ -1,5 +1,6 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -130,5 +131,9 @@ public class Rating {
     @Override
     public String toString() {
         return "Rating{" + "userId='" + userId + '\'' + ", recipeId='" + recipeId + '\'' + ", score=" + score + ", date=" + date + ", comment='" + comment + '\'' + '}';
+    }
+
+    public static ArrayList<Rating> emptyList() {
+        return new ArrayList<>();
     }
 }

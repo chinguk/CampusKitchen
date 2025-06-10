@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.ArrayList;
+
 /**
  * Represents ingredient used in a recipe
  */
@@ -90,5 +92,9 @@ public class Ingredient {
      */
     public String toString() {
         return "Ingredient{" + "name='" + name + '\'' + ", amount=" + amount + ", unit=" + unit + '}';
+    }
+
+    public static ArrayList<Ingredient> emptyList() {
+        return new ArrayList<>();
     }
 }

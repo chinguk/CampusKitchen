@@ -17,9 +17,7 @@ public class DataWriter {
 
     /**
      * Saves the current list of users to a JSON file.
-     * Adds two test users, "pplante" and "Kim", to the list before saving.
      * Each user is converted to a JSON object and added to a JSON array.
-     * 
      * @throws org.json.simple.parser.ParseException
      */
 
@@ -126,7 +124,7 @@ public class DataWriter {
 
     /**
      * Saves all recipes to a JSON file. Each recipe is converted to a JSON object
-     * and added to a JSON array.
+     * and added to a JSON array. 
      * The JSON object contains the recipe's name, description, duration, steps,
      * ingredients, categories, author, and status.
      * 

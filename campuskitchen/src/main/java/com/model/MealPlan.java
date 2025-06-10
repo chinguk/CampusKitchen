@@ -124,4 +124,8 @@ public class MealPlan {
     public String toString() {
         return "MealPlan{id='"  + id + "', recipes=" + recipes + "}";
     }
+
+    public static ArrayList<MealPlan> emptyList() {
+        return new ArrayList<>();
+    }
 }

@@ -65,13 +65,6 @@ public class RecipeList {
     }
 
     /**
-     * Edits existing recipe identified by its ID
-     */
-    public void editRecipe(String id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<String> categories, User author, RecipeStatus status) {
-        
-    }
-
-    /**
      * Deletes recipe from system
      * @param id UUID of recipe to remove
      */
