@@ -40,7 +40,23 @@ public class Recipe {
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
-        this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
+   //     this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
+    }
+
+    /**
+     * Overloaded constructor to include UUID
+     */
+    public Recipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient, ArrayList<String> categories, User author, RecipeStatus status, ArrayList<Rating> ratings) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.steps = new ArrayList<String>();
+        this.ingredient = new ArrayList<Ingredient>();
+        this.categories = new ArrayList<String>();
+        this.author = author;
+        this.status = status;
+        this.ratings = new ArrayList<Rating>();
     }
 
     /** 

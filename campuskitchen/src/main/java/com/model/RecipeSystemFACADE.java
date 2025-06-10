@@ -97,6 +97,7 @@ public class RecipeSystemFACADE {
 
     }
 
+    // can just call from recipes
     public double getAverageRating(Recipe recipe) {
         return 0;
     }
@@ -105,6 +106,7 @@ public class RecipeSystemFACADE {
      * Creates new meal plan for logged in user and generates grocery list file
      * @param name Name of meal plan
      * @param recipes list of recipes to include
+     * NOTE: NO INTERACTION WITH CONSOLE, NO LOGIC ONLY ONE LINE, CALL FROM APPRIATE CLASSES
      */
     public void createMealPlan(String name, ArrayList<Recipe> recipes) {
     User currentUser = this.user;
