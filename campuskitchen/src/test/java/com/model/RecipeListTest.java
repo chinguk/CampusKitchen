@@ -1,4 +1,4 @@
-package com;
+package com.model;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
