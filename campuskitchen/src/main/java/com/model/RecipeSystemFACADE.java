@@ -81,7 +81,9 @@ public class RecipeSystemFACADE {
         return null;
     }
 
-    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
+    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients,
+                                ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author,
+                                RecipeStatus status) {
 
     }
 
@@ -165,5 +167,9 @@ public class RecipeSystemFACADE {
      */
     public void logout() {
         UserList.getInstance().save();
+        RecipeList.getInstance().save();
+
+       // this.user = null;
+       // recipeSystemFACADE = null;
     }
 }

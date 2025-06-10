@@ -13,7 +13,9 @@ public class Recipe {
     private int duration;
     private ArrayList<String> steps;
     private ArrayList<Ingredient> ingredient;
-    private ArrayList<String> categories;
+    private ArrayList<Culture> culture;
+    private ArrayList<Dietary> dietary;
+    private ArrayList<Course> course;
     private User author;
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
@@ -25,18 +27,23 @@ public class Recipe {
      * @param duration Prep time in minutes
      * @param steps list of prepartion steps
      * @param ingredient list of ingredients
-     * @param categories classification of recipe
+     * @param culture classification of recipe
+     * @param dietary dietary restrictions
+     * @param course course of recipe
      * @param author user who created the recipe
      * @param status approval status
      */
-    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient, ArrayList<Category> categories, User author, RecipeStatus status) {
+    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
+                    ArrayList<Culture> culture, ArrayList<Dietary> dietary, ArrayList<Course> course, User author, RecipeStatus status) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.steps = new ArrayList<String>();
         this.ingredient = new ArrayList<Ingredient>();
-        this.categories = new ArrayList<String>();
+        this.culture = new ArrayList<Culture>();
+        this.dietary = new ArrayList<Dietary>();
+        this.course = new ArrayList<Course>();
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
@@ -46,14 +53,17 @@ public class Recipe {
     /**
      * Overloaded constructor to include UUID
      */
-    public Recipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient, ArrayList<String> categories, User author, RecipeStatus status, ArrayList<Rating> ratings) {
+    public Recipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
+                    ArrayList<String> categories, User author, RecipeStatus status, ArrayList<Rating> ratings) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.steps = new ArrayList<String>();
         this.ingredient = new ArrayList<Ingredient>();
-        this.categories = new ArrayList<String>();
+        this.culture = new ArrayList<Culture>();
+        this.dietary = new ArrayList<Dietary>();
+        this.course = new ArrayList<Course>();
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
@@ -110,12 +120,28 @@ public class Recipe {
         this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
     }
 
-    public ArrayList<String> getCategories() {
-        return categories;
+    public ArrayList<Culture> getCulture() {
+        return culture;
     }
 
-    public void setCategories(ArrayList<String> categories) {
-        this.categories = (categories == null) ? new ArrayList<String>() : categories;
+    public void setCulture(ArrayList<Culture> culture) {
+        this.culture = (culture == null) ? new ArrayList<Culture>() : culture;
+    }
+
+    public ArrayList<Dietary> getDietary() {
+        return dietary;
+    }
+
+    public void setDietary(ArrayList<Dietary> dietary) {
+        this.dietary = (dietary == null) ? new ArrayList<Dietary>() : dietary;
+    }
+
+    public ArrayList<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(ArrayList<Course> course) {
+        this.course = (course == null) ? new ArrayList<Course>() : course;
     }
 
     public User getAuthor() {

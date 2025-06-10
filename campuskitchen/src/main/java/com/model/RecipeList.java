@@ -11,8 +11,8 @@ public class RecipeList {
     private ArrayList<Recipe> recipes;
     private static RecipeList recipeList;
 
-    private RecipeList(ArrayList<Recipe> recipes) {
-        this.recipes = new ArrayList<>();
+    public RecipeList() {
+        this.recipes = DataLoader.getRecipes();
     }
 
     /**
@@ -22,7 +22,7 @@ public class RecipeList {
      */
     public static RecipeList getInstance() {
         if (recipeList == null) {
-            recipeList = new RecipeList(new ArrayList<>());
+            recipeList = new RecipeList();
         }
         return recipeList;
     }
@@ -31,10 +31,33 @@ public class RecipeList {
      * Adds a recipe to the list of all recipes in the system.
      * If the recipe is null, nothing is done.
      */
+    /*
     public void addRecipe(Recipe recipe) {
         if (recipe != null) {
             recipes.add(recipe);
         }
+    }
+    */
+    
+    /**
+     * Adds recipe
+     * @param name
+     * @param description
+     * @param duration
+     * @param steps
+     * @param ingredient
+     * @param culture
+     * @param dietary
+     * @param course
+     * @param author
+     * @param status
+     * @return
+     */
+    public boolean addRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
+                    ArrayList<Culture> culture, ArrayList<Dietary> dietary, ArrayList<Course> course, User author, RecipeStatus status) {
+        Recipe newRecipe = new Recipe(name, description, duration, steps, ingredient, culture, dietary, course, author,status);
+        recipes.add(newRecipe);
+        return true;
     }
 
     /**
@@ -89,14 +112,10 @@ public class RecipeList {
     }
 
     /**
-     * Returns singleton instance of RecipeList 
-     * @param loadedRecipes initial list of recipes to seed
-     * @return RecipeList singleton
+     * Saves recipe
      */
-    public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
-        if (instance == null) {
-            instance = new RecipeList(loadedRecipes);
-        }
-        return instance;
-    }
+    public boolean save() {
+        return DataWriter.saveRecipes();
+    }    
+
 }
