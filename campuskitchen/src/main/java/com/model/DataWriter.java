@@ -64,33 +64,14 @@ public class DataWriter {
         JSONArray mpJson = new JSONArray();
         if (user.getMealPlans() != null) {
             for (MealPlan mp : user.getMealPlans()) {
-                mpJson.add(mp.getID());
+                mpJson.add(getMealPlanJSON(mp));
             }
         }
-        userDetails.put("mealPlanIDs", mpJson);
+        userDetails.put("mealPlans", mpJson);
 
         return userDetails;
     }
 
-    /**
-     * Saves all meal plans to a JSON file. Each meal plan is converted to a JSON
-     * object and added to a JSON array.
-     * The JSON object contains the meal plan's name, ID, and list of recipes.
-     */
-    @SuppressWarnings("unchecked")
-    public static void saveMealPlans() {
-        ArrayList<MealPlan> allPlans = new ArrayList<>(MealPlan.getInstance().getMealPlans());
-        JSONArray mealPlanArray = new JSONArray();
-        for (MealPlan mp : allPlans) {
-            mealPlanArray.add(getMealPlanJSON(mp));
-        }
-        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
-            file.write(mealPlanArray.toJSONString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Converts a MealPlan object to a JSON object with the following fields: id,
@@ -293,6 +274,5 @@ public class DataWriter {
     public static void main(String[] args) {
         DataWriter.saveUsers();
         DataWriter.saveRecipes();
-        DataWriter.saveMealPlans();
     }
 }

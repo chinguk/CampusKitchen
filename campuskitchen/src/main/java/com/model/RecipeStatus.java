@@ -7,5 +7,6 @@ public enum RecipeStatus {
     PREPENDING,
     PENDING,
     APPROVED,
-    REJECTED
+    REJECTED,
+    NULL
 }

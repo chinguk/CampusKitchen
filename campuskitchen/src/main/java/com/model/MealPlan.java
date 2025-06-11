@@ -14,9 +14,9 @@ import javafx.scene.chart.PieChart.Data;
  */
 public class MealPlan {
     private ArrayList<Recipe> recipes;
-    private static MealPlan instance = null;
     private String id;
     private String name;
+    private ArrayList<UUID> recipeIds;
 
     /**
      * Constructs new MealPlan
@@ -35,10 +35,16 @@ public class MealPlan {
      * @param recipes Initial list of recipes
      * @param existingID Existing ID to reuse
      */
-    public MealPlan(String name, List<Recipe> recipes, String existingID){
+    public MealPlan(String name, List<Recipe> recipes, String id){
         this.name = name;
-        this.id = existingID;
+        this.id = id;
         this.recipes = (recipes != null) ? new ArrayList<>(recipes) : new ArrayList<>();
+    }
+
+    public MealPlan(String name, ArrayList<UUID> recipesIds, String mealPlanID){
+        this.name = name;
+        this.id = mealPlanID;
+        this.recipeIds = (recipesIds != null) ? new ArrayList<>(recipesIds) : new ArrayList<>();
     }
 
     /**
@@ -60,6 +66,10 @@ public class MealPlan {
      */
     public List<Recipe> getRecipes() {
         return recipes;
+    }
+
+    public ArrayList<UUID> getRecipeIds(){
+        return recipeIds;
     }
 
     /**
@@ -124,21 +134,18 @@ public class MealPlan {
      */
     @Override
     public String toString() {
-        return "MealPlan{id='"  + id + "', recipes=" + recipes + "}";
+        StringBuilder sb = new StringBuilder();
+        sb.append("MealPlan{id='").append(id).append("', name='").append(name).append("', recipeIds=[");
+        for (UUID recipeId : recipeIds) {
+            sb.append("\n  ").append(recipeId);
+        }
+        sb.append("\n]}");
+        return sb.toString();
     }
 
     public static ArrayList<MealPlan> emptyList() {
         return new ArrayList<>();
     }
 
-    public static MealPlan getInstance() {
-        if (instance == null) {
-            instance = new MealPlan("Name",null , "Ids");
-        }
-        return instance;
-    }
-
-    public Object getMealPlans() {
-        return DataLoader.getInstance().getMealPlans();
-    }
+    
 }

@@ -146,13 +146,10 @@ public class RecipeSystemFACADE {
      */
     public void logout() {
         UserList.getInstance().save();
-<<<<<<< HEAD
         RecipeList.getInstance().saveRecipes();
-=======
         RecipeList.getInstance().save();
 
        // this.user = null;
        // recipeSystemFACADE = null;
->>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
     }
 }

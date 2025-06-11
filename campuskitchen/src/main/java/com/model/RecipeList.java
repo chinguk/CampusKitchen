@@ -9,11 +9,11 @@ import java.util.UUID;
 public class RecipeList {
     private static RecipeList instance = null;
     private ArrayList<Recipe> recipes;
-    private static RecipeList recipeList;
 
-    public RecipeList() {
-        this.recipes = DataLoader.getRecipes();
+    private RecipeList(ArrayList<Recipe> recipes) {
+        this.recipes = recipes != null ? recipes : new ArrayList<>();
     }
+    
 
     /**
      * Returns the single instance of the RecipeList class, which contains
@@ -21,10 +21,10 @@ public class RecipeList {
      * exist yet, it is created.
      */
     public static RecipeList getInstance() {
-        if (recipeList == null) {
-            recipeList = new RecipeList();
+        if (instance == null) {
+            instance = new RecipeList(new ArrayList<>());
         }
-        return recipeList;
+        return instance;
     }
 
     /**
@@ -114,7 +114,7 @@ public class RecipeList {
     /**
      * Saves recipe
      */
-<<<<<<< HEAD
+
     public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
         if (instance == null) {
             instance = new RecipeList(loadedRecipes);
@@ -122,13 +122,34 @@ public class RecipeList {
         return instance;
     }
 
+
+    /**
+    * Finds a recipe in the given list by matching its UUID.
+    * 
+    * @param recipes list of all recipes
+    * @param id the UUID to search for
+    * @return the matching Recipe or null if not found
+    */
+    public UUID findIdByRecipe(ArrayList<Recipe> recipes, UUID id) {
+        for (Recipe recipe : recipes) {
+            return recipe.getId();
+        }
+        return null;
+    }
+
+    public ArrayList<UUID> getRecipeIds() {
+        ArrayList<UUID> idList = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            idList.add(recipe.getId());
+        }
+        return idList;
+    }
+
     public boolean saveRecipes() {
         return DataWriter.saveRecipes();
     }
-=======
+
     public boolean save() {
         return DataWriter.saveRecipes();
     }    
-
->>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
 }
