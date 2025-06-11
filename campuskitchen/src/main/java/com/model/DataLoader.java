@@ -2,11 +2,29 @@ package com.model;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+/*
+ * Remove getRecipeById
+ * getMealplans
+ * call RecipesRecipeList.getInstance().getRecipeById()
+ * remove recipes from getUsers
+ * getUsers:
+ * Hashmap<user, ArrayList<Recipe UUIDs>
+ * After got all Users,
+ * fill in Recipes per User
+ */
+
+
+
+
+
 
 public class DataLoader {
 
@@ -18,8 +36,9 @@ public class DataLoader {
     */
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
+         HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
         try {
-            FileReader reader = new FileReader("campuskitchen/src/main/json/Users.json");
+            FileReader reader = new FileReader("campuskitchen/campuskitchen/src/main/json/Users.json");
             JSONParser parser = new JSONParser();
             JSONArray userArray = (JSONArray) parser.parse(reader);
             for (int i=0; i < userArray.size(); i++) {
@@ -34,8 +53,24 @@ public class DataLoader {
                 ArrayList<MealPlan> mealPlans = parseMealPlans(j);
                 User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans);
                 users.add(user);
+                userMealPlansMap.put(user, mealPlans);
             }
-            return users;
+
+            RecipeList recipeList = RecipeList.getInstance();
+            recipeList.getRecipes();
+    
+            for (Map.Entry<User, ArrayList<MealPlan>> entry : userMealPlansMap.entrySet()) {
+                for (MealPlan mp : entry.getValue()) {
+                    ArrayList<Recipe> recipes = new ArrayList<>();
+                    for (UUID id : mp.getRecipeIds()) {
+                        Recipe r = recipeList.getByID(id);
+                        if (r != null) {
+                            recipes.add(r);
+                        }
+                    }
+                    mp.setRecipes(recipes);  
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
           }  
@@ -69,48 +104,34 @@ public class DataLoader {
     public static ArrayList<MealPlan> parseMealPlans(JSONObject j) {
         ArrayList<MealPlan> mealPlans = new ArrayList<>();
         JSONArray mealPlanArray = (JSONArray) j.get("mealPlans");
-        ArrayList<Recipe> allRecipes = getRecipes();
     
         if (mealPlanArray != null) {
             for (Object obj : mealPlanArray) {
                 JSONObject planObj = (JSONObject) obj;
                 String name = (String) planObj.get("name");
-                String mealPlanID = (String) planObj.get("mealPlanIDs");
-                JSONArray recipesArray = (JSONArray) planObj.get("recipes");
-    
-                ArrayList<Recipe> recipes = new ArrayList<>();
-                if (recipesArray != null) {
+                String mealPlanID = (String) planObj.get("mealPlanID");
+                
+                ArrayList<UUID> recipesIds = new ArrayList<>();
+                Object recipesObj = planObj.get("recipes");
+
+                if (recipesObj instanceof JSONArray) {
+                    JSONArray recipesArray = (JSONArray) recipesObj;
                     for (Object recipeIdObj : recipesArray) {
-                        String recipeIdStr = (String) recipeIdObj;
-                        UUID recipeId = UUID.fromString(recipeIdStr);
-                        Recipe matchedRecipe = findRecipeById(allRecipes, recipeId);
-                        if (matchedRecipe != null) {
-                            recipes.add(matchedRecipe);
+                        try {
+                           UUID recipeId = UUID.fromString((String) recipeIdObj);
+                           recipesIds.add(recipeId);
+                        } catch (IllegalArgumentException e) {
+                            System.err.println("Invalid UUID in mealPlan: " + recipeIdObj);
                         }
                     }
+                } else {
+                    System.err.println("Missing or invalid 'recipes' array in meal plan: " + name);
                 }
-    
-                MealPlan mealPlan = new MealPlan(name, recipes, mealPlanID);
+                MealPlan mealPlan = new MealPlan(name, recipesIds, mealPlanID);
                 mealPlans.add(mealPlan);
             }
         }
         return mealPlans;
-    }
-    
-    /**
-    * Finds a recipe in the given list by matching its UUID.
-    * 
-    * @param recipes list of all recipes
-    * @param id the UUID to search for
-    * @return the matching Recipe or null if not found
-    */
-    public static Recipe findRecipeById(ArrayList<Recipe> recipes, UUID id) {
-        for (Recipe recipe : recipes) {
-            if (recipe.getId().equals(id)) {
-                return recipe;
-            }
-        }
-        return null;
     }
     
 
@@ -122,7 +143,7 @@ public class DataLoader {
     public static ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
         try {
-            FileReader reader = new FileReader("campuskitchen/src/main/json/Recipes.json");
+            FileReader reader = new FileReader("campuskitchen/campuskitchen/src/main/json/Recipes.json");
             JSONParser parser = new JSONParser();
             JSONArray recipeArray = (JSONArray) parser.parse(reader);
             for (int i=0; i < recipeArray.size(); i++) {
@@ -132,9 +153,20 @@ public class DataLoader {
                 int duration = ((Long) j.get("duration")).intValue();
                 ArrayList<String> stepsList = parseSteps(j);
                 ArrayList<Ingredient> ingredientsList = parseIngredients(j);
-                ArrayList<Category> categoriesList = parseCategories(j);
-                User author = (User) j.get("author");
-                RecipeStatus recipeStatus = (RecipeStatus) j.get("recipestatus");
+                ArrayList<Category> categoriesList = parseCategories(j);             
+                String authorUsername = (String) j.get("author");
+                User author = UserList.getInstance().getUser(authorUsername);
+                String statusStr = (String) j.get("recipeStatus");
+                RecipeStatus recipeStatus = RecipeStatus.NULL;  // default value if null or invalid
+                if (statusStr != null) {
+                     try {
+                        recipeStatus = RecipeStatus.valueOf(statusStr.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Invalid status: " + statusStr + " - defaulting to NULL");
+    }
+                } else {
+                    System.err.println("Missing statusStr for recipe: " + name);
+                }
                 Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
                 recipes.add(recipe);
             }
@@ -203,6 +235,17 @@ public class DataLoader {
         }
         return categories;
     }
+
+    public static void main(String[] args) {
+        ArrayList<User> users = DataLoader.getUsers();
+        for(User user : users){
+         System.out.println(user);
+        }
+        ArrayList<Recipe> recipes = DataLoader.getRecipes();
+        for(Recipe recipe : recipes){
+         System.out.println(recipe);
+        }
+     }
 }
     
 
