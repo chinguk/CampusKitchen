@@ -21,6 +21,7 @@ public class Recipe {
     private ArrayList<Rating> ratings;
     private ArrayList<Category> categories;
 
+    // add default constructor
     /**
      * Constructs new Recipe with UUID
      * @param name Recipe name

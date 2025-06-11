@@ -10,8 +10,8 @@ public class RecipeList {
     private static RecipeList instance = null;
     private ArrayList<Recipe> recipes;
 
-    private RecipeList(ArrayList<Recipe> recipes) {
-        this.recipes = recipes != null ? recipes : new ArrayList<>();
+    private RecipeList() {
+        this.recipes = DataLoader.getRecipes();
     }
     
 
@@ -22,22 +22,10 @@ public class RecipeList {
      */
     public static RecipeList getInstance() {
         if (instance == null) {
-            instance = new RecipeList(new ArrayList<>());
+            instance = new RecipeList();
         }
         return instance;
     }
-
-    /**
-     * Adds a recipe to the list of all recipes in the system.
-     * If the recipe is null, nothing is done.
-     */
-    /*
-    public void addRecipe(Recipe recipe) {
-        if (recipe != null) {
-            recipes.add(recipe);
-        }
-    }
-    */
     
     /**
      * Adds recipe
@@ -112,18 +100,6 @@ public class RecipeList {
     }
 
     /**
-     * Saves recipe
-     */
-
-    public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
-        if (instance == null) {
-            instance = new RecipeList(loadedRecipes);
-        }
-        return instance;
-    }
-
-
-    /**
     * Finds a recipe in the given list by matching its UUID.
     * 
     * @param recipes list of all recipes
@@ -143,10 +119,6 @@ public class RecipeList {
             idList.add(recipe.getId());
         }
         return idList;
-    }
-
-    public boolean saveRecipes() {
-        return DataWriter.saveRecipes();
     }
 
     public boolean save() {
