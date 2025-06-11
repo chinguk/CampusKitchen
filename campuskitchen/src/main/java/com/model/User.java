@@ -34,7 +34,7 @@ public class User {
         this.password = password;
 
         this.dietaryRestrictions = new ArrayList<>();
-        this.mealPlans           = new ArrayList<>();
+        this.mealPlans = new ArrayList<>();
     }
 
     /**
@@ -50,11 +50,11 @@ public class User {
      */
     public User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<Dietary> dietaryRestrictions, ArrayList<MealPlan> mealPlans) {
         this.firstName = firstName;
-        this.lastName  = lastName;
-        this.email     = email;
+        this.lastName = lastName;
+        this.email = email;
         this.universityID = universityID;
-        this.username  = username;
-        this.password  = password;
+        this.username = username;
+        this.password = password;
 
         this.dietaryRestrictions = (dietaryRestrictions != null) ? new ArrayList<>(dietaryRestrictions) : new ArrayList<>();
         this.mealPlans = (mealPlans != null) ? new ArrayList<>(mealPlans) : new ArrayList<>();        

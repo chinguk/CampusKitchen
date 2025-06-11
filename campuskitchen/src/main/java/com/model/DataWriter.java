@@ -1,77 +1,39 @@
 package com.model;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class DataWriter {
 
     /**
      * Saves the current list of users to a JSON file.
+     * Adds two test users, "pplante" and "Kim", to the list before saving.
      * Each user is converted to a JSON object and added to a JSON array.
-     * @throws org.json.simple.parser.ParseException
      */
 
     @SuppressWarnings("unchecked")
-    public static boolean saveUsers() throws ParseException, org.json.simple.parser.ParseException {
-        JSONParser parser = new JSONParser();
-        File file = new File("campuskitchen/src/main/json/Users.json");
-        JSONArray merged = new JSONArray();
+    public static boolean saveUsers() {
+        ArrayList<User> userList = UserList.getInstance().getUsers();
 
-        // 1) load existing
-        if (file.exists()) {
-            try (FileReader fr = new FileReader(file)) {
-                merged = (JSONArray) parser.parse(fr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        JSONArray userArray = new JSONArray();
+
+        for (User u : userList) {
+            userArray.add(getUserJSON(u));
         }
-
-        for (Object ob : merged) {
-            JSONObject jo = (JSONObject) ob;
-            if (jo.containsKey("mealPlanIDs") && jo.get("mealPlanIDs") instanceof JSONObject) {
-                // pull out the old object
-                JSONObject oldPlan = (JSONObject) jo.remove("mealPlanIDs");
-                // wrap it in a new array
-                JSONArray fixed = new JSONArray();
-                fixed.add(oldPlan);
-                // replace or set the correct key
-                jo.put("mealPlans", fixed);
-            }
-        }
-
-        // 2) index by username
-        Map<String, JSONObject> byUsername = new LinkedHashMap<>();
-        for (Object ob : merged) {
-            JSONObject jo = (JSONObject) ob;
-            byUsername.put((String) jo.get("username"), jo);
-        }
-
-        // 3) overlay in-memory users
-        for (User u : UserList.getInstance().getUsers()) {
-            JSONObject jo = getUserJSON(u);
-            byUsername.put(u.getUsername(), jo);
-        }
-
-        // 4) write back
-        JSONArray out = new JSONArray();
-        out.addAll(byUsername.values());
-        try (FileWriter fw = new FileWriter(file)) {
-            fw.write(out.toJSONString());
-            fw.flush();
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
+            file.write(userArray.toJSONString());
+            file.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
+
         return true;
     }
 
@@ -99,75 +61,79 @@ public class DataWriter {
         }
         userDetails.put("dietaryRestrictions", dietJson);
 
-        JSONArray mealPlansJson = new JSONArray();
+        JSONArray mpJson = new JSONArray();
         if (user.getMealPlans() != null) {
             for (MealPlan mp : user.getMealPlans()) {
-                JSONObject mpObj = new JSONObject();
-                mpObj.put("name", mp.getName());
-                mpObj.put("mealPlanIDs", mp.getID().toString());
-                mpObj.put("recipes", mp.getRecipes());
-                mealPlansJson.add(mpObj);
-
-                JSONArray recipesArr = new JSONArray();
-                for (Recipe r : mp.getRecipes()) {
-                    recipesArr.add(r.getId().toString());
-                }
-                mpObj.put("recipes", recipesArr);
-
-                mealPlansJson.add(mpObj);
+                mpJson.add(mp.getID());
             }
         }
-        userDetails.put("mealPlans", mealPlansJson);
+        userDetails.put("mealPlanIDs", mpJson);
 
         return userDetails;
     }
 
     /**
-     * Saves all recipes to a JSON file. Each recipe is converted to a JSON object
-     * and added to a JSON array. 
-     * The JSON object contains the recipe's name, description, duration, steps,
-     * ingredients, categories, author, and status.
-     * 
-     * @throws org.json.simple.parser.ParseException
+     * Saves all meal plans to a JSON file. Each meal plan is converted to a JSON
+     * object and added to a JSON array.
+     * The JSON object contains the meal plan's name, ID, and list of recipes.
      */
     @SuppressWarnings("unchecked")
-    public static boolean saveRecipes() throws ParseException, org.json.simple.parser.ParseException {
-        JSONParser parser = new JSONParser();
-        File file = new File("campuskitchen/src/main/json/Recipes.json");
-        JSONArray merged = new JSONArray();
-
-        // 1) load existing
-        if (file.exists()) {
-            try (FileReader fr = new FileReader(file)) {
-                merged = (JSONArray) parser.parse(fr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public static void saveMealPlans() {
+        ArrayList<MealPlan> allPlans = new ArrayList<>(MealPlan.getInstance().getMealPlans());
+        JSONArray mealPlanArray = new JSONArray();
+        for (MealPlan mp : allPlans) {
+            mealPlanArray.add(getMealPlanJSON(mp));
         }
-
-        // 2) index by recipe ID
-        Map<String, JSONObject> byId = new LinkedHashMap<>();
-        for (Object o : merged) {
-            JSONObject jo = (JSONObject) o;
-            byId.put((String) jo.get("id"), jo);
-        }
-
-        // 3) overlay in-memory recipes
-        for (Recipe r : RecipeList.getInstance().getRecipes()) {
-            JSONObject jo = getRecipeJSON(r);
-            byId.put(r.getId().toString(), jo);
-        }
-
-        // 4) write back
-        JSONArray out = new JSONArray();
-        out.addAll(byId.values());
-        try (FileWriter fw = new FileWriter(file)) {
-            fw.write(out.toJSONString());
-            fw.flush();
-            System.out.println("Successfully saved " + byId.size() + " recipes.");
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Users.json")) {
+            file.write(mealPlanArray.toJSONString());
+            file.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+        }
+    }
+
+    /**
+     * Converts a MealPlan object to a JSON object with the following fields: id,
+     * name, recipes.
+     * The id field is the MealPlan's ID, the name field is the MealPlan's name, and
+     * the recipes field is the MealPlan's list of recipes.
+     */
+
+    @SuppressWarnings("unchecked")
+    private static JSONObject getMealPlanJSON(MealPlan mealPlan) {
+        JSONObject mealPlanDetails = new JSONObject();
+        mealPlanDetails.put("id", mealPlan.getID());
+        mealPlanDetails.put("name", mealPlan.getName());
+
+        JSONArray recipesArray = new JSONArray();
+        for (Recipe r : mealPlan.getRecipes()) {
+            recipesArray.add(r.getId().toString());
+        }
+        mealPlanDetails.put("recipes", recipesArray);
+
+        return mealPlanDetails;
+    }
+
+    /**
+     * Saves all recipes to a JSON file. Each recipe is converted to a JSON object
+     * and added to a JSON array.
+     * The JSON object contains the recipe's name, description, duration, steps,
+     * ingredients, categories, author, and status.
+     * @return 
+     */
+    @SuppressWarnings("unchecked")
+    public static boolean saveRecipes() {
+        ArrayList<Recipe> allRecipes = new ArrayList<>(RecipeList.getInstance().getRecipes());
+        JSONArray recipesArray = new JSONArray();
+        for (Recipe r : allRecipes) {
+            recipesArray.add(getRecipeJSON(r));
+        }
+        try (FileWriter file = new FileWriter("campuskitchen/src/main/json/Recipes.json")) {
+            file.write(recipesArray.toJSONString());
+            file.flush();
+            System.out.println("Successfully saved " + allRecipes.size() + " recipes.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return true;
     }
@@ -184,12 +150,12 @@ public class DataWriter {
         JSONObject recipeDetails = new JSONObject();
         recipeDetails.put("id", recipe.getId().toString());
         recipeDetails.put("name", recipe.getName());
-        recipeDetails.put("user", recipe.getAuthor().getUsername());
+        recipeDetails.put("user", recipe.getAuthor());
         recipeDetails.put("description", recipe.getDescription());
         recipeDetails.put("duration", recipe.getDuration());
-        recipeDetails.put("status", recipe.getStatus().name());
-        recipeDetails.put("recipeStatus", recipe.getStatus().name());
-        recipeDetails.put("author", recipe.getAuthor().getUsername());
+        recipeDetails.put("status", recipe.getStatus());
+        recipeDetails.put("recipeStatus", recipe.getStatus());
+        recipeDetails.put("author", recipe.getAuthor());
 
         JSONArray ingredientsArray = new JSONArray();
         for (Ingredient ing : recipe.getIngredients()) {
@@ -223,16 +189,110 @@ public class DataWriter {
         return recipeDetails;
     }
 
+    // /**
+    // * Generates grocery list for recipes in meal plans
+    // *
+    // * @param mealPlan Meal plan to generate list for
+    // * @return List of ingredients
+    // */
+    // public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
+    // if (mealPlan == null) {
+    // return null;
+    // }
+    // List<Ingredient> groceryList = mealPlan.generateGroceryList();
+    // writeGroceryListToFile(mealPlan, groceryList);
+    // return groceryList;
+    // }
+    // // Pass in the name of the meal plan (User.groceryList)
+
+    // /**
+    // * Saves grocery list of meal plan to text file
+    // *
+    // * @param mealPlan Meal plan from which the list is generated
+    // * @param groceryList List of ingredients to write
+    // */
+    // private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient>
+    // groceryList) {
+    // String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
+    // try (FileWriter writer = new FileWriter(fileName)) {
+    // writer.write("Grocery List for MealPlan \"" + mealPlan.getName() + "\" (ID="
+    // + mealPlan.getID() + ")\n");
+    // for (Ingredient ing : groceryList) {
+    // writer.write(ing.getName() + ": " + ing.getAmount() + " " +
+    // ing.getUnit().name() + "\n");
+    // }
+    // writer.flush();
+    // System.out.println("Wrote grocery list to " + fileName);
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // }
+
+    public static void generateGroceryList(Object plan) {
+        if (plan == null || ((MealPlan) plan).getRecipes().isEmpty()) {
+            System.out.println("No recipes in meal plan; skipping grocery‐list generation.");
+            return;
+        }
+
+        // 1) Gather every Ingredient from each Recipe in the plan
+        // and sum up quantities for identical ingredient names.
+        // We'll key by ingredientName + unit
+        Map<String, Double> Quantities = new HashMap<>();
+        Map<String, Unit> ingredientUnit = new HashMap<>();
+
+        for (Recipe r : ((MealPlan) plan).getRecipes()) {
+            ArrayList<Ingredient> ings = r.generateGroceryList();
+
+            for (Ingredient ing : ings) {
+                String name = ing.getName();
+                Unit unit = ing.getUnit();
+                double amount = ing.getAmount();
+
+                String key = name + "#" + unit.toString();
+                double prev = Quantities.getOrDefault(key, 0.0);
+                Quantities.put(key, prev + amount);
+                ingredientUnit.put(key, unit);
+            }
+        }
+
+        // 2) Write out to a text file.
+        String outFile = "campuskitchen/src/main/resources/grocerylist_" + ((MealPlan) plan).getID() + ".txt";
+
+        try (FileWriter writer = new FileWriter(outFile)) {
+            writer.write("Grocery List for MealPlan ID: " + ((MealPlan) plan).getID() + "\n");
+            writer.write("––––––––––––––––––––––––––––––––––––––––––––\n");
+
+            for (Map.Entry<String, Double> entry : Quantities.entrySet()) {
+                String Key = entry.getKey();
+                double totalAmt = entry.getValue();
+                Unit unit = ingredientUnit.get(Key);
+                String name = Key.split("#")[0];
+
+                // Format: "2.0 pcs Tomato"
+                writer.write(String.format("%.2f %s %s%n", totalAmt, unit.toString(), name));
+            }
+
+            System.out.println("Wrote grocery list to: " + outFile);
+        } catch (IOException e) {
+            System.err.println("Error writing grocery‐list file: " + e.getMessage());
+        }
+    }
+
+
+    //Test generateGroceryList
+    public static void main(String[] args) {
+        List<MealPlan> plan = MealPlan.getInstance().getMealPlans();
+        generateGroceryList(plan);
+    }
+
     /**
      * The main method of the DataWriter class is used to write the users, recipes,
      * and meal plans to their respective JSON files.
      * This method is called when the DataWriter class is run as a Java application.
-     * 
-     * @throws org.json.simple.parser.ParseException
-     * @throws ParseException
      */
-    public static void main(String[] args) throws ParseException, org.json.simple.parser.ParseException {
-        DataWriter.saveUsers();
-        DataWriter.saveRecipes();
-    }
+    // public static void main(String[] args) {
+    //     DataWriter.saveUsers();
+    //     DataWriter.saveRecipes();
+    //     DataWriter.saveMealPlans();
+    // }
 }

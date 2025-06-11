@@ -15,11 +15,14 @@ public class RecipeSystemFACADE {
     private static final User NEW_USER = null;
     private User user;
     private static RecipeSystemFACADE recipeSystemFACADE;
+    private RecipeStatus recipeStatus;
 
     /**
      * Private constructor to enforce singleton pattern
      */
-    private RecipeSystemFACADE() {}
+    private RecipeSystemFACADE() {
+
+    }
 
     /**
      * Returns singleton instance of facade and creates it if necessary
@@ -51,7 +54,7 @@ public class RecipeSystemFACADE {
      * @param user Updated User
      */
     public void updateProfile(User user) {
-
+        return;
     }
 
     /**
@@ -69,8 +72,8 @@ public class RecipeSystemFACADE {
      * @param word Search word
      * @return matching recipe or null if not found
      */
-    public Recipe getRecipeByKeyWord(String word) {
-        return null;
+    public Recipe getRecipeByKeyWord(Recipe word) {
+        return word;
     }
 
     /**
@@ -81,22 +84,31 @@ public class RecipeSystemFACADE {
         return null;
     }
 
+<<<<<<< HEAD
     public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author, RecipeStatus status) {
+        return;
+=======
+    public void submitRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients,
+                                ArrayList<Course> course, ArrayList<Culture> culture, ArrayList<Dietary> dietary, User author,
+                                RecipeStatus status) {
 
+>>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
     }
 
-    public void approveRecipe(Recipe recipe) {
-
+    @SuppressWarnings("static-access")
+    public RecipeStatus approveRecipe(Recipe recipe) {
+        return recipeStatus.APPROVED;
     }
 
     public void deleteRecipe(Recipe recipe) {
-
+        return;
     }
 
     public void rateRecipe(Recipe recipe, Rating rating) {
 
     }
 
+    // can just call from recipes
     public double getAverageRating(Recipe recipe) {
         return 0;
     }
@@ -105,6 +117,7 @@ public class RecipeSystemFACADE {
      * Creates new meal plan for logged in user and generates grocery list file
      * @param name Name of meal plan
      * @param recipes list of recipes to include
+     * NOTE: NO INTERACTION WITH CONSOLE, NO LOGIC ONLY ONE LINE, CALL FROM APPRIATE CLASSES
      */
     public void createMealPlan(String name, ArrayList<Recipe> recipes) {
     User currentUser = this.user;
@@ -124,37 +137,8 @@ public class RecipeSystemFACADE {
         return null;
     }
 
-    /**
-     * Generates grocery list for recipes in meal plans
-     * @param mealPlan Meal plan to generate list for
-     * @return List of ingredients
-     */
-    public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
-        if (mealPlan == null) {
-            return null;
-        }
-        List<Ingredient> groceryList = mealPlan.generateGroceryList();
-        writeGroceryListToFile(mealPlan, groceryList);
-        return groceryList;        
-    }
-
-    /**
-     * Saves grocery list of meal plan to text file
-     * @param mealPlan Meal plan from which the list is generated
-     * @param groceryList List of ingredients to write
-     */
-    private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
-        String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Grocery List for MealPlan \"" + mealPlan.getName() + "\" (ID=" + mealPlan.getID() + ")\n");
-            for (Ingredient ing : groceryList) {
-                writer.write(ing.getName() + ": " + ing.getAmount() + " " + ing.getUnit().name() + "\n");
-            }
-            writer.flush();
-            System.out.println("Wrote grocery list to " + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public List<Ingredient> generateGroceryList(MealPlan plan) {
+        return UserList.getInstance().generateGroceryList(plan);
     }
 
     /**
@@ -162,5 +146,10 @@ public class RecipeSystemFACADE {
      */
     public void logout() {
         UserList.getInstance().save();
+        RecipeList.getInstance().saveRecipes();
+        RecipeList.getInstance().save();
+
+       // this.user = null;
+       // recipeSystemFACADE = null;
     }
 }

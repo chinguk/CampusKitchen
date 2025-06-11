@@ -31,10 +31,33 @@ public class RecipeList {
      * Adds a recipe to the list of all recipes in the system.
      * If the recipe is null, nothing is done.
      */
+    /*
     public void addRecipe(Recipe recipe) {
         if (recipe != null) {
             recipes.add(recipe);
         }
+    }
+    */
+    
+    /**
+     * Adds recipe
+     * @param name
+     * @param description
+     * @param duration
+     * @param steps
+     * @param ingredient
+     * @param culture
+     * @param dietary
+     * @param course
+     * @param author
+     * @param status
+     * @return
+     */
+    public boolean addRecipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
+                    ArrayList<Culture> culture, ArrayList<Dietary> dietary, ArrayList<Course> course, User author, RecipeStatus status) {
+        Recipe newRecipe = new Recipe(name, description, duration, steps, ingredient, culture, dietary, course, author,status);
+        recipes.add(newRecipe);
+        return true;
     }
 
     /**
@@ -89,10 +112,9 @@ public class RecipeList {
     }
 
     /**
-     * Returns singleton instance of RecipeList 
-     * @param loadedRecipes initial list of recipes to seed
-     * @return RecipeList singleton
+     * Saves recipe
      */
+<<<<<<< HEAD
     public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
         if (instance == null) {
             instance = new RecipeList(loadedRecipes);
@@ -100,6 +122,7 @@ public class RecipeList {
         return instance;
     }
 
+<<<<<<< HEAD
     /**
     * Finds a recipe in the given list by matching its UUID.
     * 
@@ -121,4 +144,15 @@ public class RecipeList {
         }
         return idList;
     }
+=======
+    public boolean saveRecipes() {
+        return DataWriter.saveRecipes();
+    }
+=======
+    public boolean save() {
+        return DataWriter.saveRecipes();
+    }    
+
+>>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
+>>>>>>> 1b2a93a691125231b8f0359d973e5e46bf9efcb2
 }
