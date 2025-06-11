@@ -10,8 +10,8 @@ public class RecipeList {
     private static RecipeList instance = null;
     private ArrayList<Recipe> recipes;
 
-    private RecipeList(ArrayList<Recipe> recipes) {
-        this.recipes = recipes != null ? recipes : new ArrayList<>();
+    private RecipeList() {
+        this.recipes = DataLoader.getRecipes();
     }
     
 
@@ -21,10 +21,7 @@ public class RecipeList {
      * exist yet, it is created.
      */
     public static RecipeList getInstance() {
-        if (instance == null) {
-            instance = new RecipeList(new ArrayList<>());
-        }
-        return instance;
+
     }
 
     /**
@@ -143,10 +140,6 @@ public class RecipeList {
             idList.add(recipe.getId());
         }
         return idList;
-    }
-
-    public boolean saveRecipes() {
-        return DataWriter.saveRecipes();
     }
 
     public boolean save() {
