@@ -134,17 +134,18 @@ public class MealPlan {
      */
     @Override
     public String toString() {
-        return "MealPlan{id='"  + id + "', recipes=" + recipes + "}";
+        StringBuilder sb = new StringBuilder();
+        sb.append("MealPlan{id='").append(id).append("', name='").append(name).append("', recipeIds=[");
+        for (UUID recipeId : recipeIds) {
+            sb.append("\n  ").append(recipeId);
+        }
+        sb.append("\n]}");
+        return sb.toString();
     }
 
     public static ArrayList<MealPlan> emptyList() {
         return new ArrayList<>();
     }
 
-    public static MealPlan getInstance() {
-        if (instance == null) {
-            instance = new MealPlan("Name",null , "Ids");
-        }
-        return instance;
-    }
+    
 }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [
     {
         "firstName": "Emily",
@@ -39,6 +38,3 @@
 
   
 ]
-=======
-[{"firstName":"Emily","lastName":"Miller","universityID":"F193742","password":"321","mealPlanIDs":[],"dietaryRestrictions":["VEGETARIAN","KOSHER"],"email":"emily.miller@gmail.com","username":"emill23"},{"firstName":"David","lastName":"Tren","universityID":"G192730","password":"123","mealPlanIDs":[],"dietaryRestrictions":["PALEO"],"email":"david.tren@gmail.com","username":"dtren98"}]
->>>>>>> 1b2a93a691125231b8f0359d973e5e46bf9efcb2

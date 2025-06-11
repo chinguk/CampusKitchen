@@ -36,7 +36,7 @@ public class DataLoader {
     */
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
-         HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
+        HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
         try {
             FileReader reader = new FileReader("campuskitchen/campuskitchen/src/main/json/Users.json");
             JSONParser parser = new JSONParser();
@@ -55,7 +55,7 @@ public class DataLoader {
                 users.add(user);
                 userMealPlansMap.put(user, mealPlans);
             }
-
+        
             RecipeList recipeList = RecipeList.getInstance();
             recipeList.getRecipes();
     
@@ -157,7 +157,7 @@ public class DataLoader {
                 String authorUsername = (String) j.get("author");
                 User author = UserList.getInstance().getUser(authorUsername);
                 String statusStr = (String) j.get("recipeStatus");
-                RecipeStatus recipeStatus = RecipeStatus.NULL;  // default value if null or invalid
+                RecipeStatus recipeStatus = RecipeStatus.NULL;  
                 if (statusStr != null) {
                      try {
                         recipeStatus = RecipeStatus.valueOf(statusStr.toUpperCase());
@@ -241,10 +241,10 @@ public class DataLoader {
         for(User user : users){
          System.out.println(user);
         }
-        ArrayList<Recipe> recipes = DataLoader.getRecipes();
+        /*ArrayList<Recipe> recipes = DataLoader.getRecipes();
         for(Recipe recipe : recipes){
          System.out.println(recipe);
-        }
+        }*/
      }
 }
     

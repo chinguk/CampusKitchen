@@ -114,7 +114,7 @@ public class RecipeList {
     /**
      * Saves recipe
      */
-<<<<<<< HEAD
+
     public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
         if (instance == null) {
             instance = new RecipeList(loadedRecipes);
@@ -122,7 +122,7 @@ public class RecipeList {
         return instance;
     }
 
-<<<<<<< HEAD
+
     /**
     * Finds a recipe in the given list by matching its UUID.
     * 
@@ -144,15 +144,12 @@ public class RecipeList {
         }
         return idList;
     }
-=======
+
     public boolean saveRecipes() {
         return DataWriter.saveRecipes();
     }
-=======
+
     public boolean save() {
         return DataWriter.saveRecipes();
     }    
-
->>>>>>> 4b8efb9f4ea21ad45bf533fb197f46b95cd37c37
->>>>>>> 1b2a93a691125231b8f0359d973e5e46bf9efcb2
 }

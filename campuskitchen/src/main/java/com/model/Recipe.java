@@ -19,6 +19,7 @@ public class Recipe {
     private User author;
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
+    private ArrayList<Category> categories;
 
     /**
      * Constructs new Recipe with UUID
@@ -68,6 +69,20 @@ public class Recipe {
         this.status = status;
         this.ratings = new ArrayList<Rating>();
     }
+
+    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, 
+                    ArrayList<Category> categories, User author, RecipeStatus status) {
+    this.id = UUID.randomUUID();
+    this.name = name;
+    this.description = description;
+    this.duration = duration;
+    this.steps = steps;
+    this.ingredient = ingredients;
+    this.categories = categories;
+    this.author = author;
+    this.status = status;
+    this.ratings = new ArrayList<>();
+}
 
     /** 
      * Setters and getters
@@ -245,4 +260,10 @@ public class Recipe {
     public void rename(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Recipe{name='" + name + "', description='" + description + "', id=" + id + "}";
+    }
+
 }
