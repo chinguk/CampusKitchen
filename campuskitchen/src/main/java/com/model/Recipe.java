@@ -245,4 +245,14 @@ public class Recipe {
     public void rename(String name) {
         this.name = name;
     }
+
+    public String[] getCategories() {
+        String[] categories = new String[5];
+        categories[0] = this.getCulture().get(0).name();
+        categories[1] = this.getDietary().get(0).name();
+        categories[2] = this.getCourse().get(0).name();
+        categories[3] = this.getCulture().get(1).name();
+        categories[4] = this.getDietary().get(1).name();
+        return categories;
+    }
 }

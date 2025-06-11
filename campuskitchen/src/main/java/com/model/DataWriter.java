@@ -280,19 +280,19 @@ public class DataWriter {
 
 
     //Test generateGroceryList
-    public static void main(String[] args) {
-        List<MealPlan> plan = MealPlan.getInstance().getMealPlans();
-        generateGroceryList(plan);
-    }
+    // public static void main(String[] args) {
+    //     List<MealPlan> plan = MealPlan.getInstance().getMealPlans();
+    //     generateGroceryList(plan);
+    // }
 
     /**
      * The main method of the DataWriter class is used to write the users, recipes,
      * and meal plans to their respective JSON files.
      * This method is called when the DataWriter class is run as a Java application.
      */
-    // public static void main(String[] args) {
-    //     DataWriter.saveUsers();
-    //     DataWriter.saveRecipes();
-    //     DataWriter.saveMealPlans();
-    // }
+    public static void main(String[] args) {
+        DataWriter.saveUsers();
+        DataWriter.saveRecipes();
+        DataWriter.saveMealPlans();
+    }
 }

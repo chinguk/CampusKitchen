@@ -137,4 +137,8 @@ public class MealPlan {
         }
         return instance;
     }
+
+    public Object getMealPlans() {
+        return DataLoader.getInstance().getMealPlans();
+    }
 }
