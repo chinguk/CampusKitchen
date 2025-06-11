@@ -21,7 +21,10 @@ public class RecipeList {
      * exist yet, it is created.
      */
     public static RecipeList getInstance() {
-
+        if (instance == null) {
+            instance = new RecipeList();
+        }
+        return instance;
     }
 
     /**
