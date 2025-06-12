@@ -4,14 +4,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter {
+public class DataWriter extends DataConstants {
 
     /**
      * Saves the current list of users to a JSON file.
@@ -28,7 +26,7 @@ public class DataWriter {
         for (User u : userList) {
             userArray.add(getUserJSON(u));
         }
-        try (FileWriter file = new FileWriter("CampusKitchen/campuskitchen/src/main/json/Users.json")) {
+        try (FileWriter file = new FileWriter(USERS_FILE)) {
             file.write(userArray.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -129,7 +127,7 @@ public class DataWriter {
         for (Recipe r : allRecipes) {
             recipesArray.add(getRecipeJSON(r));
         }
-        try (FileWriter file = new FileWriter("CampusKitchen/campuskitchen/src/main/json/Recipes.json")) {
+        try (FileWriter file = new FileWriter(RECIPES_FILE)) {
             file.write(recipesArray.toJSONString());
             file.flush();
             System.out.println("Successfully saved " + allRecipes.size() + " recipes.");
@@ -213,12 +211,16 @@ public class DataWriter {
 
 
 
-    /**
-     * Generates grocery list for recipes in meal plans
-     *
-     * @param mealPlan Meal plan to generate list for
-     * @return List of ingredients
-     */
+    
+/**
+ * Generates a grocery list from the provided meal plan and writes it to a file.
+ * If the meal plan is null, returns an empty list.
+ * Updates the static User.groceryList with the generated list.
+ *
+ * @param mealPlan the meal plan from which to generate the grocery list
+ * @return a list of ingredients representing the grocery list
+ */
+
     public List<Ingredient> generateGroceryList(MealPlan mealPlan) {
         if (mealPlan == null) {
             return Collections.emptyList();
@@ -230,12 +232,17 @@ public class DataWriter {
         return User.groceryList;
     }
 
-    /**
-     * Saves grocery list of meal plan to text file
-     *
-     * @param mealPlan    Meal plan from which the list is generated
-     * @param groceryList List of ingredients to write
-     */
+    
+/**
+ * Writes the grocery list of a given meal plan to a text file.
+ * The file is named using the meal plan's ID and includes each ingredient's
+ * name, amount, and unit. If an error occurs during file writing, the
+ * stack trace is printed.
+ *
+ * @param mealPlan the meal plan whose grocery list is to be written
+ * @param groceryList the list of ingredients to write to the file
+ */
+
     private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
         String fileName = "grocerylist_" + mealPlan.getID() + ".txt";
         try (FileWriter writer = new FileWriter(fileName)) {

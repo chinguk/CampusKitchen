@@ -26,7 +26,7 @@ import org.json.simple.parser.JSONParser;
 
 
 
-public class DataLoader {
+public class DataLoader extends DataConstants{
 
     /**
     * Loads all users from the Users.json file and creates User objects.
@@ -38,7 +38,7 @@ public class DataLoader {
         ArrayList<User> users = new ArrayList<>();
         HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
         try {
-            FileReader reader = new FileReader("campuskitchen/campuskitchen/src/main/json/Users.json");
+            FileReader reader = new FileReader(USERS_FILE);
             JSONParser parser = new JSONParser();
             JSONArray userArray = (JSONArray) parser.parse(reader);
             for (int i=0; i < userArray.size(); i++) {
@@ -143,7 +143,7 @@ public class DataLoader {
     public static ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
         try {
-            FileReader reader = new FileReader("campuskitchen/campuskitchen/src/main/json/Recipes.json");
+            FileReader reader = new FileReader(RECIPES_FILE);
             JSONParser parser = new JSONParser();
             JSONArray recipeArray = (JSONArray) parser.parse(reader);
             for (int i=0; i < recipeArray.size(); i++) {
