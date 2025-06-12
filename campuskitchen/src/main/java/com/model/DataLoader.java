@@ -235,8 +235,10 @@ public class DataLoader extends DataConstants{
         }
         return categories;
     }
-
-    public static void main(String[] args) {
+    /*
+     * Test for getUsers and getRecikpes
+     */
+    /*public static void main(String[] args) {
         ArrayList<User> users = DataLoader.getUsers();
         for(User user : users){
          System.out.println(user);
@@ -244,8 +246,8 @@ public class DataLoader extends DataConstants{
         /*ArrayList<Recipe> recipes = DataLoader.getRecipes();
         for(Recipe recipe : recipes){
          System.out.println(recipe);
-        }*/
-     }
+        }
+     }*/
 }
     
 
