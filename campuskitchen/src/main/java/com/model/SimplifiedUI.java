@@ -13,8 +13,10 @@ public class SimplifiedUI {
     public void run(){
         //scenario1();
         //scenario2();
-        scenario3();
+        //scenario3();
         //scenario4();
+        scenario5();
+
     }
 
     /**
@@ -150,7 +152,7 @@ public class SimplifiedUI {
                 "Shape dough and bake."
             )),
             new ArrayList<>(List.of(flour, sugar, butter)),
-            new ArrayList<>(List.of("DESSERT","BAKED")),
+            new ArrayList<>(List.of()),
             author,
             RecipeStatus.APPROVED
         );
@@ -183,7 +185,7 @@ public class SimplifiedUI {
         Ingredient milk = new Ingredient("Milk", 1.0, Unit.CUP);
         Recipe omelette = new Recipe("Cheese Omelette", "Beat eggs with milk, cook in pan, add cheese.",
             8, new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
-            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of("BREAKFAST")),
+            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of(Course.BREAKFAST)),
             user,
             RecipeStatus.APPROVED
         );
@@ -195,7 +197,7 @@ public class SimplifiedUI {
         new ArrayList<>(List.of(pasta, sauce)),
         new ArrayList<>(List.of(Culture.AMERICAN)),
         new ArrayList<>(List.of(Dietary.VEGETARIAN)),
-        new ArrayList<>(List.of("EUROPEAN")),
+        new ArrayList<>(List.of(Course.LUNCH)),
         user,
         RecipeStatus.APPROVED
         );
@@ -206,7 +208,7 @@ public class SimplifiedUI {
         RecipeSystemFACADE.getInstance().createMealPlan("My Weekend Plan", initialRecipes);
 
         // find the plan by name
-        List<MealPlan> plans = RecipeSystemFACADE.getInstance().getUserMealPlans(user);
+        List<MealPlan> plans = RecipeSystemFACADE.getInstance().getUserMealPlans();
         MealPlan myPlan = null;
         for (MealPlan p : plans) {
             if ("My Weekend Plan".equals(p.getName())) {
