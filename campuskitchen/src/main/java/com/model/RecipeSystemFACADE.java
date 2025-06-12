@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javafx.scene.chart.PieChart.Data;
+
 /**
  * Facade for recipe system that handles account management, recipe operations,
  * meal plan creation, and grocery list generation. Implements singleton pattern
@@ -183,64 +185,45 @@ public class RecipeSystemFACADE {
         return (recipe != null) ? recipe.getAverageRating() : 0.0;
     }
 
-    /**
-     * Creates new meal plan for logged in user and generates grocery list file
-     * @param name Name of meal plan
-     * @param recipes list of recipes to include
-     * NOTE: NO INTERACTION WITH CONSOLE, NO LOGIC ONLY ONE LINE, CALL FROM APPRIATE CLASSES
-     */
-    public void createMealPlan(String name, ArrayList<Recipe> recipes) {
-    User currentUser = this.user;
-    if (currentUser == null) {
-        System.out.println("No user is currently logged in. Cannot create meal plan.");
-        return;
-    }
-    MealPlan newPlan = new MealPlan(name, recipes);
-    currentUser.getMealPlans().add(newPlan);
-    List<Ingredient> grocery = generateGroceryList(newPlan);
-    writeGroceryListToFile(newPlan, grocery);
-    System.out.println("Created meal plan '" + name + "'. Grocery list has been written.");
+    
+/**
+ * Creates a new meal plan for the currently logged-in user.
+ * 
+ * @param name The name of the meal plan to be created.
+ * @param recipes A list of recipes to be included in the meal plan.
+ * 
+ * If no user is logged in, the method will print an error message and not create a meal plan.
+ */
+
+    public void createMealPlan(String name, ArrayList<Recipe> recipes) {   
+        if (user == null) {
+            System.out.println("No user is currently logged in. Cannot create meal plan.");
+            return;
+        }
+        user.createMealPlan(name, recipes);
     }
      
+    
     /**
-     * Returns meal plans for a specified user.
-     * @param user The user whose meal plans to retrieve
-     * @return List of meal plans
+     * Retrieves the meal plans of the currently logged-in user.
+     * 
+     * @return A list of MealPlan objects for the logged-in user, or an empty list if no user is logged in.
      */
-    public List<MealPlan> getUserMealPlans(User user) {
+
+    public List<MealPlan> getUserMealPlans() {
         return (user != null) ? user.getMealPlans() : new ArrayList<>();
     }
 
-    /**
-     * Generates a grocery list from a meal plan.
-     * @param plan Meal plan to generate grocery list from
-     * @return List of ingredients needed
-     */
-    public List<Ingredient> generateGroceryList(MealPlan plan) {
-        return UserList.getInstance().generateGroceryList(plan);
-    }
-
-        /**
-     * Writes a meal plan's grocery list to a file.
-     * @param mealPlan The meal plan
-     * @param groceryList List of ingredients to write
-     */
-    private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
-        String fileName = mealPlan.getName().trim().replace(" ", "_") + "_Grocery_List.txt";
     
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Grocery List for Meal Plan: " + mealPlan.getName() + "\n");
-            if (groceryList.isEmpty()) {
-                writer.write("Nothing to buy! Your grocery list is currently empty.\n");
-            } else {
-                for (Ingredient ing : groceryList) {
-                    String unit = ing.getUnit() != null ? " " + ing.getUnit().name().toLowerCase() : "";
-                    writer.write("• " + ing.getAmount() + unit + " of " + ing.getName() + "\n");
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing grocery list to file: " + e.getMessage());
-        }
+    /**
+     * Generates a grocery list for a given meal plan.
+     * 
+     * @param plan The meal plan for which to generate the grocery list.
+     * @return A list of ingredients needed for the meal plan.
+     */
+
+    public List<Ingredient> generateGroceryList(MealPlan plan) {
+        return DataWriter.getInstance().generateGroceryList(plan);
     }
 }
     
