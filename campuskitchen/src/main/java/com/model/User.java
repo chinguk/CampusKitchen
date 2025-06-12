@@ -15,6 +15,8 @@ public class User {
     private String password;
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
+    public static List<Ingredient> groceryList;
+
 
     /**
      * Constructor, creates new User with no initial dietary restrictions or meal plans

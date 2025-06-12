@@ -267,4 +267,9 @@ public class Recipe {
         return "Recipe{name='" + name + "', description='" + description + "', id=" + id + "}";
     }
 
+    public String[] getCategories() {
+        String[] categories = {"Culture", "Dietary", "Course"};
+        return categories;
+    }
+
 }

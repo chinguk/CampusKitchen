@@ -3,11 +3,19 @@ package com.model;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
+import java.util.*;
 
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
@@ -20,7 +28,8 @@ public class DataWriterTest {
     private JSONParser parser = new JSONParser();
 
     /**
-     * Before each test, clear the in-memory collections and remove any existing JSON files.
+     * Before each test, clear the in-memory collections and remove any existing
+     * JSON files.
      * This ensures that each test starts from a clean slate.
      */
     @Before
@@ -33,13 +42,15 @@ public class DataWriterTest {
         new File("campuskitchen/src/main/json/Recipes.json").delete();
     }
 
-/**
- * Test the saveUsers method to ensure it correctly writes user data to a JSON file.
- * The test sets up a User object with specific details, adds it to the UserList,
- * and invokes the saveUsers method. It then verifies the method's success by
- * checking the existence of "Users.json", ensuring it contains the expected
- * number of users, and confirming the correct user details are stored.
- */
+    /**
+     * Test the saveUsers method to ensure it correctly writes user data to a JSON
+     * file.
+     * The test sets up a User object with specific details, adds it to the
+     * UserList,
+     * and invokes the saveUsers method. It then verifies the method's success by
+     * checking the existence of "Users.json", ensuring it contains the expected
+     * number of users, and confirming the correct user details are stored.
+     */
 
     @Test
     public void saveUsers() throws Exception {
@@ -71,8 +82,10 @@ public class DataWriterTest {
     }
 
     /**
-     * Test the private getUserJSON method via reflection, which takes a User and returns a JSON object representation of it.
-     * The JSON object is verified to contain the expected fields and values from the User object.
+     * Test the private getUserJSON method via reflection, which takes a User and
+     * returns a JSON object representation of it.
+     * The JSON object is verified to contain the expected fields and values from
+     * the User object.
      */
     @Test
     public void getUserJSON() throws Exception {
@@ -100,13 +113,17 @@ public class DataWriterTest {
         assertTrue(((JSONArray) jo.get("mealPlans")).isEmpty());
     }
 
-/**
- * Test the saveRecipes method to ensure that it correctly saves a recipe to a JSON file.
- * A single recipe is arranged and added to the RecipeList. The test verifies that the
- * method successfully writes the recipe to "Recipes.json" by asserting the file's
- * existence and checking that the JSON content matches the expected values of the
- * arranged recipe, including the recipe's ID, name, user, and description.
- */
+    /**
+     * Test the saveRecipes method to ensure that it correctly saves a recipe to a
+     * JSON file.
+     * A single recipe is arranged and added to the RecipeList. The test verifies
+     * that the
+     * method successfully writes the recipe to "Recipes.json" by asserting the
+     * file's
+     * existence and checking that the JSON content matches the expected values of
+     * the
+     * arranged recipe, including the recipe's ID, name, user, and description.
+     */
     @Test
     public void saveRecipes() throws Exception {
         // Arrange: one recipe
@@ -114,7 +131,8 @@ public class DataWriterTest {
         UUID id = UUID.randomUUID();
         r.setId(id);
         r.setName("TestTreat");
-        User author = new User(null, null, null, null, null, null, null, null); author.setUsername("chef");
+        User author = new User(null, null, null, null, null, null, null, null);
+        author.setUsername("chef");
         r.setAuthor(author);
         r.setDescription("Tasty");
         r.setDuration(15);
@@ -152,7 +170,9 @@ public class DataWriterTest {
         UUID id = UUID.randomUUID();
         r.setId(id);
         r.setName("MyRecipe");
-        User u = new User(null, null, null, null, null, null, null, null); u.setUsername("author"); r.setAuthor(u);
+        User u = new User(null, null, null, null, null, null, null, null);
+        u.setUsername("author");
+        r.setAuthor(u);
         r.setDescription("Desc");
         r.setDuration(20);
         r.setStatus(RecipeStatus.REJECTED);
@@ -177,4 +197,49 @@ public class DataWriterTest {
         assertTrue(((JSONArray) jo.get("ratings")).isEmpty());
     }
 
+    @Test
+    void testGenerateGroceryListPopulatesStaticAndReturnsList() {
+        // Create test ingredients
+        Ingredient ing1 = new Ingredient("Apple", 2, Unit.PIECE);
+        Ingredient ing2 = new Ingredient("Flour", 1.5, Unit.CUP);
+
+        // Create a test recipe with these ingredients
+        ArrayList<String> steps = new ArrayList<>();
+        steps.add("Step1");
+
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(ing1);
+        ingredients.add(ing2);
+
+        ArrayList<Category> categories = new ArrayList<>();
+
+        Recipe recipe = new Recipe(
+            "Test Recipe",                // name
+            "A simple test recipe",      // description
+            5,                             // duration
+            steps,                         // steps
+            ingredients,                   // ingredients
+            categories,                    // categories
+            null,                          // author
+            RecipeStatus.APPROVED          // status
+        );
+
+        // Set up a meal plan containing this recipe
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        MealPlan mealPlan = new MealPlan("Test Plan", recipes, "plan-001");
+
+        // Generate the grocery list
+        DataWriter writer = new DataWriter();
+        List<Ingredient> result = writer.generateGroceryList(mealPlan);
+
+        // Verify the returned list is not null and has the expected ingredients
+        assertNotNull(result, "Resulting grocery list should not be null");
+        assertEquals(2, result.size(), "Grocery list should contain 2 ingredients");
+        assertTrue(result.contains(ing1), "Grocery list should contain Apple");
+        assertTrue(result.contains(ing2), "Grocery list should contain Flour");
+
+        // Verify the static User.groceryList was populated
+        assertSame(User.groceryList, result, "Should return the static User.groceryList");
+    }
 }
