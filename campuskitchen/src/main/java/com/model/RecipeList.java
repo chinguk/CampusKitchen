@@ -26,18 +26,6 @@ public class RecipeList {
         }
         return instance;
     }
-
-    /**
-     * Adds a recipe to the list of all recipes in the system.
-     * If the recipe is null, nothing is done.
-     */
-    /*
-    public void addRecipe(Recipe recipe) {
-        if (recipe != null) {
-            recipes.add(recipe);
-        }
-    }
-    */
     
     /**
      * Adds recipe
@@ -110,18 +98,6 @@ public class RecipeList {
         }
         return null;
     }
-
-    /**
-     * Saves recipe
-     */
-
-    public static RecipeList getInstance(ArrayList<Recipe> loadedRecipes) {
-        if (instance == null) {
-            instance = new RecipeList(loadedRecipes);
-        }
-        return instance;
-    }
-
 
     /**
     * Finds a recipe in the given list by matching its UUID.
