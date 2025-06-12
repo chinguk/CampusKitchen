@@ -213,7 +213,7 @@ public class User {
      * @param recipes Recipes to add to the meal plan
      */
     public void createMealPlan(String name, ArrayList<Recipe> recipes) { 
-        mealPlans.add(new MealPlan(name, recipes)); 
+        mealPlans.add(new MealPlan(name, recipes));
     }
 
     /**

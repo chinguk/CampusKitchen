@@ -11,6 +11,21 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+    private static DataWriter instance;
+    private final RecipeSystemFACADE facade;
+
+    private DataWriter() {
+        this.facade = RecipeSystemFACADE.getInstance();
+    }
+
+    public static DataWriter getInstance() {
+        if (instance == null) {
+            instance = new DataWriter();
+        }
+        return instance;
+    }
+
+
     /**
      * Saves the current list of users to a JSON file.
      * Adds two test users, "pplante" and "Kim", to the list before saving.
@@ -203,11 +218,6 @@ public class DataWriter extends DataConstants {
         DataWriter.saveUsers();
         DataWriter.saveRecipes();
     }
-
-
-
-
-
 
  
 
