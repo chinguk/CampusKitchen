@@ -207,6 +207,10 @@ public class User {
         this.mealPlans = new ArrayList<>(user.mealPlans);
     }
 
+    public void createMealPlan(String name, ArrayList<Recipe> recipes) { 
+        mealPlans.add(new MealPlan(name, recipes)); 
+    }
+
     /**
      * String representation of User, returns user's information
      */

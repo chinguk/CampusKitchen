@@ -189,17 +189,12 @@ public class RecipeSystemFACADE {
      * @param recipes list of recipes to include
      * NOTE: NO INTERACTION WITH CONSOLE, NO LOGIC ONLY ONE LINE, CALL FROM APPRIATE CLASSES
      */
-    public void createMealPlan(String name, ArrayList<Recipe> recipes) {
-    User currentUser = this.user;
-    if (currentUser == null) {
-        System.out.println("No user is currently logged in. Cannot create meal plan.");
-        return;
-    }
-    MealPlan newPlan = new MealPlan(name, recipes);
-    currentUser.getMealPlans().add(newPlan);
-    List<Ingredient> grocery = generateGroceryList(newPlan);
-    writeGroceryListToFile(newPlan, grocery);
-    System.out.println("Created meal plan '" + name + "'. Grocery list has been written.");
+    public void createMealPlan(String name, ArrayList<Recipe> recipes) {   
+        if (user == null) {
+            System.out.println("No user is currently logged in. Cannot create meal plan.");
+            return;
+        }
+        user.createMealPlan(name, recipes);
     }
      
     /**
@@ -207,7 +202,7 @@ public class RecipeSystemFACADE {
      * @param user The user whose meal plans to retrieve
      * @return List of meal plans
      */
-    public List<MealPlan> getUserMealPlans(User user) {
+    public List<MealPlan> getUserMealPlans() {
         return (user != null) ? user.getMealPlans() : new ArrayList<>();
     }
 
@@ -225,22 +220,5 @@ public class RecipeSystemFACADE {
      * @param mealPlan The meal plan
      * @param groceryList List of ingredients to write
      */
-    private void writeGroceryListToFile(MealPlan mealPlan, List<Ingredient> groceryList) {
-        String fileName = mealPlan.getName().trim().replace(" ", "_") + "_Grocery_List.txt";
-    
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Grocery List for Meal Plan: " + mealPlan.getName() + "\n");
-            if (groceryList.isEmpty()) {
-                writer.write("Nothing to buy! Your grocery list is currently empty.\n");
-            } else {
-                for (Ingredient ing : groceryList) {
-                    String unit = ing.getUnit() != null ? " " + ing.getUnit().name().toLowerCase() : "";
-                    writer.write("• " + ing.getAmount() + unit + " of " + ing.getName() + "\n");
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing grocery list to file: " + e.getMessage());
-        }
-    }
 }
     
