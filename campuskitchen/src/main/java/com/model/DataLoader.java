@@ -3,6 +3,7 @@ package com.model;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,6 +38,7 @@ public class DataLoader extends DataConstants{
     public static ArrayList<User> getUsers(){
         ArrayList<User> users = new ArrayList<>();
         HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
+        HashMap<User, ArrayList<UUID>> userRecipes = new HashMap<>();
         try {
             FileReader reader = new FileReader(USERS_FILE);
             JSONParser parser = new JSONParser();
@@ -51,11 +53,18 @@ public class DataLoader extends DataConstants{
                 String password = (String) j.get("password");
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
                 ArrayList<MealPlan> mealPlans = parseMealPlans(j);
+                JSONArray recipeArray = (JSONArray) j.get("myrecipes");;
+                ArrayList<UUID> recipeIDs = new ArrayList();
+                for(int k=0; k < recipeArray.size(); k++){
+                    recipeIDs.add(UUID.fromString((String)recipeArray.get(k)));
+                }
+                
                 User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans);
                 users.add(user);
                 userMealPlansMap.put(user, mealPlans);
+                userRecipes.put(user, recipeIDs);
             }
-        
+            
             RecipeList recipeList = RecipeList.getInstance();
             recipeList.getRecipes();
     
@@ -71,6 +80,19 @@ public class DataLoader extends DataConstants{
                     mp.setRecipes(recipes);  
                 }
             }
+
+            Iterator<User> userRecipeIterator = userRecipes.keySet().iterator();
+                while(userRecipeIterator.hasNext()){
+                    User user = userRecipeIterator.next();
+                    ArrayList<UUID> ids = userRecipes.get(user);
+                    for(UUID id : ids) {                       
+                       Recipe recipe = RecipeList.getInstance().getByID(id);
+                       recipe.setAuthor(user);
+                       user.addFavoriteRecipe(recipe);
+                    }
+                }
+
+
         } catch (Exception e) {
             e.printStackTrace();
           }  
@@ -155,7 +177,7 @@ public class DataLoader extends DataConstants{
                 ArrayList<Ingredient> ingredientsList = parseIngredients(j);
                 ArrayList<Category> categoriesList = parseCategories(j);             
                 String authorUsername = (String) j.get("author");
-                User author = UserList.getInstance().getUser(authorUsername);
+                User author = null;
                 String statusStr = (String) j.get("recipeStatus");
                 RecipeStatus recipeStatus = RecipeStatus.NULL;  
                 if (statusStr != null) {
@@ -238,16 +260,16 @@ public class DataLoader extends DataConstants{
     /*
      * Test for getUsers and getRecikpes
      */
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         ArrayList<User> users = DataLoader.getUsers();
         for(User user : users){
          System.out.println(user);
         }
-        /*ArrayList<Recipe> recipes = DataLoader.getRecipes();
+        ArrayList<Recipe> recipes = DataLoader.getRecipes();
         for(Recipe recipe : recipes){
          System.out.println(recipe);
         }
-     }*/
+     }
 }
     
 

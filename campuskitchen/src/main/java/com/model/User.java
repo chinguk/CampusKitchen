@@ -1,7 +1,9 @@
 package com.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents user and stores personal information, dietary restrictions, and meal plans
@@ -16,6 +18,7 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
     public static List<Ingredient> groceryList;
+    private ArrayList<Recipe> myRecipes;
 
 
     /**
@@ -59,7 +62,7 @@ public class User {
         this.password = password;
 
         this.dietaryRestrictions = (dietaryRestrictions != null) ? new ArrayList<>(dietaryRestrictions) : new ArrayList<>();
-        this.mealPlans = (mealPlans != null) ? new ArrayList<>(mealPlans) : new ArrayList<>();        
+        this.mealPlans = (mealPlans != null) ? new ArrayList<>(mealPlans) : new ArrayList<>(); 
     }
 
     /**
@@ -233,5 +236,11 @@ public class User {
     public static ArrayList<User> getUsers() {
         return users;
     }
+
+    public void addFavoriteRecipe(Recipe recipe){
+        this.myRecipes.add(recipe);
+    }
+
+    
 }
 
