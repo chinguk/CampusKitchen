@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.UUID;
  * meal plan creation, and grocery list generation. Implements singleton pattern
  */
 public class RecipeSystemFACADE {
+    private static final User NEW_USER = null;
     private User user;
     private static RecipeSystemFACADE recipeSystemFACADE;
     private RecipeStatus recipeStatus;
@@ -80,7 +82,7 @@ public class RecipeSystemFACADE {
         RecipeList.getInstance().save();
         this.user = null;
         recipeSystemFACADE = null;
-    }
+        }
 
     /**
      * Retrieves recipe matching keyword
@@ -188,18 +190,18 @@ public class RecipeSystemFACADE {
      * NOTE: NO INTERACTION WITH CONSOLE, NO LOGIC ONLY ONE LINE, CALL FROM APPRIATE CLASSES
      */
     public void createMealPlan(String name, ArrayList<Recipe> recipes) {
-        User currentUser = this.user;
-        if (currentUser == null) {
-            System.out.println("No user is currently logged in. Cannot create meal plan.");
-            return;
-        }
-        MealPlan newPlan = new MealPlan(name, recipes);
-        currentUser.getMealPlans().add(newPlan);
-        List<Ingredient> grocery = generateGroceryList(newPlan);
-        writeGroceryListToFile(newPlan, grocery);
-        System.out.println("Created meal plan '" + name + "'. Grocery list has been written.");
+    User currentUser = this.user;
+    if (currentUser == null) {
+        System.out.println("No user is currently logged in. Cannot create meal plan.");
+        return;
     }
-    
+    MealPlan newPlan = new MealPlan(name, recipes);
+    currentUser.getMealPlans().add(newPlan);
+    List<Ingredient> grocery = generateGroceryList(newPlan);
+    writeGroceryListToFile(newPlan, grocery);
+    System.out.println("Created meal plan '" + name + "'. Grocery list has been written.");
+    }
+     
     /**
      * Returns meal plans for a specified user.
      * @param user The user whose meal plans to retrieve
@@ -218,7 +220,7 @@ public class RecipeSystemFACADE {
         return UserList.getInstance().generateGroceryList(plan);
     }
 
-    /**
+        /**
      * Writes a meal plan's grocery list to a file.
      * @param mealPlan The meal plan
      * @param groceryList List of ingredients to write

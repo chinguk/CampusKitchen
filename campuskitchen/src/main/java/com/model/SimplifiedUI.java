@@ -126,7 +126,7 @@ public class SimplifiedUI {
     public void scenario4() {
         System.out.println("Scenario 4: Create and save a new recipe");
 
-        // 1) Log in as an existing user (must already be in Users.json)
+        // Log in as an existing user
         User author = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
         if (author == null) {
             System.out.println("Login failed–cannot create recipe.");
@@ -134,12 +134,12 @@ public class SimplifiedUI {
         }
         System.out.println("Logged in as: " + author.getUsername());
 
-        // 2) Build some ingredients
+        // Build some ingredients
         Ingredient flour = new Ingredient("Flour", 2.0, Unit.CUP);
         Ingredient sugar = new Ingredient("Sugar", 1.0, Unit.CUP);
         Ingredient butter = new Ingredient("Butter", 0.5, Unit.CUP);
 
-        // 3) Construct a new Recipe
+        // Construct a new Recipe
         Recipe cookieRecipe = new Recipe(
             "Simple Sugar Cookies",
             "Mix ingredients, roll into balls, and bake at 350°F for 12 minutes.",
@@ -155,7 +155,7 @@ public class SimplifiedUI {
             RecipeStatus.APPROVED
         );
 
-        // 4) Add to in-memory list and persist
+        // Add to in-memory list and persist
         RecipeList.getInstance().getRecipes().add(cookieRecipe);
         try {
             DataWriter.saveRecipes();
@@ -163,6 +163,79 @@ public class SimplifiedUI {
         } catch (Exception e) {
             System.err.println("Error saving Recipes");
             e.printStackTrace();
+        }
+    }
+
+    // scenerio 5 add recipes to meal plan
+    public void scenario5() {
+        System.out.println("Scenario 5: Create a MealPlan via facade and add recipes");
+
+        // Log in
+        User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
+        if (user == null) {
+            System.out.println("Login failed – cannot create meal plan.");
+            return;
+        }
+        System.out.println("Logged in as: " + user.getUsername());
+
+        // Build example recipes
+        Ingredient egg = new Ingredient("Egg", 2.0, Unit.PIECE);
+        Ingredient milk = new Ingredient("Milk", 1.0, Unit.CUP);
+        Recipe omelette = new Recipe("Cheese Omelette", "Beat eggs with milk, cook in pan, add cheese.",
+            8, new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
+            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of("BREAKFAST")),
+            user,
+            RecipeStatus.APPROVED
+        );
+
+        Ingredient pasta = new Ingredient("Pasta", 200.0, Unit.GRAM);
+        Ingredient sauce = new Ingredient("Tomato Sauce", 150.0, Unit.GRAM);
+        Recipe pastaDish = new Recipe("Pasta Marinara", "Boil pasta, heat sauce, combine.", 20,
+        new ArrayList<>(List.of("Boil pasta", "Heat sauce", "Toss together")),
+        new ArrayList<>(List.of(pasta, sauce)),
+        new ArrayList<>(List.of(Culture.AMERICAN)),
+        new ArrayList<>(List.of(Dietary.VEGETARIAN)),
+        new ArrayList<>(List.of("EUROPEAN")),
+        user,
+        RecipeStatus.APPROVED
+        );
+
+        // Create meal plan with only the omelette
+        ArrayList<Recipe> initialRecipes = new ArrayList<>();
+        initialRecipes.add(omelette);
+        RecipeSystemFACADE.getInstance().createMealPlan("My Weekend Plan", initialRecipes);
+
+        // find the plan by name
+        List<MealPlan> plans = RecipeSystemFACADE.getInstance().getUserMealPlans(user);
+        MealPlan myPlan = null;
+        for (MealPlan p : plans) {
+            if ("My Weekend Plan".equals(p.getName())) {
+                myPlan = p;
+                break;
+            }
+        }
+
+        if (myPlan == null) {
+            System.out.println("Failed to find the created meal plan.");
+            return;
+        }
+
+        // Add second recipe
+        myPlan.addRecipe(pastaDish);
+        System.out.println("Added '" + pastaDish.getName() + "' to '" + myPlan.getName() + "'.");
+
+        // Print out all meal plans and their grocery lists
+        for (MealPlan plan : plans) {
+            System.out.println("\nMealPlan: " + plan.getName() + " (ID=" + plan.getID() + ")");
+            System.out.println(" Recipes:");
+            for (Recipe r : plan.getRecipes()) {
+                System.out.println("  • " + r.getName());
+            }
+            List<Ingredient> grocery = RecipeSystemFACADE.getInstance().generateGroceryList(plan);
+            System.out.println(" Grocery list:");
+            for (Ingredient ing : grocery) {
+                System.out.print(ing.getName() + ing.getAmount() + ing.getUnit());
+            }
         }
     }
 
