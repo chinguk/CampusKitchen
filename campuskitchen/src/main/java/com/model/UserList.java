@@ -115,8 +115,4 @@ public class UserList {
     public boolean save() {
         return DataWriter.saveUsers();
     }
-
-    public List<Ingredient> generateGroceryList(MealPlan plan) {
-        return plan.generateGroceryList();
-    }
 }

@@ -207,6 +207,11 @@ public class User {
         this.mealPlans = new ArrayList<>(user.mealPlans);
     }
 
+    /**
+     * Creates a new MealPlan and adds it to the user's meal plans
+     * @param name Name of the meal plan
+     * @param recipes Recipes to add to the meal plan
+     */
     public void createMealPlan(String name, ArrayList<Recipe> recipes) { 
         mealPlans.add(new MealPlan(name, recipes)); 
     }
