@@ -13,8 +13,11 @@ public class SimplifiedUI {
     public void run(){
         //scenario1();
         //scenario2();
-        scenario3();
+        //scenario3();
         //scenario4();
+        // scenario5();
+        scenario6();
+
     }
 
     /**
@@ -150,7 +153,7 @@ public class SimplifiedUI {
                 "Shape dough and bake."
             )),
             new ArrayList<>(List.of(flour, sugar, butter)),
-            new ArrayList<>(List.of("DESSERT","BAKED")),
+            new ArrayList<>(List.of(Category.DESSERT)),
             author,
             RecipeStatus.APPROVED
         );
@@ -179,30 +182,34 @@ public class SimplifiedUI {
         System.out.println("Logged in as: " + user.getUsername());
 
         // Build example recipes
-        Ingredient egg = new Ingredient("Egg", 2.0, Unit.PIECE);
-        Ingredient milk = new Ingredient("Milk", 1.0, Unit.CUP);
-        Recipe omelette = new Recipe("Cheese Omelette", "Beat eggs with milk, cook in pan, add cheese.",
-            8, new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
-            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of("BREAKFAST")),
+        Ingredient tom2 = new Ingredient("Tomato", 0.5, Unit.PIECE);
+        Ingredient let1 = new Ingredient("Lettuce", 1.0, Unit.PIECE);
+        Recipe sandwich = new Recipe(
+            "Sandwich",
+            "Layer tomato and lettuce between bread.",
+            15,
+            new ArrayList<>(),
+            new ArrayList<>(List.of(tom2, let1)),
+            new ArrayList<>(List.of(Category.AMERICAN)),
             user,
-            RecipeStatus.APPROVED
-        );
+            RecipeStatus.APPROVED);
 
         Ingredient pasta = new Ingredient("Pasta", 200.0, Unit.GRAM);
         Ingredient sauce = new Ingredient("Tomato Sauce", 150.0, Unit.GRAM);
-        Recipe pastaDish = new Recipe("Pasta Marinara", "Boil pasta, heat sauce, combine.", 20,
-        new ArrayList<>(List.of("Boil pasta", "Heat sauce", "Toss together")),
+        Recipe pastaDish = new Recipe(
+        "Pasta Marinara",
+        "Boil pasta, heat sauce, combine.",
+        20,
+        new ArrayList<>(),
         new ArrayList<>(List.of(pasta, sauce)),
-        new ArrayList<>(List.of(Culture.AMERICAN)),
-        new ArrayList<>(List.of(Dietary.VEGETARIAN)),
-        new ArrayList<>(List.of("EUROPEAN")),
+        new ArrayList<>(),
         user,
         RecipeStatus.APPROVED
         );
 
         // Create meal plan with only the omelette
         ArrayList<Recipe> initialRecipes = new ArrayList<>();
-        initialRecipes.add(omelette);
+        initialRecipes.add(sandwich);
         RecipeSystemFACADE.getInstance().createMealPlan("My Weekend Plan", initialRecipes);
 
         // find the plan by name
@@ -239,6 +246,18 @@ public class SimplifiedUI {
         }
     }
 
+    // scenerio where user logs in and looks at all recipes
+    public void scenario6() {
+
+        ArrayList<Recipe> all = RecipeSystemFACADE.getInstance().getAllRecipes();
+        if (all.isEmpty()) {
+            System.out.println("  (no recipes found)");
+            return;
+        }
+        for (Recipe r : all) {
+            System.out.println(r.getName());
+        }
+    }
     public static void main(String[] args) {
         (new SimplifiedUI()).run();
     }
