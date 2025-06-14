@@ -29,22 +29,26 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
 
+    private static final HashMap<User, ArrayList<UUID>> userRecipeUUIDs = new HashMap<>();
+    private static final HashMap<User, ArrayList<MealPlan>> userMealPlans = new HashMap<>();
+
+
     /**
     * Loads all users from the Users.json file and creates User objects.
     * Each user includes dietary restrictions and meal plans.
     * 
     * @return list of all users
     */
-    public static ArrayList<User> getUsers(){
+    
+    public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
-        HashMap<User, ArrayList<MealPlan>> userMealPlansMap = new HashMap<>();
-        HashMap<User, ArrayList<UUID>> userRecipes = new HashMap<>();
         try {
             FileReader reader = new FileReader(USERS_FILE);
             JSONParser parser = new JSONParser();
             JSONArray userArray = (JSONArray) parser.parse(reader);
-            for (int i=0; i < userArray.size(); i++) {
-                JSONObject j = (JSONObject)userArray.get(i);
+
+            for (Object obj : userArray) {
+                JSONObject j = (JSONObject) obj;
                 String firstName = (String) j.get("firstName");
                 String lastName = (String) j.get("lastName");
                 String email = (String) j.get("email");
@@ -53,50 +57,26 @@ public class DataLoader extends DataConstants{
                 String password = (String) j.get("password");
                 ArrayList<Dietary> dietList = parseDietaryRestrictions(j);
                 ArrayList<MealPlan> mealPlans = parseMealPlans(j);
-                JSONArray recipeArray = (JSONArray) j.get("myrecipes");;
-                ArrayList<UUID> recipeIDs = new ArrayList();
-                for(int k=0; k < recipeArray.size(); k++){
-                    recipeIDs.add(UUID.fromString((String)recipeArray.get(k)));
+                ArrayList<UUID> recipeIDs = new ArrayList<>();
+
+                JSONArray recipeArray = (JSONArray) j.get("myrecipes");
+                if (recipeArray != null) {
+                    for (Object rid : recipeArray) {
+                        recipeIDs.add(UUID.fromString((String) rid));
+                    }
                 }
-                
+
                 User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans);
                 users.add(user);
-                userMealPlansMap.put(user, mealPlans);
-                userRecipes.put(user, recipeIDs);
-            }
-            
-            RecipeList recipeList = RecipeList.getInstance();
-            recipeList.getRecipes();
-    
-            for (Map.Entry<User, ArrayList<MealPlan>> entry : userMealPlansMap.entrySet()) {
-                for (MealPlan mp : entry.getValue()) {
-                    ArrayList<Recipe> recipes = new ArrayList<>();
-                    for (UUID id : mp.getRecipeIds()) {
-                        Recipe r = recipeList.getByID(id);
-                        if (r != null) {
-                            recipes.add(r);
-                        }
-                    }
-                    mp.setRecipes(recipes);  
-                }
-            }
 
-            Iterator<User> userRecipeIterator = userRecipes.keySet().iterator();
-                while(userRecipeIterator.hasNext()){
-                    User user = userRecipeIterator.next();
-                    ArrayList<UUID> ids = userRecipes.get(user);
-                    for(UUID id : ids) {                       
-                       Recipe recipe = RecipeList.getInstance().getByID(id);
-                       recipe.setAuthor(user);
-                       user.addFavoriteRecipe(recipe);
-                    }
-                }
-
+                userRecipeUUIDs.put(user, recipeIDs);
+                userMealPlans.put(user, mealPlans);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-          }  
-    return users;
+        }
+        return users;
     }
 
     /**
@@ -177,7 +157,7 @@ public class DataLoader extends DataConstants{
                 ArrayList<Ingredient> ingredientsList = parseIngredients(j);
                 ArrayList<Category> categoriesList = parseCategories(j);             
                 String authorUsername = (String) j.get("author");
-                User author = null;
+                User author = UserList.getInstance().getUserByUsername(authorUsername);
                 String statusStr = (String) j.get("recipeStatus");
                 RecipeStatus recipeStatus = RecipeStatus.NULL;  
                 if (statusStr != null) {
@@ -257,6 +237,44 @@ public class DataLoader extends DataConstants{
         }
         return categories;
     }
+
+    /**
+     * Links the data of the 
+     * @param users
+     */
+
+    public static void linkUserData(ArrayList<User> users) {
+        RecipeList recipeList = RecipeList.getInstance();
+
+        for (User user : users) {
+            // Link recipes to user's meal plans
+            ArrayList<MealPlan> plans = userMealPlans.get(user);
+            if (plans != null) {
+                for (MealPlan mp : plans) {
+                    ArrayList<Recipe> recipeListForPlan = new ArrayList<>();
+                    for (UUID id : mp.getRecipeIds()) {
+                        Recipe r = recipeList.getByID(id);
+                        if (r != null) recipeListForPlan.add(r);
+                    }
+                    mp.setRecipes(recipeListForPlan);
+                }
+            }
+
+            // Link user's own recipes
+            ArrayList<UUID> ids = userRecipeUUIDs.get(user);
+            if (ids != null) {
+                for (UUID id : ids) {
+                    Recipe recipe = recipeList.getByID(id);
+                    if (recipe != null) {
+                        recipe.setAuthor(user);
+                        user.addFavoriteRecipe(recipe);
+                    }
+                }
+            }
+        }
+    }
+
+    
     /*
      * Test for getUsers and getRecikpes
      */

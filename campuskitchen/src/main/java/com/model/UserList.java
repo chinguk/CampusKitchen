@@ -115,4 +115,14 @@ public class UserList {
     public boolean save() {
         return DataWriter.saveUsers();
     }
+
+    public User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
 }
