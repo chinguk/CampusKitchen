@@ -15,8 +15,9 @@ public class SimplifiedUI {
         //scenario2();
         //scenario3();
         //scenario4();
-         scenario5();
+        // scenario5();
        // scenario6();
+       scenario7();
 
     }
 
@@ -202,11 +203,13 @@ public class SimplifiedUI {
         Ingredient let1 = new Ingredient("Lettuce", 1.0, Unit.PIECE);
         Recipe sandwich = new Recipe(
             "Sandwich",
-            "Layer tomato and lettuce between bread.",
+            "Tomato Sandwich",
             15,
-            new ArrayList<>(),
+            new ArrayList<>(List.of("Layer tomato and lettuce in between two pieces of bread", "Serve")),
             new ArrayList<>(List.of(tom2, let1)),
-            new ArrayList<>(List.of(Category.AMERICAN)),
+            new ArrayList<>(List.of(Culture.AMERICAN)),
+            new ArrayList<>(List.of(Dietary.VEGETARIAN)),
+            new ArrayList<>(List.of(Course.LUNCH)),
             user,
             RecipeStatus.APPROVED);
 
@@ -249,17 +252,17 @@ public class SimplifiedUI {
 
         // Add second recipe
         myPlan.addRecipe(pastaDish);
-        System.out.println("Added '" + pastaDish.getName() + "' to '" + myPlan.getName() + "'.");
+        System.out.println("Added " + pastaDish.getName() + " to " + myPlan.getName() + ".");
 
         // Print out all meal plans and their grocery lists
         for (MealPlan plan : plans) {
             System.out.println("\nMealPlan: " + plan.getName() + " (ID=" + plan.getID() + ")");
-            System.out.println(" Recipes:");
+            System.out.println("Recipes:");
             for (Recipe r : plan.getRecipes()) {
-                System.out.println("  • " + r.getName());
+                System.out.println(r.getName());
             }
             List<Ingredient> grocery = RecipeSystemFACADE.getInstance().generateGroceryList(plan);
-            System.out.println(" Grocery list:");
+            System.out.println("Grocery list:");
             for (Ingredient ing : grocery) {
                 System.out.print(ing.getName() + ing.getAmount() + ing.getUnit());
             }
@@ -276,6 +279,40 @@ public class SimplifiedUI {
         }
         for (Recipe r : all) {
             System.out.println(r.getName());
+        }
+    }
+
+    public void scenario7() {
+        System.out.println("Scenario 7: View user's meal plans and their recipes");
+
+        // Log in
+        User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
+        if (user == null) {
+            System.out.println("Login failed. Cannot view meal plans.");
+            return;
+        }
+        System.out.println("Logged in as: " + user.getUsername());
+
+        // Get meal plans
+        List<MealPlan> mealPlans = RecipeSystemFACADE.getInstance().getUserMealPlans();
+
+        if (mealPlans.isEmpty()) {
+            System.out.println("No meal plans found for this user.");
+            return;
+        }
+
+        // Print meal plans and their recipes
+        for (MealPlan plan : mealPlans) {
+            System.out.println("\nMeal Plan: " + plan.getName() + " (ID: " + plan.getID() + ")");
+            List<Recipe> recipes = plan.getRecipes();
+            if (recipes.isEmpty()) {
+                System.out.println("No recipes in this meal plan.");
+            } else {
+                System.out.println("Recipes:");
+                for (Recipe r : recipes) {
+                    System.out.println(r.getName() + " (" + r.getDuration() + " mins)");
+                }
+            }
         }
     }
     public static void main(String[] args) {
