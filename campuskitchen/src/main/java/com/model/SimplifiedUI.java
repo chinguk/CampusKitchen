@@ -15,12 +15,8 @@ public class SimplifiedUI {
         //scenario2();
         //scenario3();
         //scenario4();
-<<<<<<< HEAD
-        scenario5();
-=======
-        // scenario5();
-        scenario6();
->>>>>>> 3e81f3b23ac91a2793c40d97982a4cb8729338ad
+         scenario5();
+       // scenario6();
 
     }
 
@@ -130,6 +126,7 @@ public class SimplifiedUI {
         System.out.println("Look for file named “grocerylist_" + plan.getID() + ".txt");
     }
 
+    // create and save new recipe
     public void scenario4() {
         System.out.println("Scenario 4: Create and save a new recipe");
 
@@ -157,11 +154,7 @@ public class SimplifiedUI {
                 "Shape dough and bake."
             )),
             new ArrayList<>(List.of(flour, sugar, butter)),
-<<<<<<< HEAD
-            new ArrayList<>(List.of()),
-=======
             new ArrayList<>(List.of(Category.DESSERT)),
->>>>>>> 3e81f3b23ac91a2793c40d97982a4cb8729338ad
             author,
             RecipeStatus.APPROVED
         );
@@ -184,19 +177,27 @@ public class SimplifiedUI {
         // Log in
         User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
         if (user == null) {
-            System.out.println("Login failed – cannot create meal plan.");
+            System.out.println("Login failed cannot create meal plan.");
             return;
         }
         System.out.println("Logged in as: " + user.getUsername());
 
         // Build example recipes
-<<<<<<< HEAD
         Ingredient egg = new Ingredient("Egg", 2.0, Unit.PIECE);
         Ingredient milk = new Ingredient("Milk", 1.0, Unit.CUP);
-        Recipe omelette = new Recipe("Cheese Omelette", "Beat eggs with milk, cook in pan, add cheese.",
-            8, new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
-            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of(Course.BREAKFAST)),
-=======
+        Recipe omelette = new Recipe(
+            "Cheese Omelette",
+            "cheesy eggs",
+            8,
+            new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
+            new ArrayList<>(List.of(egg, milk)),
+            new ArrayList<>(List.of(Culture.AMERICAN)),
+            new ArrayList<>(List.of(Dietary.VEGETARIAN)),
+            new ArrayList<>(List.of(Course.BREAKFAST)),
+            user,
+            RecipeStatus.APPROVED
+            );
+
         Ingredient tom2 = new Ingredient("Tomato", 0.5, Unit.PIECE);
         Ingredient let1 = new Ingredient("Lettuce", 1.0, Unit.PIECE);
         Recipe sandwich = new Recipe(
@@ -206,7 +207,6 @@ public class SimplifiedUI {
             new ArrayList<>(),
             new ArrayList<>(List.of(tom2, let1)),
             new ArrayList<>(List.of(Category.AMERICAN)),
->>>>>>> 3e81f3b23ac91a2793c40d97982a4cb8729338ad
             user,
             RecipeStatus.APPROVED);
 
@@ -218,20 +218,18 @@ public class SimplifiedUI {
         20,
         new ArrayList<>(),
         new ArrayList<>(List.of(pasta, sauce)),
-<<<<<<< HEAD
         new ArrayList<>(List.of(Culture.AMERICAN)),
         new ArrayList<>(List.of(Dietary.VEGETARIAN)),
         new ArrayList<>(List.of(Course.LUNCH)),
-=======
-        new ArrayList<>(),
->>>>>>> 3e81f3b23ac91a2793c40d97982a4cb8729338ad
         user,
         RecipeStatus.APPROVED
         );
 
         // Create meal plan with only the omelette
         ArrayList<Recipe> initialRecipes = new ArrayList<>();
+        initialRecipes.add(omelette);
         initialRecipes.add(sandwich);
+        initialRecipes.add(pastaDish);
         RecipeSystemFACADE.getInstance().createMealPlan("My Weekend Plan", initialRecipes);
 
         // find the plan by name
@@ -273,7 +271,7 @@ public class SimplifiedUI {
 
         ArrayList<Recipe> all = RecipeSystemFACADE.getInstance().getAllRecipes();
         if (all.isEmpty()) {
-            System.out.println("  (no recipes found)");
+            System.out.println("no recipes found");
             return;
         }
         for (Recipe r : all) {

@@ -1,0 +1,3 @@
+Grocery List for MealPlan "My Weekend Plan" (ID=cd2ca986-acbf-44b6-bdbd-42a51e5ee8ad)
+Tomato: 0.5 PIECE
+Lettuce: 1.0 PIECE
