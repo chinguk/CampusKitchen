@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javafx.scene.chart.PieChart.Data;
-
 /**
  * Represents user's meal plan consisting of multiple recipes
  * Provides grocery list of ingredients in recipes

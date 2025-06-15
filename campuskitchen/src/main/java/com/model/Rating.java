@@ -2,16 +2,18 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Represents user's rating of a recipe
  */
 public class Rating {
+    private String ratingId;
     private String userId;
-    private String recipeId;
+    private UUID recipeId;
     private User user;
     private int score;
-    private Date date;
+    private String date;
     private String comment;
     
     /**
@@ -22,7 +24,8 @@ public class Rating {
      * @param date Date of submission
      * @param comment Comment text
      */
-    public Rating(User user, Recipe recipe, int score, Date date, String comment) {
+    public Rating(String ratingId, User user, Recipe recipe, int score, String date, String comment) {
+        this.ratingId= ratingId;
         this.user = user;
         this.score = score;
         this.date = date;
@@ -37,12 +40,16 @@ public class Rating {
      * @param date Date of submission
      * @param comment Comment text
      */
-    public Rating(String userId, String recipeId, int score, Date date, String comment) {
+    public Rating(String userId, UUID recipeId, int score, String date, String comment) {
         this.userId   = userId;
         this.recipeId = recipeId;
         this.score    = score;
         this.date     = date;
         this.comment  = comment;
+    }
+
+    public String getRatingId() {
+        return ratingId;
     }
 
     /**
@@ -57,7 +64,7 @@ public class Rating {
      * Returns ID of recipe that was rated
      * @return Recipe ID
      */
-    public String getRecipe() {
+    public UUID getRecipe() {
         return recipeId;
     }
 
@@ -65,7 +72,7 @@ public class Rating {
      * Returns Date when rating was submitted
      * @return Submission date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -97,7 +104,7 @@ public class Rating {
      * Set recipe ID for rating
      * @param recipeId new recipe ID
      */
-    public void setRecipe (String recipeId) {
+    public void setRecipe (UUID recipeId) {
         this.recipeId = recipeId;
     }
 
@@ -113,7 +120,7 @@ public class Rating {
      * Sets date for rating
      * @param date new submission date
      */
-    public void setDate (Date date) {
+    public void setDate (String date) {
         this.date = date;
     }
 

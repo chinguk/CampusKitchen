@@ -1,9 +1,7 @@
 package com.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Represents user and stores personal information, dietary restrictions, and meal plans

@@ -19,6 +19,7 @@ public class Recipe {
     private User author;
     private RecipeStatus status;
     private ArrayList<Rating> ratings;
+    private ArrayList<String> ratingIds;
     private ArrayList<Category> categories;
 
     // add default constructor
@@ -183,6 +184,14 @@ public class Recipe {
         this.ratings = ratings;
     }
 
+    public ArrayList<String> getRatingIds(){
+        return ratingIds;
+    }
+
+    public void setRatingIds(ArrayList<String> ratingIds){
+        this.ratingIds = ratingIds;
+    }
+
     /**
      * Adds new step to preparation list
      * @param step Step desciption to add
@@ -264,7 +273,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{name='" + name + "', author=  " + author.getUsername() + "', description='" + description + "', id=" + id + "}";
+        return "Recipe{name='" + name + "', author=  " + author.getUsername() + "', description='" + description + "', id=" + id + "', ratings: " + ratings + "}";
     }
 
     public String[] getCategories() {

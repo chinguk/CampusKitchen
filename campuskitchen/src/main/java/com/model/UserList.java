@@ -1,7 +1,6 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Manages collection of all users
@@ -50,8 +49,6 @@ public class UserList {
      */
     public User getUser(String username){
         for (User u : users) {
-            String myUserName = u.getUsername();
-            
             if (u != null && u.getUsername().equals(username)) {
                 return u;
             }

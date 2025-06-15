@@ -2,8 +2,8 @@ package com.model;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -23,14 +23,11 @@ import org.json.simple.parser.JSONParser;
  */
 
 
-
-
-
-
 public class DataLoader extends DataConstants{
 
     private static final HashMap<User, ArrayList<UUID>> userRecipeUUIDs = new HashMap<>();
     private static final HashMap<User, ArrayList<MealPlan>> userMealPlans = new HashMap<>();
+    private static final Map<String, Rating> ratingMap = new HashMap<>();
 
 
     /**
@@ -144,6 +141,7 @@ public class DataLoader extends DataConstants{
     */
     public static ArrayList<Recipe> getRecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
+        Map<UUID, ArrayList<Rating>> ratingsByRecipe = loadRatings();
         try {
             FileReader reader = new FileReader(RECIPES_FILE);
             JSONParser parser = new JSONParser();
@@ -159,7 +157,7 @@ public class DataLoader extends DataConstants{
                 String authorUsername = (String) j.get("author");
                 User author = UserList.getInstance().getUserByUsername(authorUsername);
                 String statusStr = (String) j.get("recipeStatus");
-                RecipeStatus recipeStatus = RecipeStatus.NULL;  
+                RecipeStatus recipeStatus = RecipeStatus.NULL; 
                 if (statusStr != null) {
                      try {
                         recipeStatus = RecipeStatus.valueOf(statusStr.toUpperCase());
@@ -171,6 +169,8 @@ public class DataLoader extends DataConstants{
                 }
                 Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
                 recipes.add(recipe);
+                ArrayList<Rating> ratings = ratingsByRecipe.getOrDefault(recipe.getId(), new ArrayList<>());
+                recipe.setRatings(ratings);
             }
         }
         catch(Exception e){
@@ -237,6 +237,31 @@ public class DataLoader extends DataConstants{
         }
         return categories;
     }
+
+    public static Map<UUID, ArrayList<Rating>> loadRatings() {
+        Map<UUID, ArrayList<Rating>> ratingMap = new HashMap<>();
+        try {
+            FileReader reader = new FileReader(RATINGS_FILE);
+            JSONParser parser = new JSONParser();
+            JSONArray ratingArray = (JSONArray) parser.parse(reader);
+    
+            for (Object obj : ratingArray) {
+                JSONObject j = (JSONObject) obj;
+                String username = (String) j.get("user");
+                UUID recipeId = UUID.fromString((String) j.get("recipe"));
+                int score = ((Long) j.get("score")).intValue();
+                String comment = (String) j.get("comment");
+                String date = (String) j.get("date"); 
+                Rating rating = new Rating(username, recipeId, score, date, comment);
+                ratingMap.computeIfAbsent(recipeId, k -> new ArrayList<>()).add(rating);
+            }
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ratingMap;
+    }
+    
 
     /**
      * Links the data of the 

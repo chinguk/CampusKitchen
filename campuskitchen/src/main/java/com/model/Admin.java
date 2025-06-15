@@ -5,7 +5,6 @@ package com.model;
  * Inherits fields and behaviors of User and adds ability to approve Recipes
  */
 public class Admin extends User {
-    private String adminID;
 
     /**
      * Constructs new Admin
