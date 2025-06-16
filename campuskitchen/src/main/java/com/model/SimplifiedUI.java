@@ -15,9 +15,7 @@ public class SimplifiedUI {
         //scenario2();
         //scenario3();
         //scenario4();
-        // scenario5();
-       // scenario6();
-       scenario7();
+        scenario5();
 
     }
 
@@ -127,7 +125,6 @@ public class SimplifiedUI {
         System.out.println("Look for file named “grocerylist_" + plan.getID() + ".txt");
     }
 
-    // create and save new recipe
     public void scenario4() {
         System.out.println("Scenario 4: Create and save a new recipe");
 
@@ -155,7 +152,7 @@ public class SimplifiedUI {
                 "Shape dough and bake."
             )),
             new ArrayList<>(List.of(flour, sugar, butter)),
-            new ArrayList<>(List.of(Category.DESSERT)),
+            new ArrayList<>(List.of()),
             author,
             RecipeStatus.APPROVED
         );
@@ -178,7 +175,7 @@ public class SimplifiedUI {
         // Log in
         User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
         if (user == null) {
-            System.out.println("Login failed cannot create meal plan.");
+            System.out.println("Login failed – cannot create meal plan.");
             return;
         }
         System.out.println("Logged in as: " + user.getUsername());
@@ -186,30 +183,9 @@ public class SimplifiedUI {
         // Build example recipes
         Ingredient egg = new Ingredient("Egg", 2.0, Unit.PIECE);
         Ingredient milk = new Ingredient("Milk", 1.0, Unit.CUP);
-        Recipe omelette = new Recipe(
-            "Cheese Omelette",
-            "cheesy eggs",
-            8,
-            new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
-            new ArrayList<>(List.of(egg, milk)),
-            new ArrayList<>(List.of(Culture.AMERICAN)),
-            new ArrayList<>(List.of(Dietary.VEGETARIAN)),
-            new ArrayList<>(List.of(Course.BREAKFAST)),
-            user,
-            RecipeStatus.APPROVED
-            );
-
-        Ingredient tom2 = new Ingredient("Tomato", 0.5, Unit.PIECE);
-        Ingredient let1 = new Ingredient("Lettuce", 1.0, Unit.PIECE);
-        Recipe sandwich = new Recipe(
-            "Sandwich",
-            "Tomato Sandwich",
-            15,
-            new ArrayList<>(List.of("Layer tomato and lettuce in between two pieces of bread", "Serve")),
-            new ArrayList<>(List.of(tom2, let1)),
-            new ArrayList<>(List.of(Culture.AMERICAN)),
-            new ArrayList<>(List.of(Dietary.VEGETARIAN)),
-            new ArrayList<>(List.of(Course.LUNCH)),
+        Recipe omelette = new Recipe("Cheese Omelette", "Beat eggs with milk, cook in pan, add cheese.",
+            8, new ArrayList<>(List.of("Beat eggs and milk", "Pour into pan", "Add cheese", "Fold and serve")),
+            new ArrayList<>(List.of(egg, milk)), new ArrayList<>(List.of(Culture.AMERICAN)), new ArrayList<>(List.of(Dietary.VEGETARIAN)), new ArrayList<>(List.of(Course.BREAKFAST)),
             user,
             RecipeStatus.APPROVED);
 
@@ -230,9 +206,7 @@ public class SimplifiedUI {
 
         // Create meal plan with only the omelette
         ArrayList<Recipe> initialRecipes = new ArrayList<>();
-        initialRecipes.add(omelette);
         initialRecipes.add(sandwich);
-        initialRecipes.add(pastaDish);
         RecipeSystemFACADE.getInstance().createMealPlan("My Weekend Plan", initialRecipes);
 
         // find the plan by name
@@ -252,17 +226,17 @@ public class SimplifiedUI {
 
         // Add second recipe
         myPlan.addRecipe(pastaDish);
-        System.out.println("Added " + pastaDish.getName() + " to " + myPlan.getName() + ".");
+        System.out.println("Added '" + pastaDish.getName() + "' to '" + myPlan.getName() + "'.");
 
         // Print out all meal plans and their grocery lists
         for (MealPlan plan : plans) {
             System.out.println("\nMealPlan: " + plan.getName() + " (ID=" + plan.getID() + ")");
-            System.out.println("Recipes:");
+            System.out.println(" Recipes:");
             for (Recipe r : plan.getRecipes()) {
-                System.out.println(r.getName());
+                System.out.println("  • " + r.getName());
             }
             List<Ingredient> grocery = RecipeSystemFACADE.getInstance().generateGroceryList(plan);
-            System.out.println("Grocery list:");
+            System.out.println(" Grocery list:");
             for (Ingredient ing : grocery) {
                 System.out.print(ing.getName() + ing.getAmount() + ing.getUnit());
             }
@@ -274,45 +248,11 @@ public class SimplifiedUI {
 
         ArrayList<Recipe> all = RecipeSystemFACADE.getInstance().getAllRecipes();
         if (all.isEmpty()) {
-            System.out.println("no recipes found");
+            System.out.println("  (no recipes found)");
             return;
         }
         for (Recipe r : all) {
             System.out.println(r.getName());
-        }
-    }
-
-    public void scenario7() {
-        System.out.println("Scenario 7: View user's meal plans and their recipes");
-
-        // Log in
-        User user = RecipeSystemFACADE.getInstance().login("TonyaHam", "2345");
-        if (user == null) {
-            System.out.println("Login failed. Cannot view meal plans.");
-            return;
-        }
-        System.out.println("Logged in as: " + user.getUsername());
-
-        // Get meal plans
-        List<MealPlan> mealPlans = RecipeSystemFACADE.getInstance().getUserMealPlans();
-
-        if (mealPlans.isEmpty()) {
-            System.out.println("No meal plans found for this user.");
-            return;
-        }
-
-        // Print meal plans and their recipes
-        for (MealPlan plan : mealPlans) {
-            System.out.println("\nMeal Plan: " + plan.getName() + " (ID: " + plan.getID() + ")");
-            List<Recipe> recipes = plan.getRecipes();
-            if (recipes.isEmpty()) {
-                System.out.println("No recipes in this meal plan.");
-            } else {
-                System.out.println("Recipes:");
-                for (Recipe r : recipes) {
-                    System.out.println(r.getName() + " (" + r.getDuration() + " mins)");
-                }
-            }
         }
     }
     public static void main(String[] args) {
