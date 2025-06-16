@@ -1,0 +1,16 @@
+.root{
+    -fx-font-sze: 16pt;
+    -fx-font-family:"Helvetica";
+    -fx-backgorund: pink;
+}
+
+.label{
+    -fx-text-fill:black;
+    -fx-font-size:24pt;
+}
+
+.button{
+    -f-background-color: cyan;
+    -fx-text-fill:black;
+    -fx-font-size:24pt;
+}
