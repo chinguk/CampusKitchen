@@ -1,9 +1,13 @@
 package com.controllers;
 
+import com.model.Recipe;
+import com.model.RecipeSystemFACADE;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model. *;
 
 public class LoginController {
 
@@ -18,8 +22,19 @@ public class LoginController {
 
     @FXML
     void login(ActionEvent event) {
-        System.out.println("Hello world!");
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
+
+        RecipeSystemFACADE facade = RecipeSystemFACADE.getInstance();
+
+        if (facade.login(username, password) == null) {
+            System.out.println("Login failed. Please check your username and password.");
+            return;
+        }
+            System.out.println("Login successful!");
     }
 
 }
