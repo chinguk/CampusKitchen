@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import com.campus.App;
 
-public class PrimaryController {
+public class LoginController {
 
     @FXML
     private void switchToSecondary() throws IOException {

@@ -1,7 +1,7 @@
 .root{
-    -fx-font-sze: 16pt;
+    -fx-font-size: 16pt;
     -fx-font-family:"Helvetica";
-    -fx-backgorund: pink;
+    -fx-background: pink;
 }
 
 .label{
@@ -10,7 +10,7 @@
 }
 
 .button{
-    -f-background-color: cyan;
+    -fx-background-color: cyan;
     -fx-text-fill:black;
     -fx-font-size:24pt;
 }
