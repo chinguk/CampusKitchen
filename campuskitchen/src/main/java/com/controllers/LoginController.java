@@ -5,12 +5,17 @@ import com.model.RecipeSystemFACADE;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.model.*;
 
-public class LoginController {
+public class LoginController implements Initializable{
 
     @FXML
     private Button primaryButton;
@@ -38,7 +43,13 @@ public class LoginController {
             lblErrorLogin.setText("Invalid Login Credentials");
             return;
         }
+            lblErrorLogin.setText("");
             System.out.println("Login successful!");
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        
     }
 
 }
