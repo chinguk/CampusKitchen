@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model. *;
+import com.model.*;
 
 public class LoginController {
 
@@ -22,7 +22,7 @@ public class LoginController {
     private TextField txtUsername;
 
     @FXML
-    private Label txtErrorLogin;
+    private Label lblErrorLogin;
 
     @FXML
     void login(ActionEvent event) {
@@ -35,7 +35,7 @@ public class LoginController {
         RecipeSystemFACADE facade = RecipeSystemFACADE.getInstance();
 
         if (facade.login(username, password) == null) {
-            txtErrorLogin.setText("Invalid Login Credentials");
+            lblErrorLogin.setText("Invalid Login Credentials");
             return;
         }
             System.out.println("Login successful!");
