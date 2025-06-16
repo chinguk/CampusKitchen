@@ -21,7 +21,7 @@ public class LoginController {
     @FXML
     private TextField txtUsername;
 
-    @FXML 
+    @FXML
     private Label txtErrorLogin;
 
     @FXML
