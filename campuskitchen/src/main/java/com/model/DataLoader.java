@@ -2,7 +2,6 @@ package com.model;
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -27,7 +26,6 @@ public class DataLoader extends DataConstants{
 
     private static final HashMap<User, ArrayList<UUID>> userRecipeUUIDs = new HashMap<>();
     private static final HashMap<User, ArrayList<MealPlan>> userMealPlans = new HashMap<>();
-    private static final Map<String, Rating> ratingMap = new HashMap<>();
 
 
     /**
@@ -300,19 +298,7 @@ public class DataLoader extends DataConstants{
     }
 
     
-    /*
-     * Test for getUsers and getRecikpes
-     */
-    public static void main(String[] args) {
-        ArrayList<User> users = DataLoader.getUsers();
-        for(User user : users){
-         System.out.println(user);
-        }
-        ArrayList<Recipe> recipes = DataLoader.getRecipes();
-        for(Recipe recipe : recipes){
-         System.out.println(recipe);
-        }
-     }
+    
 }
     
 
