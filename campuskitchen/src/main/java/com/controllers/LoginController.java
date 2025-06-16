@@ -6,6 +6,7 @@ import com.model.RecipeSystemFACADE;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model. *;
 
@@ -20,6 +21,9 @@ public class LoginController {
     @FXML
     private TextField txtUsername;
 
+    @FXML 
+    private Label txtErrorLogin;
+
     @FXML
     void login(ActionEvent event) {
         String username = txtUsername.getText();
@@ -31,7 +35,7 @@ public class LoginController {
         RecipeSystemFACADE facade = RecipeSystemFACADE.getInstance();
 
         if (facade.login(username, password) == null) {
-            System.out.println("Login failed. Please check your username and password.");
+            txtErrorLogin.setText("Invalid Login Credentials");
             return;
         }
             System.out.println("Login successful!");
