@@ -1,13 +1,25 @@
 package com.controllers;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.campus.App;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class LoginController {
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    private Button primaryButton;
+
+    @FXML
+    private TextField txtPassword;
+
+    @FXML
+    private TextField txtUsername;
+
+    @FXML
+    void login(ActionEvent event) {
+        System.out.println("Hello world!");
+
     }
+
 }
