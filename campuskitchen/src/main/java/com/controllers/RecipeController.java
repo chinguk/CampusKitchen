@@ -1,5 +1,11 @@
 package com.controllers;
 
+import java.io.IOException;
+import java.lang.classfile.Label;
+
+import com.campus.App;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -36,5 +42,23 @@ public class RecipeController {
 
     @FXML
     private ScrollPane paneScroll;
+
+    @FXML
+    void handleHomeClick(ActionEvent event) {
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleRecipeClick(ActionEvent event) {
+        try {
+            App.setRoot("recipe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
 }

@@ -56,6 +56,24 @@ public class LoginController implements Initializable{
         }
     }
 
+    @FXML
+    void handleHomeClick(ActionEvent event) {
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleRecipeClick(ActionEvent event) {
+        try {
+            App.setRoot("recipe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     }
