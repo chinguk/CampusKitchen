@@ -18,7 +18,7 @@
       <Label fx:id="lblMealPlan" text="&quot;Fresh Fuel: 7-Day Balanced Bites&quot;" />
       <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button fx:id="btnRecipe" mnemonicParsing="false" text="Recipes" />
+            <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleHomeClick2" text="Recipes" />
             <Button fx:id="btnMealPlan" mnemonicParsing="false" text="Meal Plans" />
             <Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
             <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
