@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents user and stores personal information, dietary restrictions, and meal plans
@@ -16,7 +17,8 @@ public class User {
     private ArrayList<Dietary> dietaryRestrictions;
     private ArrayList<MealPlan> mealPlans;
     public static List<Ingredient> groceryList;
-    private ArrayList<Recipe> myRecipes;
+    private ArrayList<Recipe> mealPlanRecipes;
+    private ArrayList<UUID> myRecipesIds;
 
 
     /**
@@ -51,7 +53,7 @@ public class User {
      * @param dietaryRestrictions Initial dietary restrictions
      * @param mealPlans Initial meal plans
      */
-    public User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<Dietary> dietaryRestrictions, ArrayList<MealPlan> mealPlans) {
+    public User(String firstName, String lastName, String email, String universityID, String username, String password, ArrayList<Dietary> dietaryRestrictions, ArrayList<MealPlan> mealPlans, ArrayList<UUID> myRecipeIds) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,6 +63,7 @@ public class User {
 
         this.dietaryRestrictions = (dietaryRestrictions != null) ? new ArrayList<>(dietaryRestrictions) : new ArrayList<>();
         this.mealPlans = (mealPlans != null) ? new ArrayList<>(mealPlans) : new ArrayList<>(); 
+        this.myRecipesIds = new ArrayList<>();
     }
 
     /**
@@ -93,6 +96,10 @@ public class User {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public ArrayList<UUID> getRecipesIds(){
+        return myRecipesIds;
     }
 
     /**
@@ -245,7 +252,7 @@ public class User {
     }
 
     public void addFavoriteRecipe(Recipe recipe){
-        this.myRecipes.add(recipe);
+        this.mealPlanRecipes.add(recipe);
     }
 
     

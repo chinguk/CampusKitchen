@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -99,6 +100,18 @@ public class RecipeList {
         return null;
     }
 
+    public ArrayList<Recipe> getByIDs(List<UUID> ids) {
+        ArrayList<Recipe> matchedRecipes = new ArrayList<>();
+        for (UUID id : ids) {
+            for (Recipe recipe : recipes) {
+                if (recipe.getId().equals(id)) {
+                    matchedRecipes.add(recipe);
+                    break; // Stop inner loop once match is found
+                }
+            }
+        }
+        return matchedRecipes;
+    }
     /**
     * Finds a recipe in the given list by matching its UUID.
     * 

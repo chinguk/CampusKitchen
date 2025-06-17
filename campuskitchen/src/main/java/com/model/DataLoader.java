@@ -27,7 +27,6 @@ public class DataLoader extends DataConstants{
     private static final HashMap<User, ArrayList<UUID>> userRecipeUUIDs = new HashMap<>();
     private static final HashMap<User, ArrayList<MealPlan>> userMealPlans = new HashMap<>();
 
-
     /**
     * Loads all users from the Users.json file and creates User objects.
     * Each user includes dietary restrictions and meal plans.
@@ -54,14 +53,14 @@ public class DataLoader extends DataConstants{
                 ArrayList<MealPlan> mealPlans = parseMealPlans(j);
                 ArrayList<UUID> recipeIDs = new ArrayList<>();
 
-                JSONArray recipeArray = (JSONArray) j.get("myrecipes");
+                JSONArray recipeArray = (JSONArray) j.get("myRecipes");
                 if (recipeArray != null) {
                     for (Object rid : recipeArray) {
                         recipeIDs.add(UUID.fromString((String) rid));
                     }
                 }
 
-                User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans);
+                User user = new User(firstName, lastName, email, universityID, username, password, dietList, mealPlans, recipeIDs);
                 users.add(user);
 
                 userRecipeUUIDs.put(user, recipeIDs);

@@ -1,9 +1,14 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import com.campus.App;
+import com.model.Recipe;
+import com.model.RecipeList;
+import com.model.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,6 +57,10 @@ public class HomeController {
     @FXML
     private Label lblTodayPlan;
 
+    private User user;
+    private RecipeList recipeList;
+
+
     @FXML
     void handleHomeClick(ActionEvent event) {
         try {
@@ -60,4 +69,20 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+
+    private void displayUserMealPlans(){
+        ArrayList<UUID> recipeIds = user.getRecipesIds();
+        ArrayList<Recipe> recipes = recipeList.getByIDs(recipeIds);
+        for(int i = 0; i<recipeIds.size(); i++){
+            Recipe recipe = recipes.get(i);
+            VBox vbox = new VBox();
+            
+
+        }
+
+
+
+
+    }
+
 }

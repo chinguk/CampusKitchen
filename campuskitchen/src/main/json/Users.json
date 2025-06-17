@@ -16,7 +16,8 @@
             }
         ],
         "email": "emily.miller@gmail.com",
-        "username": "emill23"
+        "username": "emill23",
+        "myrecipes": ["4b1e2d53-5f4e-4b1a-9df4-a6aef40f6c7d"]
     },
     {
         "firstName": "David",
@@ -28,7 +29,8 @@
         ],
         "mealPlans": [],
         "email": "david.tren@gmail.com",
-        "username": "dTren98"
+        "username": "dTren98",
+        "myrecipes": []
     },
     {
         "firstName": "Tonya",
@@ -38,6 +40,7 @@
         "dietaryRestrictions": [],
         "mealPlans": [],
         "email": "TonHamilton@gmail.com",
-        "username": "TonyaHam"
+        "username": "TonyaHam",
+        "myrecipes": []
     }
 ]
