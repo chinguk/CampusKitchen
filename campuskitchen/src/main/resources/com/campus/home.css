@@ -47,7 +47,17 @@
 #btnBrowse,
 #btnHome {
     -fx-background-color: transparent;
-    -fx-text-fill: #007aff;
+    -fx-text-fill: #a7d8a3;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
+}
+
+/* Navigation buttons hover */
+#btnRecipe:hover,
+#btnMealPlan:hover,
+#btnBrowse:hover,
+#btnHome:hover {
+    -fx-background-color: #a7d8a3;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }
