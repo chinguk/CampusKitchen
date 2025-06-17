@@ -24,11 +24,7 @@
          </children>
       </HBox>
       <Button fx:id="primaryButton" onAction="#login" text="Login" />
-<<<<<<< HEAD
       <Label fx:id="lblErrorLogin" text="" textFill="RED" />
-=======
-      <Label fx:id="lblErrorLogin" text="Invalid Login Credentials" textFill="RED" />
->>>>>>> 14b7a2db7ba1ec584dedfcf55eb124e140ea18c2
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
