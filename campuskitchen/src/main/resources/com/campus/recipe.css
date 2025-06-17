@@ -1,12 +1,12 @@
-#boxHome {
-    -fx-background-color: #a7d8a3;
+#boxRecipePage {
+    -fx-background-color: #F2D06B;
     -fx-padding: 40px 20px 20px 20px;
 }
 
 /* Main title */
 #lblTitle {
     -fx-font-size: 32px;
-    -fx-text-fill: white;
+    -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
@@ -16,18 +16,22 @@
 #boxMenu {
     -fx-background-color: #f4f4f4;
     -fx-padding: 10px;
-    -fx-border-color: #cccccc;
+    -fx-border-color: black;
     -fx-border-width: 1px 0 0 0;
+}
+
+#btnCreate {
+    -fx-background-color: #BF6734;
+    -fx-text-fill: white;
 }
 
 /* Navigation buttons */
 #btnRecipe,
 #btnMealPlan,
 #btnBrowse,
-#btnHome,
-#btnCreate {
+#btnHome {
     -fx-background-color: transparent;
-    -fx-text-fill: #a7d8a3;
+    -fx-text-fill: #F28705;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
@@ -38,7 +42,7 @@
 #btnBrowse:hover,
 #btnHome:hover,
 #btnCreate:hover {
-    -fx-background-color: #a7d8a3;
+    -fx-background-color: #F28705;
     -fx-text-fill: white;
     -fx-cursor: hand;
 }

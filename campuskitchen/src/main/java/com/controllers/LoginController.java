@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,12 @@ import com.campus.App;
 import com.model.*;
 
 public class LoginController implements Initializable{
+
+     @FXML
+    private ImageView imgLogin;
+
+    @FXML
+    private Label lblTitle;
 
     @FXML
     private Button primaryButton;

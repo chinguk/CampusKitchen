@@ -1,6 +1,6 @@
 /* Overall VBox container */
 #boxHome {
-    -fx-background-color: #a7d8a3;
+    -fx-background-color: #F28705;
     -fx-padding: 40px 20px 20px 20px;
 }
 
@@ -47,7 +47,7 @@
 #btnBrowse,
 #btnHome {
     -fx-background-color: transparent;
-    -fx-text-fill: #a7d8a3;
+    -fx-text-fill: #BF6734;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
@@ -57,7 +57,7 @@
 #btnMealPlan:hover,
 #btnBrowse:hover,
 #btnHome:hover {
-    -fx-background-color: #a7d8a3;
+    -fx-background-color: #BF6734;
     -fx-text-fill: white;
     -fx-cursor: hand;
 }

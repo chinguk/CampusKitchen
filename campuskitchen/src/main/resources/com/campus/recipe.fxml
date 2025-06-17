@@ -9,7 +9,7 @@
 
 <VBox fx:id="boxRecipePage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.RecipeController">
    <children>
-      <Label fx:id="lblTitle" text="Label" />
+      <Label fx:id="lblTitle" text="Recipes" />
       <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
          <content>
             <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="199.0" prefWidth="307.0" />
