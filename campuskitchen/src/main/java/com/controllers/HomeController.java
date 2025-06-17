@@ -58,9 +58,6 @@ public class HomeController {
     @FXML
     private Label lblTodayPlan;
 
-    private User user;
-    private RecipeList recipeList;
-
 
     @FXML
     void handleHomeClick(ActionEvent event) {
@@ -78,23 +75,6 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void displayUserMealPlans(){
-        ArrayList<UUID> recipeIds = user.getRecipesIds();
-        ArrayList<Recipe> recipes = recipeList.getByIDs(recipeIds);
-        for(int i = 0; i<recipeIds.size(); i++){
-            Recipe recipe = recipes.get(i);
-            VBox vbox = new VBox();
-            Label recipeName = new Label(recipe.getName());
-            recipeName.setFont(new Font(14));
-            vbox.getChildren().add(recipeName);
-            Image image  = new Image(getClass().getResourceAsStream("/images/" + recipe.getImageName()));
-        }
-
-
-
-
     }
 
 }
