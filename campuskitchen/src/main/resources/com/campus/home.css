@@ -1,13 +1,53 @@
-.label-title {
-    -fx-font-size: 28px;
+/* Overall VBox container */
+#boxHome {
+    -fx-background-color: #a7d8a3;
+    -fx-padding: 40px 20px 20px 20px;
+}
+
+/* Main title */
+#lblTitle {
+    -fx-font-size: 32px;
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-alignment: center;
 }
 
-.label-sub {
+/* Subtitle: "Favorite Recipes" */
+#lblFavorite {
+    -fx-font-size: 18px;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
 }
 
-#boxHome {
-    -fx-background-color: #A0CF8C;
+/* Main image */
+#imgHome {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+/* Today's Meal Plan and 7-Day Text */
+#lblTodayPlan,
+#lblMealPlan {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+/* Bottom nav bar */
+#boxMenu {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* Navigation buttons */
+#btnRecipe,
+#btnMealPlan,
+#btnBrowse,
+#btnHome {
+    -fx-background-color: transparent;
+    -fx-text-fill: #007aff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
 }
