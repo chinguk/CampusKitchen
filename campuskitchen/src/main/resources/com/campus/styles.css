@@ -1,37 +1,16 @@
-.root {
-    -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    -fx-font-size: 14pt;
-    -fx-background-color: #fefefe;
-}
-
-.label {
-    -fx-text-fill: #2c2c2c;
+.root{
     -fx-font-size: 16pt;
-    -fx-font-weight: bold;
+    -fx-font-family:"Helvetica";
+    -fx-background: pink;
 }
 
-.text-field {
-    -fx-background-color: #f2f2f2;
-    -fx-text-fill: #333333;
-    -fx-font-size: 14pt;
-    -fx-border-color: #d3d3d3;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-padding: 6 10;
+.label{
+    -fx-text-fill:black;
+    -fx-font-size:24pt;
 }
 
-.button {
-    -fx-background-color: #4a90e2;
-    -fx-text-fill: white;
-    -fx-font-size: 15pt;
-    -fx-background-radius: 6;
-    -fx-cursor: hand;
-    -fx-padding: 8 18;
+.button{
+    -fx-background-color: cyan;
+    -fx-text-fill:black;
+    -fx-font-size:24pt;
 }
-
-#lblErrorLogin {
-    -fx-text-fill: #d33;
-    -fx-font-size: 15pt;
-    -fx-font-weight: bold;
-}
-
