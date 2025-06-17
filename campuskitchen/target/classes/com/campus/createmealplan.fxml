@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.DropdownButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Create Meal Plan" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Name" />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="27.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Recipes">
+               <graphic>
+                  <DropdownButton>
+                      <items>
+                          <MenuItem text="Choice 1" />
+                          <MenuItem text="Choice 2" />
+                          <MenuItem text="Choice 3" />
+                      </items>
+                  </DropdownButton>
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" text="Submit" />
+   </children>
+</VBox>
