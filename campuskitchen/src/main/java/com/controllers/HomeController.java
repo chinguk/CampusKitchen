@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -70,14 +71,25 @@ public class HomeController {
         }
     }
 
+    @FXML
+    void handleHomeClick2(ActionEvent event) {
+        try {
+            App.setRoot("recipe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void displayUserMealPlans(){
         ArrayList<UUID> recipeIds = user.getRecipesIds();
         ArrayList<Recipe> recipes = recipeList.getByIDs(recipeIds);
         for(int i = 0; i<recipeIds.size(); i++){
             Recipe recipe = recipes.get(i);
             VBox vbox = new VBox();
-            
-
+            Label recipeName = new Label(recipe.getName());
+            recipeName.setFont(new Font(14));
+            vbox.getChildren().add(recipeName);
+            Image image  = new Image(getClass().getResourceAsStream("/images/" + recipe.getImageName()));
         }
 
 

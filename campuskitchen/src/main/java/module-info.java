@@ -3,6 +3,7 @@ module com.campus {
     requires javafx.fxml;
     requires json.simple;
     requires junit;
+    requires javafx.graphics;
 
     opens com.campus to javafx.fxml;
     exports com.campus;
