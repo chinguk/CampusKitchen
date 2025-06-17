@@ -45,7 +45,7 @@ public class RecipeController {
     private Button btnHome;
 
     @FXML
-    private Button btnMealplan;
+    private Button btnMealPlan;
 
     @FXML
     private Button btnRecipe;
@@ -71,7 +71,7 @@ public class RecipeController {
     }
 
     @FXML
-    void handleRecipeClick(ActionEvent event) {
+    void handleHomeClick2(ActionEvent event) {
         try {
             App.setRoot("recipe");
         } catch (IOException e) {

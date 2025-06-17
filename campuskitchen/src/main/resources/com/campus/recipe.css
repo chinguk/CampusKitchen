@@ -24,7 +24,8 @@
 #btnRecipe,
 #btnMealPlan,
 #btnBrowse,
-#btnHome {
+#btnHome,
+#btnCreate {
     -fx-background-color: transparent;
     -fx-text-fill: #a7d8a3;
     -fx-font-size: 13px;
@@ -35,7 +36,8 @@
 #btnRecipe:hover,
 #btnMealPlan:hover,
 #btnBrowse:hover,
-#btnHome:hover {
+#btnHome:hover,
+#btnCreate:hover {
     -fx-background-color: #a7d8a3;
     -fx-text-fill: white;
     -fx-cursor: hand;
