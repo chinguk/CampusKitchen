@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+
+
+<VBox fx:id="boxRecipePage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.RecipeController">
+   <children>
+      <Label fx:id="lblTitle" text="Label" />
+      <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+         <content>
+            <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="199.0" prefWidth="307.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="btnCreate" mnemonicParsing="false" text="Create" />
+      <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnRecipe" mnemonicParsing="false" text="Recipes" />
+            <Button fx:id="btnMealplan" mnemonicParsing="false" text="Meal Plans" />
+            <Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
+            <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@recipe.css" />
+   </stylesheets>
+</VBox>
