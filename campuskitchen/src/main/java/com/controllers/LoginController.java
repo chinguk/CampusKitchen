@@ -10,9 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.campus.App;
 import com.model.*;
 
 public class LoginController implements Initializable{
@@ -43,8 +45,15 @@ public class LoginController implements Initializable{
             lblErrorLogin.setText("Invalid Login Credentials");
             return;
         }
-            lblErrorLogin.setText("");
-            System.out.println("Login successful!");
+        lblErrorLogin.setText("");
+        System.out.println("Login successful!");
+
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblErrorLogin.setText("Error loading home page");
+        }
     }
 
     @Override

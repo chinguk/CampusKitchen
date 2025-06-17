@@ -1,0 +1,13 @@
+.label-title {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.label-sub {
+    -fx-text-fill: white;
+}
+
+#boxHome {
+    -fx-background-color: #A0CF8C;
+}
