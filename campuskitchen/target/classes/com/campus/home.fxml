@@ -21,7 +21,7 @@
             <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleHomeClick2" text="Recipes" />
             <Button fx:id="btnMealPlan" mnemonicParsing="false" text="Meal Plans" />
             <Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
-            <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
          </children>
       </HBox>
    </children>

@@ -2,8 +2,10 @@ package com.controllers;
 
 import java.io.IOException;
 import java.lang.classfile.Label;
-
+import javafx.fxml.FXML;
 import com.campus.App;
+import com.model.Recipe;
+import com.model.RecipeList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,5 +62,15 @@ public class RecipeController {
             e.printStackTrace();
         }
     }
-    
+
+    private RecipeList recipeList;
+
+    public void initialize() {
+        recipeList = new RecipeList();
+
+        for (Recipe recipe : recipeList.getRecipes()) {
+            HBox card = new HBox(recipe);
+            boxRecipeContainer.getChildren().add(card);
+        }
+    }
 }
