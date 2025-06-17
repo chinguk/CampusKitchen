@@ -104,13 +104,13 @@ public class RecipeController {
 
     private HBox createRecipeCard(Recipe recipe) {
         HBox card = new HBox(10);
-        Label nameLabel = new Label(recipe.getName());
-        card.getChildren().add(nameLabel);
-        return card;
+        Label name = new Label(recipe.getName());
+        card.getChildren().add(name);
+        boxRecipeContainer.getChildren().add(card);
     }
 
     public void initialize() {
-        recipeList = new RecipeList();
+        recipeList = RecipeList().getInstance();
 
         for (Recipe recipe : recipeList.getRecipes()) {
             HBox card = createRecipeCard(recipe);
