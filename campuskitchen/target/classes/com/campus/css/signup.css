@@ -20,7 +20,7 @@
 }
 
 /* submit button */
-#btnSubmit {
+.button {
   -fx-background-color: #F2B872;
   -fx-text-fill: black;
   -fx-font-weight: bold;
@@ -28,7 +28,7 @@
   -fx-padding: 8 16;
   -fx-background-radius: 6px;
 }
-#btnSubmit:hover {
+.button:hover {
   -fx-background-color: #F28705;
   -fx-cursor: hand;
 }

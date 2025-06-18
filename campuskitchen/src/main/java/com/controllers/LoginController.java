@@ -39,6 +39,15 @@ public class LoginController implements Initializable{
     private Label lblErrorLogin;
 
     @FXML
+    void handleBackClick(ActionEvent event) {
+        try {
+            App.setRoot("main");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void login(ActionEvent event) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();

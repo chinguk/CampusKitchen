@@ -1,5 +1,10 @@
 package com.controllers;
 
+import java.io.IOException;
+
+import com.campus.App;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,5 +53,23 @@ public class SignUpController {
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
         
+    }
+
+    @FXML
+    void handleBackClick(ActionEvent event) {
+        try {
+            App.setRoot("main");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleSubmitClick(ActionEvent event) {
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
