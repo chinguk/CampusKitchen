@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class UserList {
     private ArrayList<User> users;
     private static UserList userList;
+    private User currentUser;
 
     /**
      * Initializes user list
@@ -120,6 +121,22 @@ public class UserList {
             }
         }
         return null;
+    }
+
+    // Sets the current user (call this after login)
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    // Gets the currently logged in user
+    public User getCurrentUser() {
+        return this.currentUser;
+    }
+
+    // Gets favorite recipes of the current user
+    public ArrayList<Recipe> getFavoriteRecipes() {
+        if (currentUser == null) return new ArrayList<>();
+        return currentUser.getFavoriteRecipes();
     }
     
 }

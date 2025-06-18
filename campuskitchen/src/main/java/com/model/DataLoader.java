@@ -165,6 +165,10 @@ public class DataLoader extends DataConstants{
                     System.err.println("Missing statusStr for recipe: " + name);
                 }
                 Recipe recipe = new Recipe(name, description, duration, stepsList, ingredientsList, categoriesList, author, recipeStatus);
+                // If "imagePath" exists in JSON, set it on the recipe
+                if (j.containsKey("imagePath")) {
+                recipe.setImagePath((String) j.get("imagePath"));
+                }
                 recipes.add(recipe);
                 ArrayList<Rating> ratings = ratingsByRecipe.getOrDefault(recipe.getId(), new ArrayList<>());
                 recipe.setRatings(ratings);

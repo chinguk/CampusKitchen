@@ -21,6 +21,9 @@ import com.model.User;
 
 public class RecipeController {
 
+    @FXML 
+    private HBox boxMenu;
+
     @FXML
     private VBox boxRecipeContainer;
 

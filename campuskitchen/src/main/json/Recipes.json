@@ -35,7 +35,8 @@
             "Chop vegetables and herbs.",
             "Mix ingredients and drizzle with olive oil."
         ],
-        "recipeStatus": "APPROVED"
+        "recipeStatus": "APPROVED" ,
+        "imagePath" : "QuinoaBowl.jpeg"
     },
     {
         "duration": 20,
@@ -72,7 +73,8 @@
             "Prepare salad mix.",
             "Combine with dressing and serve."
         ],
-        "recipeStatus": "APPROVED"
+        "recipeStatus": "APPROVED",
+        "imagePath" : "GrilledChickenSalad.jpeg"
     },
     {
         "duration": 15,
@@ -100,6 +102,7 @@
         "recipeStatus": "APPROVED",
         "id": "1d8d07ed-7170-4d39-b51b-623c59fb610a",
         "categories": [],
-        "user": "TonyaHam"
+        "user": "TonyaHam",
+        "imagePath" : "SimpleSugarCookies.jpeg"
     }
 ]

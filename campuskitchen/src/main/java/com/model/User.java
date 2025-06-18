@@ -255,6 +255,15 @@ public class User {
         this.mealPlanRecipes.add(recipe);
     }
 
+    public ArrayList<Recipe> getFavoriteRecipes() {
+        if (myRecipesIds == null || myRecipesIds.isEmpty()) {
+            return new ArrayList<>();
+        }
+    
+        RecipeList recipeList = RecipeList.getInstance();
+        return recipeList.getByIDs(myRecipesIds);
+    }
+
     
 }
 
