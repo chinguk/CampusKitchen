@@ -2,13 +2,10 @@ package com.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.UUID;
 
 import com.campus.App;
 import com.model.MealPlan;
 import com.model.Recipe;
-import com.model.RecipeList;
 import com.model.User;
 import com.model.UserList;
 
@@ -19,8 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 

@@ -99,7 +99,8 @@ public class RecipeController {
         try {
             String imagePath = recipe.getImagePath() != null ? recipe.getImagePath() : "placeholder.png";
             Image image = new Image(getClass().getResourceAsStream("/images/" + imagePath));
-            imageView.setImage(image);
+            ImageView image_recipe = new ImageView(image);
+            boxRecipeContainer.getChildren().add(image_recipe);
         } catch (Exception e) {
             System.out.println("Could not load image for recipe: " + recipe.getName());
         }
