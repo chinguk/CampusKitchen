@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" prefHeight="506.0" prefWidth="316.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.RecipeDetailController">
+
+    <children>
+        <Label fx:id="lblTitle" prefHeight="18.0" prefWidth="319.0" styleClass="title-label" stylesheets="@css/indRecipe.css" text="Hamburger" />
+      <ImageView fx:id="imgRecipe" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+
+        <ScrollPane fitToWidth="true" prefHeight="345.0" prefWidth="200.0">
+            <content>
+                <VBox prefHeight="314.0" prefWidth="314.0" spacing="10" styleClass="highlight-box">
+                    <Label fx:id="lblIngredientsTitle" prefHeight="18.0" prefWidth="314.0" styleClass="section-label" text="Ingredients:" />
+                    <Label fx:id="lblIngredients" prefHeight="126.0" prefWidth="314.0" wrapText="true" />
+                    <Label fx:id="lblStepTitle" prefHeight="18.0" prefWidth="317.0" styleClass="section-label" text="Steps:" />
+                    <Label fx:id="lblSteps" prefHeight="91.0" prefWidth="314.0" wrapText="true" />
+                </VBox>
+            </content>
+        </ScrollPane>
+      <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnRecipe" mnemonicParsing="false" text="Recipe" />
+            <Button fx:id="btnMealPlan" mnemonicParsing="false" text="Meal Plan" />
+            <Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
+            <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
+         </children>
+      </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../css/indRecipe.css" />
+    </stylesheets>
+</VBox>
