@@ -2,6 +2,7 @@ package com.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.campus.App;
 import com.model.MealPlan;
@@ -84,8 +85,9 @@ public class HomeController {
 
         // Show favorite recipe preview
         ArrayList<Recipe> favorites = user.getFavoriteRecipes();
+        Random rand = new Random();
         if (!favorites.isEmpty()) {
-            Recipe favorite = favorites.get(0);
+            Recipe favorite = favorites.get(rand.nextInt(favorites.size()));
             lblFavorite.setText("Favorite: " + favorite.getName());
 
             String path = favorite.getImagePath(); 

@@ -84,13 +84,13 @@ public class RecipeController {
         ArrayList<Recipe> recipes = recipeList.getByIDs(recipeIds);
 
         for (Recipe recipe : recipes) {
-            HBox card = createRecipeCard(recipe);
+            VBox card = createRecipeCard(recipe);
             boxRecipeContainer.getChildren().add(card);
         }
     }
 
-    private HBox createRecipeCard(Recipe recipe) {
-        HBox card = new HBox(10);
+    private VBox createRecipeCard(Recipe recipe) {
+        VBox card = new VBox(10);
         card.setStyle("-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 10;");
         card.setPrefHeight(100);
 
@@ -99,12 +99,11 @@ public class RecipeController {
         try {
             String imagePath = recipe.getImagePath() != null ? recipe.getImagePath() : "placeholder.png";
             Image image = new Image(getClass().getResourceAsStream("/images/" + imagePath));
-            ImageView image_recipe = new ImageView(image);
-            boxRecipeContainer.getChildren().add(image_recipe);
+            imageView.setImage(image);
         } catch (Exception e) {
             System.out.println("Could not load image for recipe: " + recipe.getName());
         }
-        imageView.setFitWidth(100);
+        imageView.setFitWidth(30);
         imageView.setPreserveRatio(true);
 
         // Recipe Info
@@ -120,6 +119,7 @@ public class RecipeController {
     }
 
     public void initialize() {
+
         recipeList = RecipeList.getInstance();
 
         boxRecipeContainer.getChildren().clear();
@@ -127,7 +127,7 @@ public class RecipeController {
             displayUserRecipes();
         } else {
             for (Recipe recipe : recipeList.getRecipes()) {
-                HBox card = createRecipeCard(recipe);
+                VBox card = createRecipeCard(recipe);
                 boxRecipeContainer.getChildren().add(card);
             }
         }
