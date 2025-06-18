@@ -39,6 +39,9 @@ public class LoginController implements Initializable{
     private Label lblErrorLogin;
 
     @FXML
+    private Button btnBack;
+
+    @FXML
     void handleBackClick(ActionEvent event) {
         try {
             App.setRoot("main");
