@@ -1,0 +1,39 @@
+#boxRecipePage {
+    -fx-background-color: #F2E6DF;
+    -fx-padding: 40px 20px 20px 20px;
+}
+
+#lblTitle {
+    -fx-font-size: 32px;
+    -fx-text-fill: #F28705;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+#btnCreate {
+    -fx-background-color: #BF6734;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+#btnRecipe,
+#btnMealPlan,
+#btnBrowse,
+#btnHome {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F28705;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+#btnRecipe:hover,
+#btnMealPlan:hover,
+#btnBrowse:hover,
+#btnHome:hover,
+#btnCreate:hover {
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
