@@ -6,16 +6,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
 
 <VBox fx:id="boxHome" alignment="CENTER" prefHeight="525.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
    <children>
       <Label fx:id="lblTitle" text="Campus Kitchen" />
       <Label fx:id="lblFavorite" text="Favorite Recipes" />
-      <ImageView fx:id="imgHome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgHome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/Hamburger.jpg"/>
+            <Image url="@../images/Hamburger.jpg" />
          </image>
-      <ImageView>
+      </ImageView>
       <Label fx:id="lblTodayPlan" text="Today's Meal Plan" />
       <VBox fx:id="boxMealPlan" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
