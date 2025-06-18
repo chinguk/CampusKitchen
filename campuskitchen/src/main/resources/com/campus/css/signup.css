@@ -1,7 +1,7 @@
 /* overall page */
 #signUp {
-  -fx-background-color: #F2D06B;
-  -fx-padding: 40 20 20 20;    /* top right bottom left */
+  -fx-background-color: #F2E6DF;
+  -fx-padding: 40 20 20 20;
 }
 
 /* Welcome title */
@@ -12,10 +12,17 @@
   -fx-alignment: center;
 }
 
+.label { 
+  -fx-font-family: "garamond";
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: black;
+}
+
 /* submit button */
 #btnSubmit {
-  -fx-background-color: #BF6734;
-  -fx-text-fill: white;
+  -fx-background-color: #F2B872;
+  -fx-text-fill: black;
   -fx-font-weight: bold;
   -fx-font-size: 14px;
   -fx-padding: 8 16;

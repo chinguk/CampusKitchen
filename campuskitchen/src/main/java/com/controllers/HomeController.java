@@ -115,5 +115,4 @@ public class HomeController {
             lblMealPlan.setText("No meal plan selected");
         }
     }
-
 }
