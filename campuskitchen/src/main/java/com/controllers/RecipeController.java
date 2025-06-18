@@ -104,14 +104,38 @@ public class RecipeController {
 
     private HBox createRecipeCard(Recipe recipe) {
         HBox card = new HBox(10);
+        card.setStyle("-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 10;");
+        card.setPrefHeight(100);
+
+        // Recipe Image
+        ImageView imageView = new ImageView();
+        try {
+            if (recipe.getImagePath() != null && !recipe.getImagePath().isEmpty()) {
+                Image image = new Image(getClass().getResourceAsStream("/images/" + recipe.getImagePath()));
+                imageView.setImage(image);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not load image for recipe: " + recipe.getName());
+        }
+        imageView.setFitWidth(100);
+        imageView.setPreserveRatio(true);
+
+        // Recipe Info
+        VBox info = new VBox(5);
         Label name = new Label(recipe.getName());
-        card.getChildren().add(name);
-        boxRecipeContainer.getChildren().add(card);
+        name.setStyle("-fx-font-weight: bold; -fx-font-size: 14pt;");
+        Label duration = new Label("Duration: " + recipe.getDuration() + " mins");
+        Label rating = new Label("Rating: " + recipe.getAverageRating());
+
+        info.getChildren().addAll(name, duration, rating);
+
+        card.getChildren().addAll(imageView, info);
+        return card;
     }
 
     public void initialize() {
-        recipeList = RecipeList().getInstance();
-
+        recipeList = RecipeList.getInstance();
+        boxRecipeContainer.getChildren().clear();
         for (Recipe recipe : recipeList.getRecipes()) {
             HBox card = createRecipeCard(recipe);
             boxRecipeContainer.getChildren().add(card);
