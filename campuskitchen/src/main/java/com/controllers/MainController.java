@@ -1,3 +1,5 @@
+package com.controllers;
+
 import java.io.IOException;
 
 import com.campus.App;
