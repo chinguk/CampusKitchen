@@ -26,6 +26,6 @@
       </HBox>
    </children>
    <stylesheets>
-      <URL value="@recipe.css" />
+      <URL value="@css/recipe.css" />
    </stylesheets>
 </VBox>

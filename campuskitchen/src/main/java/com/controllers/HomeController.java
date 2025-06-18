@@ -26,6 +26,9 @@ import javafx.scene.image.ImageView;
 public class HomeController {
 
     @FXML
+    private VBox boxMealPlan;
+
+    @FXML
     private VBox boxHome;
 
     @FXML

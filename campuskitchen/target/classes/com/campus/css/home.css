@@ -1,13 +1,13 @@
 /* Overall VBox container */
 #boxHome {
-    -fx-background-color: #F28705;
+    -fx-background-color: #F2E6DF;
     -fx-padding: 40px 20px 20px 20px;
 }
 
 /* Main title */
 #lblTitle {
     -fx-font-size: 32px;
-    -fx-text-fill: white;
+    -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
@@ -15,7 +15,7 @@
 /* Subtitle: "Favorite Recipes" */
 #lblFavorite {
     -fx-font-size: 18px;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
@@ -29,16 +29,23 @@
 #lblTodayPlan,
 #lblMealPlan {
     -fx-font-size: 14px;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-alignment: center;
 }
 
 /* Bottom nav bar */
 #boxMenu {
-    -fx-background-color: #f4f4f4;
+    -fx-background-color: #afaaaa6b;
     -fx-padding: 10px;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px 0 0 0;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+#boxMealPlan {
+    -fx-background-color: #afaaaa6b;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
 }
 
 /* Navigation buttons */
@@ -47,7 +54,7 @@
 #btnBrowse,
 #btnHome {
     -fx-background-color: transparent;
-    -fx-text-fill: #BF6734;
+    -fx-text-fill: #F28705;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
@@ -57,7 +64,7 @@
 #btnMealPlan:hover,
 #btnBrowse:hover,
 #btnHome:hover {
-    -fx-background-color: #BF6734;
+    -fx-background-color: #F28705;
     -fx-text-fill: white;
     -fx-cursor: hand;
 }

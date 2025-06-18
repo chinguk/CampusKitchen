@@ -7,13 +7,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="boxHome" alignment="CENTER" prefHeight="525.0" prefWidth="399.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
+<VBox fx:id="boxHome" alignment="CENTER" prefHeight="525.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
    <children>
       <Label fx:id="lblTitle" text="Campus Kitchen" />
       <Label fx:id="lblFavorite" text="Favorite Recipes" />
       <ImageView fx:id="imgHome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         <image>
+            <Image url="../images/Hamburger.jpg"/>
+         </image>
+      <ImageView>
       <Label fx:id="lblTodayPlan" text="Today's Meal Plan" />
-      <Label fx:id="lblMealPlan" text="&quot;Fresh Fuel: 7-Day Balanced Bites&quot;" />
+      <VBox fx:id="boxMealPlan" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="lblMealPlan" text="&quot;Fresh Fuel: 7-Day Balanced Bites&quot;" />
+         </children>
+      </VBox>
       <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleHomeClick2" text="Recipes" />
@@ -24,6 +32,6 @@
       </HBox>
    </children>
    <stylesheets>
-      <URL value="@home.css" />
+      <URL value="@css/home.css" />
    </stylesheets>
 </VBox>
