@@ -103,7 +103,7 @@ public class RecipeController {
         } catch (Exception e) {
             System.out.println("Could not load image for recipe: " + recipe.getName());
         }
-        imageView.setFitWidth(30);
+        imageView.setFitWidth(70);
         imageView.setPreserveRatio(true);
 
         // Recipe Info
