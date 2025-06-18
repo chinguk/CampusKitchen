@@ -21,6 +21,7 @@ public class Recipe {
     private ArrayList<Rating> ratings;
     private ArrayList<String> ratingIds;
     private ArrayList<Category> categories;
+    private String imagePath;
 
     // add default constructor
     /**
@@ -57,7 +58,7 @@ public class Recipe {
      * Overloaded constructor to include UUID
      */
     public Recipe(UUID id, String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
-                    ArrayList<String> categories, User author, RecipeStatus status, ArrayList<Rating> ratings) {
+                    ArrayList<String> categories, User author, RecipeStatus status, ArrayList<Rating> ratings, String imagePath) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -70,6 +71,7 @@ public class Recipe {
         this.author = author;
         this.status = status;
         this.ratings = new ArrayList<Rating>();
+        this.imagePath = imagePath;
     }
 
     public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredients, 
@@ -279,6 +281,15 @@ public class Recipe {
     public String[] getCategories() {
         String[] categories = {"Culture", "Dietary", "Course"};
         return categories;
+    }
+
+    // Add getter and setter:
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 }
