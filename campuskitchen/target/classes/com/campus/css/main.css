@@ -1,0 +1,21 @@
+.root {
+    -fx-background-color: #F2E6DF;
+}
+
+/* Navigation buttons */
+#btnLogin,
+#btnSignup {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F28705;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+/* Navigation buttons hover */
+#btnLogin:hover,
+#btnSignup:hover{
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
