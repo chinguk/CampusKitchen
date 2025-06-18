@@ -12,26 +12,6 @@
   -fx-alignment: center;
 }
 
-/* each label/textfield pair */
-.form-group {
-  -fx-spacing: 5px;
-  -fx-alignment: CENTER_LEFT;
-  -fx-pref-width: 200px;
-  -fx-padding: 5 0 5 0;
-}
-.form-group .form-label {
-  -fx-font-size: 14px;
-  -fx-text-fill: #333333;
-}
-.form-group .form-field {
-  -fx-pref-width: 200px;
-  -fx-background-radius: 4px;
-  -fx-border-radius: 4px;
-  -fx-border-color: #ccc;
-  -fx-border-width: 1px;
-  -fx-padding: 4 6;
-}
-
 /* submit button */
 #btnSubmit {
   -fx-background-color: #BF6734;
