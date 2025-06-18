@@ -11,11 +11,11 @@ public class SimplifiedUI {
     public SimplifiedUI() {}
 
     public void run(){
-        //scenario1();
+        scenario1();
         //scenario2();
         //scenario3();
-        //scenario4();
-        scenario5();
+       // scenario4();
+        //scenario5();
 
     }
 
