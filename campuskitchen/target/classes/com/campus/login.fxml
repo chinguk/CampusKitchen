@@ -12,7 +12,7 @@
 
 <VBox alignment="CENTER" prefHeight="399.0" prefWidth="533.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
    <children>
-      <Button alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="87.0" text="Back" textAlignment="CENTER">
+      <Button alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackClick" prefHeight="47.0" prefWidth="87.0" text="Back" textAlignment="CENTER">
          <VBox.margin>
             <Insets right="375.0" />
          </VBox.margin>
