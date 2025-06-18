@@ -2,13 +2,11 @@ package com.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.UUID;
+import java.util.Random;
 
 import com.campus.App;
 import com.model.MealPlan;
 import com.model.Recipe;
-import com.model.RecipeList;
 import com.model.User;
 import com.model.UserList;
 
@@ -19,8 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
@@ -89,8 +85,9 @@ public class HomeController {
 
         // Show favorite recipe preview
         ArrayList<Recipe> favorites = user.getFavoriteRecipes();
+        Random rand = new Random();
         if (!favorites.isEmpty()) {
-            Recipe favorite = favorites.get(0);
+            Recipe favorite = favorites.get(rand.nextInt(favorites.size()));
             lblFavorite.setText("Favorite: " + favorite.getName());
 
             String path = favorite.getImagePath(); 
