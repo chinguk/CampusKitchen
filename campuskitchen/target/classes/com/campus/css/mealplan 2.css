@@ -1,0 +1,65 @@
+.root {
+    -fx-background-color: #F2E6DF;
+}
+
+.label {
+    -fx-font-family: "garamond";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Title label styling */
+.title-label {
+    -fx-font-family: "garamond";
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F28705;
+    -fx-alignment: center;
+}
+
+/* Primary button styling */
+.button-primary {
+    -fx-background-color: #BF6734;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+.button-primary:hover {
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+/* Highlight box for scroll pane content */
+.highlight-box {
+    -fx-background-color: white;
+    -fx-padding: 10px;
+    -fx-border-color: #F28705;
+    -fx-border-width: 1px;
+}
+
+/* Navigation buttons */
+#btnRecipe,
+#btnMealPlans,
+#btnBrowse,
+#btnHome {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F28705;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+/* Navigation buttons hover */
+#btnRecipe:hover,
+#btnMealPlans:hover,
+#btnBrowse:hover,
+#btnHome:hover {
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
