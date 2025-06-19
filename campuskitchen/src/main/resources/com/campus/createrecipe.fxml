@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="recipeForm" fx:controller="com.controllers.CreateRecipeController" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@css/createrecipe.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="recipeForm" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" spacing="20.0" stylesheets="@css/createrecipe.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateRecipeController">
    <children>
       <VBox alignment="BOTTOM_CENTER" prefHeight="73.0" prefWidth="560.0">
          <children>
@@ -23,7 +23,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefWidth="200.0" text="Name" />
+                  <Label alignment="TOP_LEFT" prefHeight="0.0" prefWidth="200.0" text="Name" />
                   <TextField prefWidth="200.0" />
                </children>
             </VBox>
@@ -59,9 +59,17 @@
             </VBox>
          </children>
       </VBox>
-      <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="560.0">
+      <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="560.0">
          <children>
             <Button fx:id="btnSubmit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Submit" />
+         </children>
+      </HBox>
+      <HBox fx:id="boxMenu" alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="327.0">
+         <children>
+            <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" text="Recipes" />
+            <Button fx:id="btnMealPlan" mnemonicParsing="false" onAction="#handleMealPlanClick" text="Meal Plans" />
+            <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#handleBrowseClick" text="Browse" />
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
          </children>
       </HBox>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
