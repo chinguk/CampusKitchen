@@ -2,7 +2,6 @@ package com.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.campus.App;
 import com.model.MealPlan;
@@ -35,7 +34,7 @@ public class MealPlansController {
     private Button btnHome;
 
     @FXML
-    private Button btnMealPlans;
+    private Button btnMealPlan;
 
     @FXML
     private Button btnRecipe;
@@ -157,7 +156,7 @@ public class MealPlansController {
         content.append("Meal Plan ID: ").append(mealPlan.getID()).append("\n\n");
         
         // Get recipes
-        List<Recipe> recipes = mealPlan.getRecipes();
+        ArrayList<Recipe> recipes = mealPlan.getRecipes();
         if (recipes != null && !recipes.isEmpty()) {
             content.append("Recips in Meal Plan:\n");
             content.append("=".repeat(40)).append("\n\n");
@@ -204,8 +203,5 @@ public class MealPlansController {
 
     public void setUser(User user) {
         this.user = user;
-        if (user != null) {
-            displayUserMealPlans();
-        }
     }
 }
