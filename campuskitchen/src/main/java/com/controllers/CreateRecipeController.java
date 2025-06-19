@@ -128,7 +128,7 @@ public class CreateRecipeController {
         RecipeStatus status = RecipeStatus.APPROVED;
 
         RecipeList.getInstance().addRecipe(name,description,duration,steps,ingredients,cultures,dietary,courses,user,status);
-
+        com.model.DataWriter.saveRecipes();
         try {
             App.setRoot("recipe");
         } catch (IOException e) {

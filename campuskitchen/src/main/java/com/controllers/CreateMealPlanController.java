@@ -1,7 +1,6 @@
 package com.controllers;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import com.campus.App;
 import com.model.Recipe;
@@ -84,37 +83,36 @@ public class CreateMealPlanController {
     }
 
     @FXML
-    private void handleSubmitClick(ActionEvent event) {
-        String planName = nameField.getText().trim();
+private void handleSubmitClick(ActionEvent event) {
+    String planName = nameField.getText().trim();
 
-        if (planName.isEmpty()) {
-            new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR,
-                "Please enter a name for the meal plan.").show();
-            return;
-        }
-
-        if (selectedRecipes.isEmpty()) {
-            new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR,
-                "Please select at least one recipe.").show();
-            return;
-        }
-
-        ArrayList<UUID> recipeIds = new ArrayList<>();
-        for (Recipe recipe : selectedRecipes) {
-            recipeIds.add(recipe.getId()); 
-        }
-
-
-        com.model.MealPlan newPlan = new com.model.MealPlan(generateRandomId(), recipeIds, planName);
-
-        recipeSystem.addMealPlan(newPlan);
-
-        try {
-            App.setRoot("mealplan");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    if (planName.isEmpty()) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR,
+            "Please enter a name for the meal plan.").show();
+        return;
     }
+
+    if (selectedRecipes.isEmpty()) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR,
+            "Please select at least one recipe.").show();
+        return;
+    }
+
+    // Create meal plan using Recipe objects directly
+    com.model.MealPlan newPlan = new com.model.MealPlan(planName, selectedRecipes, generateRandomId());
+
+    // Add the meal plan to the current user
+    recipeSystem.addMealPlan(newPlan);
+    
+    // Save the users data to persist the meal plan
+    com.model.DataWriter.saveUsers();
+
+    try {
+        App.setRoot("mealplan");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     private String generateRandomId() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
