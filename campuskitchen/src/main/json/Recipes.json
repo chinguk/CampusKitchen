@@ -104,5 +104,120 @@
         "categories": [],
         "user": "TonyaHam",
         "imagePath" : "SimpleSugarCookies.jpeg"
+    },
+    {
+        "duration": 30,
+        "author": "rBrick",
+        "ratings": [
+            "R010",
+            "R011"
+        ],
+        "name": "Spiced Chicken with Couscous",
+        "description": "A flavorful meal with aromatic spices and fluffy couscous.",
+        "ingredients": [
+            {
+                "amount": 200,
+                "unit": "GRAM",
+                "name": "Chicken Breast"
+            },
+            {
+                "amount": 1,
+                "unit": "CUP",
+                "name": "Couscous"
+            },
+            {
+                "amount": 1,
+                "unit": "TSP",
+                "name": "Cumin"
+            }
+        ],
+        "id": "c38fdb3a-945c-42c1-94b3-fb52f3473c24",
+        "categories": [
+            "AMERICAN"
+        ],
+        "steps": [
+            "Season and sear chicken.",
+            "Cook couscous with broth.",
+            "Serve chicken over couscous with herbs."
+        ],
+        "recipeStatus": "APPROVED",
+        "imagePath": "SpicedChickenCouscous.jpeg"
+    },
+    {
+        "duration": 20,
+        "author": "sfirst04",
+        "ratings": [
+            "R021",
+            "R022"
+        ],
+        "name": "Vegan Stir-Fry",
+        "description": "A quick and colorful vegan stir-fry with fresh vegetables and tamari sauce.",
+        "ingredients": [
+            {
+                "amount": 1,
+                "unit": "CUP",
+                "name": "Broccoli"
+            },
+            {
+                "amount": 1,
+                "unit": "CUP",
+                "name": "Bell Peppers"
+            },
+            {
+                "amount": 2,
+                "unit": "TBSP",
+                "name": "Tamari Sauce"
+            }
+        ],
+        "id": "7e122d51-b3f4-497a-bef2-0e9b2cfbd9ae",
+        "categories": [
+            "VEGAN"
+        ],
+        "steps": [
+            "Chop vegetables evenly.",
+            "Heat oil in a wok and stir-fry vegetables.",
+            "Add tamari sauce and cook for 3 more minutes."
+        ],
+        "recipeStatus": "APPROVED",
+        "imagePath": "VeganStirFry.jpeg"
+    },
+    {
+        "duration": 35,
+        "author": "hello",
+        "ratings": [
+            "R031",
+            "R032"
+        ],
+        "name": "Salmon & Quinoa Plate",
+        "description": "A gluten-free high-protein meal with pan-seared salmon and seasoned quinoa.",
+        "ingredients": [
+            {
+                "amount": 150,
+                "unit": "GRAM",
+                "name": "Salmon Fillet"
+            },
+            {
+                "amount": 1,
+                "unit": "CUP",
+                "name": "Quinoa"
+            },
+            {
+                "amount": 1,
+                "unit": "TSP",
+                "name": "Lemon Zest"
+            }
+        ],
+        "id": "59bbd473-2c02-44db-a705-1eb3de6ceacf",
+        "categories": [
+            "LUNCH"
+        ],
+        "steps": [
+            "Cook quinoa until fluffy.",
+            "Sear salmon in pan with olive oil.",
+            "Plate salmon over quinoa and garnish with lemon zest."
+        ],
+        "recipeStatus": "APPROVED",
+        "imagePath": "SalmonQuinoaPlate.jpeg"
     }
+    
 ]
