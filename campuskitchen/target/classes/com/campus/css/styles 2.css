@@ -1,0 +1,59 @@
+#lblTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-fill: #F28705;
+    -fx-font-family: "garamond";
+}
+
+.root {
+    -fx-background-color: #F2E6DF;
+    -fx-font-family: "Helvetica", sans-serif;
+    -fx-font-size: 14pt;
+}
+
+.label {
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+.button {
+    -fx-background-color: #F2B872;
+    -fx-text-fill: black;
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8;
+    -fx-font-family: "garamond";
+
+}
+
+.button:hover {
+    -fx-background-color: #BF6734;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.text-field, .password-field {
+    -fx-font-size: 14pt;
+    -fx-background-color: white;
+    -fx-text-fill: #BF6734;
+    -fx-background-radius: 6;
+    -fx-border-color: #a6a6a6;
+    -fx-border-radius: 6;
+    -fx-padding: 8;
+}
+
+#lblErrorLogin {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+.card {
+    -fx-background-color: rgba(34, 34, 34, 0.85);
+    -fx-background-radius: 10;
+    -fx-padding: 40;
+    -fx-effect: shadow (gaussian, #000000, 15, 0.5, 0, 0);
+}

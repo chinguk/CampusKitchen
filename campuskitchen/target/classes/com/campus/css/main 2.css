@@ -1,0 +1,29 @@
+.root {
+    -fx-background-color: #F2E6DF;
+}
+
+.label {
+    -fx-font-family: "garamond";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Navigation buttons */
+#btnLogin,
+#btnSignup {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F28705;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
+}
+
+/* Navigation buttons hover */
+#btnLogin:hover,
+#btnSignup:hover{
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
