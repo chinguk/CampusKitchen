@@ -79,6 +79,24 @@ public class HomeController {
     }
 
     @FXML
+    void handleBrowseClick(ActionEvent event) {
+        try {
+            App.setRoot("browse");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleMealPlanClick(ActionEvent event) {
+        try {
+            App.setRoot("mealplan");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void initialize() {
         User user = UserList.getInstance().getCurrentUser(); 
         if (user == null) return;

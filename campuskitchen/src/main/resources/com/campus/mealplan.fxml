@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" prefHeight="483.0" prefWidth="346.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MealPlansController">
+<VBox fx:id="boxMealPlan" alignment="TOP_CENTER" prefHeight="483.0" prefWidth="346.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MealPlansController">
     <children>
         <Label fx:id="lblMealPlans" styleClass="title-label" stylesheets="@css/mealplan.css" text="Meal Plans" />
         <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="273.0" prefWidth="289.0">
@@ -19,7 +19,7 @@
             <Button fx:id="btnCreateMealPlan" onAction="#handleCreateMealPlan" styleClass="button-primary" text="Create" />
             <Button fx:id="btnGroceryList" onAction="#handleGenerateList" styleClass="button-primary" text="Generate GroceryList" />
         </HBox>
-        <HBox prefHeight="62.0" prefWidth="346.0" stylesheets="@css/home.css">
+        <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="62.0" prefWidth="346.0" stylesheets="@css/home.css">
             <children>
                 <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" prefHeight="25.0" prefWidth="72.0" text="Recipe " />
                 <Button fx:id="btnMealPlan" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" text="MealPlans" />

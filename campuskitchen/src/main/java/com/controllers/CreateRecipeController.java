@@ -49,6 +49,42 @@ public class CreateRecipeController {
     private User user;
 
     @FXML
+    void handleHomeClick(ActionEvent event) {
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleRecipeClick(ActionEvent event) {
+        try {
+            App.setRoot("recipe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleMealPlanClick(ActionEvent event) {
+        try {
+            App.setRoot("mealplan");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleBrowseClick(ActionEvent event) {
+        try {
+            App.setRoot("browse");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void initialize() {
 
     }

@@ -91,8 +91,14 @@ public class RecipeController {
         }
     }
 
-
-
+    @FXML
+    void handleCreateClick(ActionEvent event) {
+        try {
+            App.setRoot("createrecipe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }    
 
     private void displayUserRecipes() {
         if (user == null) {

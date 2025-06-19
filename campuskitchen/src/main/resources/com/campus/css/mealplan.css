@@ -1,13 +1,5 @@
-.root {
+#boxMealPlan {
     -fx-background-color: #F2E6DF;
-}
-
-.label {
-    -fx-font-family: "garamond";
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: black;
-    -fx-padding: 0 0 10 0;
 }
 
 /* Title label styling */
@@ -19,8 +11,16 @@
     -fx-alignment: center;
 }
 
+/* Bottom nav bar */
+#boxMenu {
+    -fx-background-color: #afaaaa6b;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
 /* Primary button styling */
-.button-primary {
+.button {
     -fx-background-color: #BF6734;
     -fx-text-fill: white;
     -fx-font-size: 13px;
@@ -28,10 +28,19 @@
     -fx-font-family: "garamond";
 }
 
-.button-primary:hover {
+.button :hover {
     -fx-background-color: #F28705;
     -fx-text-fill: white;
     -fx-cursor: hand;
+}
+
+#btnCreateMealPlan,
+#btnGroceryList {
+    -fx-background-color: #F28705;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "garamond";
 }
 
 /* Highlight box for scroll pane content */
@@ -40,28 +49,6 @@
     -fx-padding: 10px;
     -fx-border-color: #F28705;
     -fx-border-width: 1px;
-}
-
-/* Navigation buttons */
-#btnRecipe,
-#btnMealPlans,
-#btnBrowse,
-#btnHome {
-    -fx-background-color: transparent;
-    -fx-text-fill: #F28705;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-font-family: "garamond";
-}
-
-/* Navigation buttons hover */
-#btnRecipe:hover,
-#btnMealPlans:hover,
-#btnBrowse:hover,
-#btnHome:hover {
-    -fx-background-color: #F28705;
-    -fx-text-fill: white;
-    -fx-cursor: hand;
 }
 
 .meal-plan-card {

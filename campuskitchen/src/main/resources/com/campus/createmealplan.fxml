@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/createmealplan.css" fx:controller="com.controllers.CreateMealPlanController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/createmealplan.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateMealPlanController">
    <children>
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
          <children>
@@ -19,7 +19,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" prefHeight="256.0" prefWidth="600.0">
+      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" prefHeight="405.0" prefWidth="360.0">
          <children>
             <VBox prefHeight="78.0" prefWidth="200.0" styleClass="form-group">
                <children>
@@ -28,10 +28,10 @@
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <VBox prefHeight="258.0" prefWidth="200.0">
+            <VBox prefHeight="388.0" prefWidth="318.0">
                <children>
                   <Label styleClass="form-label" text="Recipes" />
-                  <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="245.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                      <content>
                         <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="94.0" prefWidth="185.0" />
                      </content>
