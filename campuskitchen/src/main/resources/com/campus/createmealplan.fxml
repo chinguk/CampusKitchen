@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/createmealplan.css" fx:controller="com.controllers.CreateRecipeController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
          <children>
@@ -24,7 +24,7 @@
             <VBox prefHeight="78.0" prefWidth="200.0" styleClass="form-group">
                <children>
                   <Label alignment="TOP_LEFT" prefWidth="200.0" styleClass="form-label" text="Name" />
-                  <TextField fx:id="firstNameField" prefWidth="200.0" styleClass="form-field" />
+                  <TextField fx:id="nameField" prefWidth="200.0" styleClass="form-field" />
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
