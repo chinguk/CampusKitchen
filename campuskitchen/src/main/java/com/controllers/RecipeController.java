@@ -21,7 +21,7 @@ import com.model.User;
 
 public class RecipeController {
 
-    @FXML 
+    @FXML
     private HBox boxMenu;
 
     @FXML
@@ -98,7 +98,7 @@ public class RecipeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }    
+    }
 
     private void displayUserRecipes() {
         if (user == null) {
@@ -142,6 +142,10 @@ public class RecipeController {
 
         info.getChildren().addAll(name, duration, rating);
         card.getChildren().addAll(imageView, info);
+
+        card.setOnMouseClicked(event -> {
+            showRecipeDetails(recipe);
+        });
         return card;
     }
 
@@ -163,4 +167,36 @@ public class RecipeController {
     public void setUser(User user) {
         this.user = user;
     }
+
+    private void showRecipeDetails(Recipe recipe) {
+        boxRecipePage.getChildren().clear();
+
+        Label title = new Label(recipe.getName());
+        title.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold;");
+
+        Label description = new Label(recipe.getDescription());
+        description.setWrapText(true);
+        description.setStyle("-fx-font-size: 12pt;");
+
+        Label duration = new Label("Duration: " + recipe.getDuration() + " mins");
+        Label rating = new Label("Rating: " + recipe.getAverageRating());
+
+        Label ingredients = new Label("Ingredients: " + String.join(", ", recipe.getIngredients()));
+        ingredients.setWrapText(true);
+
+        VBox details = new VBox(10, title, description, duration, rating, ingredients);
+        details.setStyle("-fx-padding: 15; -fx-background-color: #f5f5f5; -fx-background-radius: 10;");
+
+        boxRecipePage.getChildren().add(details);
+    }
+
+    /*
+     * <VBox fx:id="boxRecipeContainer" />
+     * <VBox fx:id="boxRecipePage" />
+     * <HBox spacing="20">
+     * <VBox fx:id="boxRecipeContainer" />
+     * <VBox fx:id="boxRecipePage" />
+     * </HBox>
+     * boxRecipePage.getChildren().clear();
+     */
 }
