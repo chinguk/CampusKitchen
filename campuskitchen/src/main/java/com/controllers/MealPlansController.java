@@ -52,7 +52,9 @@ public class MealPlansController {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
     private VBox mealPlanContainer;
+
     private User user;
     private UserList userList;
 
@@ -113,8 +115,6 @@ public class MealPlansController {
     public void initialize() {
         userList = UserList.getInstance();
         user = userList.getCurrentUser();
-        
-        mealPlanContainer = (VBox) scrollPane.getContent();
         
         displayUserMealPlans();
     }
