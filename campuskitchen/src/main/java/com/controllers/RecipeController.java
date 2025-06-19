@@ -3,6 +3,7 @@ package com.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -181,22 +182,14 @@ public class RecipeController {
         Label duration = new Label("Duration: " + recipe.getDuration() + " mins");
         Label rating = new Label("Rating: " + recipe.getAverageRating());
 
-        Label ingredients = new Label("Ingredients: " + String.join(", ", recipe.getIngredients()));
-        ingredients.setWrapText(true);
+        Label ingredients = new Label("Ingredients: " +
+                recipe.getIngredients().stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")));
 
         VBox details = new VBox(10, title, description, duration, rating, ingredients);
         details.setStyle("-fx-padding: 15; -fx-background-color: #f5f5f5; -fx-background-radius: 10;");
 
         boxRecipePage.getChildren().add(details);
     }
-
-    /*
-     * <VBox fx:id="boxRecipeContainer" />
-     * <VBox fx:id="boxRecipePage" />
-     * <HBox spacing="20">
-     * <VBox fx:id="boxRecipeContainer" />
-     * <VBox fx:id="boxRecipePage" />
-     * </HBox>
-     * boxRecipePage.getChildren().clear();
-     */
 }

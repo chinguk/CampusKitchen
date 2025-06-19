@@ -11,7 +11,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="91.0" prefWidth="360.0">
          <children>
-            <Label fx:id="lblTitle" prefHeight="66.0" prefWidth="173.0" text="All Recipes" />
+            <Label fx:id="lblTitle" prefHeight="66.0" prefWidth="202.0" text="All Recipes" />
          </children>
       </HBox>
       <VBox prefHeight="306.0" prefWidth="360.0">
