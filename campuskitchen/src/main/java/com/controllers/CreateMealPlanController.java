@@ -30,8 +30,61 @@ public class CreateMealPlanController {
     @FXML
     private Button btnSubmit;
 
+    @FXML
+    private HBox boxMenu;
+
+    @FXML
+    private Button btnHome;
+
+    @FXML
+    private Button btnRecipe;
+
+    @FXML
+    private Button btnMealPlan;
+
+    @FXML
+    private Button btnBrowse;
+
     private ArrayList<Recipe> selectedRecipes;
     private RecipeSystemFACADE recipeSystem;
+
+    @FXML
+private void handleHomeClick(ActionEvent event) {
+    try {
+        App.setRoot("home");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+@FXML
+private void handleRecipeClick(ActionEvent event) {
+    try {
+        App.setRoot("recipe");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+@FXML
+private void handleMealPlanClick(ActionEvent event) {
+    try {
+        App.setRoot("mealplan");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+@FXML
+private void handleBrowseClick(ActionEvent event) {
+    try {
+        App.setRoot("browse");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+
 
     @FXML
     private void initialize() {
