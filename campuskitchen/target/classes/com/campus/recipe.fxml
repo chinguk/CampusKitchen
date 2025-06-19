@@ -11,7 +11,7 @@
    <children>
       <Label fx:id="lblTitle" text="Recipes" />
       <VBox prefHeight="200.0" prefWidth="100.0" />
-      <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="498.0" prefWidth="360.0" vbarPolicy="ALWAYS">
+            <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="498.0" prefWidth="360.0" vbarPolicy="ALWAYS">
          <content>
             <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="199.0" prefWidth="307.0" />
          </content>
@@ -24,10 +24,10 @@
       <VBox prefHeight="200.0" prefWidth="100.0" />
       <HBox fx:id="boxMenu" alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="327.0">
          <children>
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
             <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" text="Recipes" />
             <Button fx:id="btnMealPlan" mnemonicParsing="false" onAction="#handleMealPlanClick" text="Meal Plans" />
             <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#handleBrowseClick" text="Browse" />
-            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
          </children>
       </HBox>
    </children>

@@ -7,14 +7,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MainController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MainController">
    <children>
-      <ImageView fx:id="imgLogo" fitHeight="245.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgLogo" fitHeight="270.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/CampusKitchen.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblSaying" text="&quot;Fuel Your Brain, Feed Your Soul – Welcome to Campus Kitchen!&quot;" />
+      <Label fx:id="lblSaying" alignment="CENTER" contentDisplay="CENTER" prefHeight="9.0" prefWidth="400.0" text="Fuel Your Brain, Feed Your Soul" />
+      <Label fx:id="lblSaying1" alignment="CENTER" contentDisplay="CENTER" prefHeight="2.0" prefWidth="400.0" text="Welcome to Campus Kitchen!" />
       <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLoginClick" text="Login" />
       <Button fx:id="btnSignup" mnemonicParsing="false" onAction="#handleSignupClick" text="Sign Up" />
    </children>

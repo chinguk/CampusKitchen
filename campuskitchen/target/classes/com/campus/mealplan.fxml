@@ -7,24 +7,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="boxMealPlan" alignment="TOP_CENTER" prefHeight="483.0" prefWidth="346.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MealPlansController">
+<VBox fx:id="boxMealPlan" alignment="TOP_CENTER" prefHeight="525.0" prefWidth="400.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MealPlansController">
     <children>
-        <Label fx:id="lblMealPlans" styleClass="title-label" stylesheets="@css/mealplan.css" text="Meal Plans" />
-        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="274.0" prefWidth="2.0">
+      <VBox prefHeight="19.0" prefWidth="400.0" />
+        <Label fx:id="lblMealPlans" prefHeight="41.0" prefWidth="151.0" styleClass="title-label" stylesheets="@css/mealplan.css" text="Meal Plans" />
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="200.0" prefWidth="400.0">
             <content>
-                <VBox prefHeight="273.0" prefWidth="331.0" spacing="10" styleClass="highlight-box" />
+                <VBox alignment="CENTER" prefHeight="201.0" prefWidth="342.0" spacing="10" styleClass="highlight-box" />
             </content>
         </ScrollPane>
-        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="346.0" spacing="20">
+        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="400.0" spacing="20">
             <Button fx:id="btnCreateMealPlan" onAction="#handleCreateMealPlan" styleClass="button-primary" stylesheets="@css/mealplan.css" text="Create" />
             <Button fx:id="btnGroceryList" onAction="#handleGenerateList" styleClass="button-primary" stylesheets="@css/mealplan.css" text="Generate GroceryList" />
         </HBox>
-        <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="62.0" prefWidth="346.0" stylesheets="@css/home.css">
+      <VBox prefHeight="54.0" prefWidth="400.0" />
+        <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="0.0" prefWidth="400.0" stylesheets="@css/home.css">
             <children>
+                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
                 <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" prefHeight="25.0" prefWidth="72.0" text="Recipe " />
                 <Button fx:id="btnMealPlan" mnemonicParsing="false" onAction="#handleMealPlanClick" prefHeight="26.0" prefWidth="81.0" text="MealPlans" />
                 <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#handleBrowseClick" text="Browse" />
-                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
             </children>
         </HBox>
     </children>
