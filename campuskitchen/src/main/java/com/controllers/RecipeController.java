@@ -108,9 +108,9 @@ public class RecipeController {
         boxRecipeContainer.getChildren().clear();
 
         ArrayList<UUID> recipeIds = user.getRecipesIds();
-        ArrayList<Recipe> recipes = recipeList.getByIDs(recipeIds);
+        ArrayList<Recipe> userRecipes = recipeList.getByIDs(recipeIds);
 
-        for (Recipe recipe : recipes) {
+        for (Recipe recipe : userRecipes) {
             VBox card = createRecipeCard(recipe);
             boxRecipeContainer.getChildren().add(card);
         }

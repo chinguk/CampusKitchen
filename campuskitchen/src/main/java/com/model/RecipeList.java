@@ -100,7 +100,7 @@ public class RecipeList {
         return null;
     }
 
-    public ArrayList<Recipe> getByIDs(List<UUID> ids) {
+    public ArrayList<Recipe> getByIDs(ArrayList<UUID> ids) {
         ArrayList<Recipe> matchedRecipes = new ArrayList<>();
         for (UUID id : ids) {
             for (Recipe recipe : recipes) {

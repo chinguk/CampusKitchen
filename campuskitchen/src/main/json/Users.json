@@ -42,5 +42,57 @@
         "email": "TonHamilton@gmail.com",
         "username": "TonyaHam",
         "myrecipes": []
+    },
+    {
+        "firstName": "Red",
+        "lastName": "Brick",
+        "universityID": "G192730",
+        "password": "secure123",
+        "dietaryRestrictions": ["PALEO"],
+        "mealPlans": [
+            {
+                "recipes": ["c38fdb3a-945c-42c1-94b3-fb52f3473c24"],
+                "name": "High Protein Halal Plan",
+                "mealPlanID": "plan-002"
+            }
+        ],
+        "email": "red.brick@gmail.com",
+        "username": "rBrick",
+        "myrecipes": ["c38fdb3a-945c-42c1-94b3-fb52f3473c24"]
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "First",
+        "universityID": "A203845",
+        "password": "veggie456",
+        "dietaryRestrictions": ["VEGAN"],
+        "mealPlans": [
+            {
+                "recipes": ["7e122d51-b3f4-497a-bef2-0e9b2cfbd9ae"],
+                "name": "Plant-Based Wellness",
+                "mealPlanID": "plan-003"
+            }
+        ],
+        "email": "sophia.first@univ.edu",
+        "username": "sfirst04",
+        "myrecipes": ["7e122d51-b3f4-497a-bef2-0e9b2cfbd9ae"]
+    },
+    {
+        "firstName": "Hello",
+        "lastName": "World",
+        "universityID": "H204930",
+        "password": "fitness789",
+        "dietaryRestrictions": ["GLUTEN_FREE"],
+        "mealPlans": [
+            {
+                "recipes": ["59bbd473-2c02-44db-a705-1eb3de6ceacf"],
+                "name": "Gluten-Free Energy Plan",
+                "mealPlanID": "plan-004"
+            }
+        ],
+        "email": "hello.world@school.edu",
+        "username": "hello",
+        "myrecipes": ["59bbd473-2c02-44db-a705-1eb3de6ceacf"]
     }
+    
 ]
