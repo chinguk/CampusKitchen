@@ -203,8 +203,5 @@ public class MealPlansController {
 
     public void setUser(User user) {
         this.user = user;
-        if (user != null) {
-            displayUserMealPlans();
-        }
     }
 }
