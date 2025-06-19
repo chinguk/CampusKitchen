@@ -6,7 +6,7 @@
 
 /* title label */
 #lblWelcome {
-  -fx-font-size: 23px;
+  -fx-font-size: 32px;
   -fx-font-weight: bold;
   -fx-text-fill: #F28705;
   -fx-alignment: center;
@@ -43,6 +43,8 @@
   -fx-font-weight: bold;
   -fx-padding: 8 16;
   -fx-background-radius: 6px;
+  -fx-font-family: "garamond";
+
 }
 
 #btnSubmit:hover {

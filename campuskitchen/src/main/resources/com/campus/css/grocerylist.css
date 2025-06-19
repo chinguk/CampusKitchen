@@ -4,6 +4,7 @@
     -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
+    -fx-font-family: "garamond";
 }
 
 .root {

@@ -9,8 +9,18 @@
     -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
+    -fx-font-family: "garamond";
 }
 
+#btnCreate {
+    -fx-background-color: #F2B872;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 6px;
+    -fx-font-family: "garamond";
+}
 
 /* Bottom nav bar */
 #boxMenu {
@@ -18,14 +28,6 @@
     -fx-padding: 10px;
     -fx-border-color: black;
     -fx-border-width: 1px;
-}
-
-#btnCreate {
-    -fx-background-color: #BF6734;
-    -fx-text-fill: white;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-font-family: "garamond";
 }
 
 /* Navigation buttons */
@@ -37,6 +39,7 @@
     -fx-text-fill: #F28705;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
+    -fx-font-family: "garamond";
 }
 
 /* Navigation buttons hover */

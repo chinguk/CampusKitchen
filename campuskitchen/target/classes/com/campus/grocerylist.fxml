@@ -6,22 +6,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:controller="GroceryListController" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/grocerylist.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/grocerylist.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.GroceryListController">
    <children>
-      <HBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="360.0">
+      <HBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="360.0">
          <children>
-            <Label prefHeight="40.0" prefWidth="219.0" text="Grocery List" />
+            <Label prefHeight="0.0" prefWidth="219.0" text="Grocery List" />
          </children>
       </HBox>
+      <VBox prefHeight="18.0" prefWidth="360.0" />
       <VBox prefHeight="332.0" prefWidth="360.0">
          <children>
             <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="316.0" prefWidth="360.0" vbarPolicy="ALWAYS">
                <content>
-                  <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="316.0" prefWidth="351.0" />
+                  <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="324.0" prefWidth="351.0" />
                </content>
             </ScrollPane>
          </children>
       </VBox>
+      <VBox prefHeight="55.0" prefWidth="360.0" />
       <HBox fx:id="boxMenu" alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="327.0">
          <children>
             <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" text="Recipes" />

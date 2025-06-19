@@ -11,6 +11,7 @@
     -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
+    -fx-font-family: "garamond";
 }
 
 /* form-group wrapper around each field */
@@ -22,7 +23,7 @@
 }
 
 /* Labels inside form-group */
-.form-group .form-label {
+.form-label {
     -fx-font-size: 14px;
     -fx-text-fill: #333333;
 }
@@ -53,18 +54,20 @@
 
 /* submit button */
 .button {
-  -fx-background-color: #F2B872;
-  -fx-text-fill: black;
-  -fx-font-weight: bold;
-  -fx-font-size: 14px;
-  -fx-padding: 8 16;
-  -fx-background-radius: 6px;
+    -fx-background-color: #F2B872;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 6px;
+    -fx-font-family: "garamond";
 }
 
 .button:hover {
   -fx-background-color: #F28705;
   -fx-cursor: hand;
 }
+
 /* Bottom nav bar */
 #boxMenu {
     -fx-background-color: #afaaaa6b;

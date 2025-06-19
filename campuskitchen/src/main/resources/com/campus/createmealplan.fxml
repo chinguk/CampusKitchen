@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/createmealplan.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateMealPlanController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/createmealplan.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateMealPlanController">
    <children>
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
          <children>
@@ -19,7 +19,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" prefHeight="405.0" prefWidth="360.0">
+      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" prefHeight="350.0" prefWidth="360.0">
          <children>
             <VBox prefHeight="78.0" prefWidth="200.0" styleClass="form-group">
                <children>
@@ -28,10 +28,10 @@
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <VBox prefHeight="388.0" prefWidth="318.0">
+            <VBox prefHeight="365.0" prefWidth="318.0">
                <children>
-                  <Label styleClass="form-label" text="Recipes" />
-                  <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="245.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="322.0" styleClass="form-label" text="Recipe" />
+                  <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="231.0" prefWidth="318.0" vbarPolicy="ALWAYS">
                      <content>
                         <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="94.0" prefWidth="185.0" />
                      </content>
@@ -43,6 +43,14 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="btnSubmit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSubmitClick" text="Submit" />
+         </children>
+      </HBox>
+      <HBox fx:id="boxMenu" alignment="CENTER" fillHeight="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="26.0">
+         <children>
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
+            <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" text="Recipes" />
+            <Button fx:id="btnMealPlan" mnemonicParsing="false" onAction="#handleMealPlanClick" text="Meal Plans" />
+            <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#handleBrowseClick" text="Browse" />
          </children>
       </HBox>
    </children>

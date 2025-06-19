@@ -1,12 +1,19 @@
 /* Main title */
-
 .root {
     -fx-background-color: #F2E6DF;    
     -fx-padding: 40px 20px 20px 20px; 
     -fx-font-family: "Helvetica", sans-serif;
+    -fx-font-family: "garamond";
+    -fx-padding:    40px 20px 20px 20px;
 }
 
-
+.label {
+    -fx-text-fill: #F28705;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "garamond";
+    -fx-font-size: 32px;
+}
 /* Bottom nav bar */
 #boxMenu {
     -fx-background-color: #afaaaa6b;
