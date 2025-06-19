@@ -17,7 +17,7 @@
         </ScrollPane>
         <HBox alignment="CENTER" prefHeight="47.0" prefWidth="346.0" spacing="20">
             <Button fx:id="btnCreateMealPlan" onAction="#handleCreateMealPlan" styleClass="button-primary" stylesheets="@css/mealplan.css" text="Create" />
-            <Button fx:id="btnGroceryList" onAction="#handleGroceryList" styleClass="button-primary" stylesheets="@css/mealplan.css" text="Generate GroceryList" />
+            <Button fx:id="btnGroceryList" onAction="#handleGenerateList" styleClass="button-primary" stylesheets="@css/mealplan.css" text="Generate GroceryList" />
         </HBox>
         <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="62.0" prefWidth="346.0" stylesheets="@css/home.css">
             <children>
