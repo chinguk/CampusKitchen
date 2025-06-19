@@ -19,6 +19,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class CreateRecipeController {
 
@@ -45,6 +47,25 @@ public class CreateRecipeController {
 
     @FXML
     private Button btnSubmit;
+
+    @FXML
+    private HBox boxMenu;
+
+    @FXML
+    private Button btnHome;
+
+    @FXML
+    private Button btnRecipe;
+
+    @FXML
+    private Button btnMealPlan;
+
+    @FXML
+    private Button btnBrowse;
+
+    @FXML
+    private VBox recipeForm;
+
 
     private User user;
 
