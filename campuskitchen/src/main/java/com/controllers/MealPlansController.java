@@ -34,7 +34,7 @@ public class MealPlansController {
     private Button btnHome;
 
     @FXML
-    private Button btnMealPlans;
+    private Button btnMealPlan;
 
     @FXML
     private Button btnRecipe;
