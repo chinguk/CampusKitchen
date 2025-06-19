@@ -18,7 +18,7 @@
       </ScrollPane>
       <VBox alignment="CENTER" prefHeight="242.0" prefWidth="360.0">
          <children>
-            <Button fx:id="btnCreate" mnemonicParsing="false" prefWidth="54.0" text="Create" />
+            <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#handleCreateClick" prefWidth="54.0" text="Create" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" />
