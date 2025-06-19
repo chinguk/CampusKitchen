@@ -13,12 +13,12 @@
       <VBox prefHeight="200.0" prefWidth="100.0" />
             <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="498.0" prefWidth="360.0" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="199.0" prefWidth="307.0" />
+            <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="306.0" prefWidth="346.0" />
          </content>
       </ScrollPane>
       <VBox alignment="CENTER" prefHeight="242.0" prefWidth="360.0">
          <children>
-            <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#handleCreateClick" prefWidth="54.0" text="Create" />
+            <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#handleCreateClick" prefHeight="34.0" prefWidth="75.0" text="Create" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" />
