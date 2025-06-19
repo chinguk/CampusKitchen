@@ -25,7 +25,7 @@
       </VBox>
       <HBox fx:id="boxMenu" alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="375.0">
          <children>
-            <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleHomeClick2" text="Recipes" />
+            <Button fx:id="btnRecipe" mnemonicParsing="false" onAction="#handleRecipeClick" text="Recipes" />
             <Button fx:id="btnMealPlan" mnemonicParsing="false" onAction="#handleMealPlanClick" text="Meal Plans" />
             <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#handleBrowseClick" text="Browse" />
             <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHomeClick" text="Home" />
