@@ -64,7 +64,7 @@ public class RecipeController {
     }
 
     @FXML
-    void handleHomeClick2(ActionEvent event) {
+    void handleRecipeClick(ActionEvent event) {
         try {
             App.setRoot("recipe");
         } catch (IOException e) {
@@ -72,6 +72,27 @@ public class RecipeController {
         }
         displayUserRecipes();
     }
+
+    @FXML
+    void handleMealPlanClick(ActionEvent event) {
+        try {
+            App.setRoot("mealplan");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleBrowseClick(ActionEvent event) {
+        try {
+            App.setRoot("browse");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     private void displayUserRecipes() {
         if (user == null) {
