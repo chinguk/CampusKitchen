@@ -61,13 +61,14 @@ public class LoginController implements Initializable{
         System.out.println("Password: " + password);
 
         RecipeSystemFACADE facade = RecipeSystemFACADE.getInstance();
-
+        User loggedInUser = facade.login(username, password);
         if (facade.login(username, password) == null) {
             lblErrorLogin.setText("Invalid Login Credentials");
             return;
         }
         lblErrorLogin.setText("");
         System.out.println("Login successful!");
+        UserList.getInstance().setCurrentUser(loggedInUser);
 
         try {
             App.setRoot("home");
@@ -75,7 +76,6 @@ public class LoginController implements Initializable{
             e.printStackTrace();
             lblErrorLogin.setText("Error loading home page");
         }
-        setUser(userList.getCurrentUser());
     }
 
     @Override
