@@ -1,10 +1,4 @@
 /* Main title */
-.label {
-    -fx-font-size: 32px;
-    -fx-text-fill: #F28705;
-    -fx-font-weight: bold;
-    -fx-alignment: center;
-}
 
 .root {
     -fx-background-color: #F2E6DF;    
@@ -27,6 +21,13 @@
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-font-family: "garamond";
+}
+
+#lblTitle {
+    -fx-font-size: 32px;
+    -fx-text-fill: #F28705;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
 }
 
 /* Navigation buttons */
