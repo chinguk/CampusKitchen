@@ -13,7 +13,7 @@
       <VBox prefHeight="33.0" prefWidth="360.0" />
       <ScrollPane fx:id="paneScroll" hbarPolicy="NEVER" prefHeight="352.0" prefWidth="360.0" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="94.0" prefWidth="185.0" />
+            <VBox fx:id="boxRecipeContainer" alignment="CENTER" prefHeight="325.0" prefWidth="344.0" />
          </content>
       </ScrollPane>
       <VBox alignment="CENTER" prefHeight="67.0" prefWidth="360.0" />

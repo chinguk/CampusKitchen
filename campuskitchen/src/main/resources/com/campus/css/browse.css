@@ -7,7 +7,7 @@
     -fx-padding:    40px 20px 20px 20px;
 }
 
-.label {
+.lblTitle {
     -fx-text-fill: #F28705;
     -fx-font-weight: bold;
     -fx-alignment: center;
