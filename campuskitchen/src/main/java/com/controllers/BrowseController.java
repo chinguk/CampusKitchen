@@ -139,4 +139,5 @@ public class BrowseController implements Initializable {
         return card;
     }
 
+    
 }

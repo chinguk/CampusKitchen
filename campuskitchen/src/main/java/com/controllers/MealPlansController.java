@@ -101,6 +101,15 @@ public class MealPlansController {
         }
     }
 
+    @FXML
+    void handleMealPlanClick(ActionEvent event) {
+        try {
+            App.setRoot("mealplan");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
         userList = UserList.getInstance();
         user = userList.getCurrentUser();
