@@ -2,7 +2,6 @@ package com.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.campus.App;
 import com.model.MealPlan;
@@ -157,7 +156,7 @@ public class MealPlansController {
         content.append("Meal Plan ID: ").append(mealPlan.getID()).append("\n\n");
         
         // Get recipes
-        List<Recipe> recipes = mealPlan.getRecipes();
+        ArrayList<Recipe> recipes = mealPlan.getRecipes();
         if (recipes != null && !recipes.isEmpty()) {
             content.append("Recips in Meal Plan:\n");
             content.append("=".repeat(40)).append("\n\n");

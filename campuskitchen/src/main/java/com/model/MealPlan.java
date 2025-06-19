@@ -62,7 +62,7 @@ public class MealPlan {
     /**
      * @return list of recipes in plan
      */
-    public List<Recipe> getRecipes() {
+    public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
 
