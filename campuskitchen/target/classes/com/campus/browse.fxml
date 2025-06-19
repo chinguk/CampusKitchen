@@ -5,13 +5,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
 
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="400.0" stylesheets="@css/browse.css" fx:controller="com.controller.BrowseController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" prefHeight="91.0" prefWidth="360.0">
          <children>
-            <Label fx:id"lblTitle" prefHeight="66.0" prefWidth="173.0" text="All Recipes" />
+            <Label fx:id ="lblTitle" prefHeight="66.0" prefWidth="173.0" text="All Recipes" />
          </children>
       </HBox>
       <VBox prefHeight="306.0" prefWidth="360.0">
@@ -32,4 +34,7 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@css/browse.css" />
+   </stylesheets>
 </VBox>
