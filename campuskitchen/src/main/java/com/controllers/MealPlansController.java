@@ -165,7 +165,7 @@ public class MealPlansController {
         // Get recipes
         ArrayList<Recipe> recipes = mealPlan.getRecipes();
         if (recipes != null && !recipes.isEmpty()) {
-            content.append("Recips in Meal Plan:\n");
+            content.append("Recipes in Meal Plan:\n");
             content.append("=".repeat(40)).append("\n\n");
             
             for (int i = 0; i < recipes.size(); i++) {

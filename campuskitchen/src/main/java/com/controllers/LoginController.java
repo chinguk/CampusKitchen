@@ -1,6 +1,6 @@
 package com.controllers;
 
-import com.model.RecipeSystemFACADE;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +40,9 @@ public class LoginController implements Initializable{
     @FXML
     private Button btnBack;
 
+    private User user;
+    private UserList userList;
+
     @FXML
     void handleBackClick(ActionEvent event) {
         try {
@@ -72,10 +75,16 @@ public class LoginController implements Initializable{
             e.printStackTrace();
             lblErrorLogin.setText("Error loading home page");
         }
+        setUser(userList.getCurrentUser());
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
 }
