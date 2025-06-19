@@ -1,6 +1,5 @@
 package com.controllers;
 
-import com.model.Recipe;
 import com.model.RecipeSystemFACADE;
 
 import javafx.event.ActionEvent;

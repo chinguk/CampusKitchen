@@ -3,6 +3,7 @@ package com.controllers;
 import java.io.IOException;
 
 import com.campus.App;
+import com.model.UserList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class SignUpController {
         System.out.println("University ID: " + universityId);
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
-        
+        UserList.getInstance().addUser(firstName, lastName, email, universityId, username, password);
     }
 
     @FXML

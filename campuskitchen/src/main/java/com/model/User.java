@@ -30,7 +30,7 @@ public class User {
      * @param username User's login username
      * @param password User's password
      */
-    protected User(String firstName, String lastName, String email, String universityID, String username, String password){
+    public User(String firstName, String lastName, String email, String universityID, String username, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

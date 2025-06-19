@@ -5,13 +5,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
 
 <VBox alignment="TOP_CENTER" prefHeight="483.0" prefWidth="346.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MealPlansController">
 
     <children>
         <Label fx:id="lblMealPlans" styleClass="title-label" text="Meal Plans" />
 
-        <ScrollPane fitToWidth="true" prefHeight="273.0" prefWidth="289.0">
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="273.0" prefWidth="289.0">
             <content>
                 <VBox spacing="10" styleClass="highlight-box" />
             </content>
@@ -21,17 +22,18 @@
             <Button fx:id="btnCreateMealPlan" onAction="#handleCreateMealPlan" styleClass="button-primary" text="Create" />
             <Button fx:id="btnGroceryList" onAction="#handleGenerateList" styleClass="button-primary" text="Generate GroceryList" />
         </HBox>
-      <HBox prefHeight="62.0" prefWidth="346.0">
-         <children>
-            <Button fx:id="btnRecipe" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Recipe " />
-            <Button fx:id="btnMealPlans" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" text="MealPlans" />
-            <Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
-            <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
-         </children>
-      </HBox>
+        
+        <HBox prefHeight="62.0" prefWidth="346.0">
+            <children>
+                <Button fx:id="btnRecipe" onAction="#handleRecipeClick" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Recipe " />
+                <Button fx:id="btnMealPlans" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" text="MealPlans" />
+                <Button fx:id="btnBrowse" onAction="#handleBrowseClick" mnemonicParsing="false" text="Browse" />
+                <Button fx:id="btnHome" onAction="#handleHomeClick" mnemonicParsing="false" text="Home" />
+            </children>
+        </HBox>
     </children>
 
     <stylesheets>
-        <URL value="@css/styles.css" />
+        <URL value="@mealplan.css" />
     </stylesheets>
 </VBox>

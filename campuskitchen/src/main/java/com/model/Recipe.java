@@ -54,6 +54,22 @@ public class Recipe {
    //     this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
     }
 
+    public Recipe(String name, String description, int duration, ArrayList<String> steps, ArrayList<Ingredient> ingredient,
+                    ArrayList<Culture> culture, ArrayList<Dietary> dietary, ArrayList<Course> course, RecipeStatus status) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.steps = new ArrayList<String>();
+        this.ingredient = new ArrayList<Ingredient>();
+        this.culture = new ArrayList<Culture>();
+        this.dietary = new ArrayList<Dietary>();
+        this.course = new ArrayList<Course>();
+        this.status = status;
+        this.ratings = new ArrayList<Rating>();
+   //     this.ingredient = (ingredient != null) ? new ArrayList<>(ingredient) : new ArrayList<>();
+    }
+
     /**
      * Overloaded constructor to include UUID
      */
@@ -271,6 +287,8 @@ public class Recipe {
     public void rename(String name) {
         this.name = name;
     }
+
+
 
     @Override
     public String toString() {

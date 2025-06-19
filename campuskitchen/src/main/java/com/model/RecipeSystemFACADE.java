@@ -18,6 +18,8 @@ public class RecipeSystemFACADE {
     private User user;
     private static RecipeSystemFACADE recipeSystemFACADE;
     private RecipeStatus recipeStatus;
+    private ArrayList<MealPlan> mealPlans = new ArrayList<>();
+    private ArrayList<Recipe> recipes = new ArrayList<>();
 
     /**
      * Private constructor to enforce singleton pattern
@@ -225,5 +227,14 @@ public class RecipeSystemFACADE {
     public List<Ingredient> generateGroceryList(MealPlan plan) {
         return DataWriter.getInstance().generateGroceryList(plan);
     }
+
+    public void addMealPlan(MealPlan plan) {
+        mealPlans.add(plan);
+    }
+
+    public void addRecipe(Recipe recipe){
+        recipes.add(recipe);
+    }
+
 }
     

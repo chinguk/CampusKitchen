@@ -23,6 +23,10 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    public Ingredient(String name){
+        this.name = name;
+    }
+
     /**
      * Returns name of ingredient
      * @return ingredient name
